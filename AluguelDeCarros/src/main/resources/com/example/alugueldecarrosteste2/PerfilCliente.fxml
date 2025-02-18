@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.PerfilController">
+   <children>
+      <SplitPane dividerPositions="0.9949832775919732" prefHeight="40.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" prefHeight="31.0" prefWidth="67.0" text="Voltar">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <HBox layoutX="300.0" layoutY="-3.0" prefHeight="31.0" prefWidth="117.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.8208020050125313" prefHeight="560.0" prefWidth="800.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="643.0">
+               <children>
+                  <Label fx:id="LabelNome" layoutX="140.0" layoutY="120.0" prefHeight="45.0" prefWidth="337.0" text="José Da Silva">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="8.0" prefHeight="54.0" prefWidth="387.0" text="Espaço do Cliente">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="120.0" prefHeight="45.0" prefWidth="67.0" text="Nome:">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="160.0" prefHeight="45.0" prefWidth="67.0" text="CPF:">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LabelCpf" layoutX="140.0" layoutY="160.0" prefHeight="45.0" prefWidth="337.0" text="123.456.789.10">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="TabelaReservas" layoutX="32.0" layoutY="274.0" prefHeight="250.0" prefWidth="337.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="32.0" layoutY="229.0" prefHeight="45.0" prefWidth="241.0" text="Histórico de reservas:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="hiddenButton2" layoutX="6.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleHiddenButton2" opacity="0.0" text="Configurações" />
+                  <Button fx:id="hiddenButton1" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHiddenButton1" opacity="0.0" text="Editar Perfil" />
+                  <Button fx:id="SairButton" layoutX="19.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleSairButtonAction" prefHeight="31.0" prefWidth="67.0" text="Sair">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>
