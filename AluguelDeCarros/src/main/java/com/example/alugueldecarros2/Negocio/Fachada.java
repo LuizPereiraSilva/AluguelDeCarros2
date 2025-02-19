@@ -34,14 +34,14 @@ public class Fachada {
 
     //Métodos de Conta
 
-    public void cadastrarCliente(String nome, String cpf, String telefone) throws
+    public void cadastrarCliente(String nome, String cpf, String telefone, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
-        contas.cadastrarCliente(nome, cpf, telefone);
+        contas.cadastrarCliente(nome, cpf, telefone, senha);
     }
 
-    public void cadastrarAdministrador(String nome, String cpf, String telefone) throws
+    public void cadastrarAdministrador(String nome, String cpf, String telefone, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
-        contas.cadastrarAdministrador(nome, cpf, telefone);
+        contas.cadastrarAdministrador(nome, cpf, telefone, senha);
     }
 
     public void removerConta(int contaId) throws ContaNaoExisteException{
@@ -56,9 +56,9 @@ public class Fachada {
         return contas.buscarContaPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, int id, String cpf, String telefone) throws
+    public void atualizarConta(String nome, String cpf, String telefone, String senha) throws
             ContaNaoExisteException{
-        contas.atualizarConta(nome, id, cpf, telefone);
+        contas.atualizarConta(nome, cpf, telefone, senha);
     }
 
     public String listarContas(){

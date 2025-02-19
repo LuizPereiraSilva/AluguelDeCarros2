@@ -2,8 +2,8 @@ package com.example.alugueldecarros2.Negocio.Basico;
 
 public class Cliente extends Conta {
 
-    public Cliente(String nome, String cpf, String telefone){
-        super(nome, cpf, telefone, false);
+    public Cliente(String nome, String cpf, String telefone, String senha){
+        super(nome, cpf, telefone,senha, false);
     }
 
 

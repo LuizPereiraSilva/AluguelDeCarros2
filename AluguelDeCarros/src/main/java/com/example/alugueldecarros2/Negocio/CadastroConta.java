@@ -26,19 +26,19 @@ public class CadastroConta {
         return instancia;
     }
 
-    public void cadastrarCliente(String nome, String cpf, String telefone) throws
+    public void cadastrarCliente(String nome, String cpf, String telefone, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
 
-        Conta cliente = new Cliente(nome, cpf, telefone);
+        Conta cliente = new Cliente(nome, cpf, telefone, senha);
         cliente.setIdConta(this.ultimoId + 1);
         this.ultimoId++;
         this.repositorio.adicionarConta(cliente);
     }
 
-    public void cadastrarAdministrador(String nome, String cpf, String telefone) throws
+    public void cadastrarAdministrador(String nome, String cpf, String telefone, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
 
-        Conta administrador = new Administrador(nome, cpf, telefone);
+        Conta administrador = new Administrador(nome, cpf, telefone, senha);
         administrador.setIdConta(this.ultimoId + 1);
         this.ultimoId++;
         this.repositorio.adicionarConta(administrador);
@@ -56,19 +56,19 @@ public class CadastroConta {
         return repositorio.buscarPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, int id, String cpf, String telefone) throws
+    public void atualizarConta(String nome, String cpf, String telefone, String senha) throws
             ContaNaoExisteException{
 
-        Conta conta = repositorio.buscarConta(id);
+        Conta conta = repositorio.buscarPeloCpf(cpf);
 
         if(conta != null) {
             if (conta.getAdministrador()) {
-                Conta administrador = new Administrador(nome, cpf, telefone);
-                administrador.setIdConta(id);
+                Conta administrador = new Administrador(nome, cpf, telefone, senha);
+                administrador.setIdConta(conta.getIdConta());
                 repositorio.atualizarConta(administrador);
             } else {
-                Conta cliente = new Cliente(nome, cpf, telefone);
-                cliente.setIdConta(id);
+                Conta cliente = new Cliente(nome, cpf, telefone, senha);
+                cliente.setIdConta(conta.getIdConta());
                 repositorio.atualizarConta(cliente);
             }
         }
