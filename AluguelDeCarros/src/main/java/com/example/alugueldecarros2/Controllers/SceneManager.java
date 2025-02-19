@@ -6,28 +6,31 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
 
 public class SceneManager {
 
     private static SceneManager instance;
-    private Stage stage;
+    private static Stage stage;
 
     private Scene loginTela;
     private Scene perfilCliente;
     private Scene telaCadastro;
     private Scene telaPesquisa;
     private Scene telaCarro;
+    private Scene primeiraTela;
+    private Scene telaLoginAdm;
+    private Scene telaReservaConfirmada;
+
 
     private LoginTelaController loginTelaController;
     private PerfilClienteController perfilClienteController;
     private TelaCadastroController telaCadastroController;
     private TelaPesquisaController telaPesquisaController;
     private TelaCarroController telaCarroController;
+    private PrimeiraTelaContoller primeiraTelaContoller;
+    private TelaLoginAdmController telaLoginAdmController;
+    private TelaReservaConfirmadaController telaReservaConfirmadaController;
 
     private SceneManager(){
         this.screenLoader();
@@ -43,9 +46,9 @@ public class SceneManager {
 
 
 
-    public void setStage(Stage stage){ this.stage = stage; }
+    public static void setStage(Stage stage){ SceneManager.stage = stage; }
 
-    public Stage getStage(){ return stage; }
+    public static Stage getStage(){ return stage; }
 
 
 
@@ -59,6 +62,12 @@ public class SceneManager {
 
     public Scene getTelaCarro(){ return this.telaCarro; }
 
+    public Scene getPrimeiraTela(){ return this.primeiraTela; }
+
+    public Scene getTelaLoginAdm(){ return this.telaLoginAdm; }
+
+    public Scene getTelaReservaConfirmada(){ return this.telaReservaConfirmada; }
+
 
 
     public LoginTelaController getLoginTelaController(){ return this.loginTelaController; }
@@ -71,34 +80,47 @@ public class SceneManager {
 
     public TelaCarroController getTelaCarroController() { return this.telaCarroController; }
 
+    public PrimeiraTelaContoller getPrimeiraTelaContoller(){ return this.primeiraTelaContoller; }
+
+    public TelaLoginAdmController getTelaLoginAdmController(){ return this.telaLoginAdmController; }
+
+    public TelaReservaConfirmadaController getTelaReservaConfirmadaController(){ return this.telaReservaConfirmadaController; }
+
 
 
     private void screenLoader(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            VBox loginTelaPane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/LoginTela.fxml"));
-            this.loginTela = new Scene(loginTelaPane);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/LoginTela.fxml"));
+            this.loginTela = new Scene(fxmlLoader.load());
             this.loginTelaController = (LoginTelaController) fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
-            VBox perfilClientePane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/PerfilCliente.fxml"));
-            this.perfilCliente = new Scene(perfilClientePane);
-            this.perfilClienteController = (PerfilClienteController) fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PerfilCliente.fxml"));
+            this.perfilCliente = new Scene(fxmlLoader.load());
+            this.perfilClienteController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
-            VBox TelaCadastropane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/TelaCadastro.fxml"));
-            this.telaCadastro = new Scene(TelaCadastropane);
-            this.telaCadastroController= (TelaCadastroController) fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaCadastro.fxml"));
+            this.telaCadastro = new Scene(fxmlLoader.load());
+            this.telaCadastroController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
-            VBox TelaPesquisapane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/TelaPesquisa.fxml"));
-            this.telaPesquisa = new Scene(TelaPesquisapane);
-            this.telaPesquisaController = (TelaPesquisaController) fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaPesquisa.fxml"));
+            this.telaPesquisa = new Scene(fxmlLoader.load());
+            this.telaPesquisaController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
-            VBox TelaCarropane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/TelaCarro.fxml"));
-            this.telaCarro = new Scene(TelaCarropane);
-            this.telaCarroController = (TelaCarroController) fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaCarro.fxml"));
+            this.telaCarro = new Scene(fxmlLoader.load());
+            this.telaCarroController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PrimeiraTela.fxml"));
+            this.primeiraTela = new Scene(fxmlLoader.load());
+            this.primeiraTelaContoller = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaLoginAdm.fxml"));
+            this.telaLoginAdm = new Scene(fxmlLoader.load());
+            this.telaLoginAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaReservaConfirmada.fxml"));
+            this.telaReservaConfirmada = new Scene(fxmlLoader.load());
+            this.telaReservaConfirmadaController = fxmlLoader.getController();
 
 
         } catch(IOException e){

@@ -5,11 +5,10 @@ import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-<<<<<<< Updated upstream
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-=======
->>>>>>> Stashed changes
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
