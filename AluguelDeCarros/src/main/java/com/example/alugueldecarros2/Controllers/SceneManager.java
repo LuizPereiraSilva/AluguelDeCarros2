@@ -28,7 +28,7 @@ public class SceneManager {
     private TelaCadastroController telaCadastroController;
     private TelaPesquisaController telaPesquisaController;
     private TelaCarroController telaCarroController;
-    private PrimeiraTelaContoller primeiraTelaContoller;
+    private PrimeiraTelaController primeiraTelaController;
     private TelaLoginAdmController telaLoginAdmController;
     private TelaReservaConfirmadaController telaReservaConfirmadaController;
 
@@ -80,7 +80,7 @@ public class SceneManager {
 
     public TelaCarroController getTelaCarroController() { return this.telaCarroController; }
 
-    public PrimeiraTelaContoller getPrimeiraTelaContoller(){ return this.primeiraTelaContoller; }
+    public PrimeiraTelaController getPrimeiraTelaContoller(){ return this.primeiraTelaController; }
 
     public TelaLoginAdmController getTelaLoginAdmController(){ return this.telaLoginAdmController; }
 
@@ -112,7 +112,7 @@ public class SceneManager {
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/PrimeiraTela.fxml"));
             this.primeiraTela = new Scene(fxmlLoader.load());
-            this.primeiraTelaContoller = fxmlLoader.getController();
+            this.primeiraTelaController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/TelaLoginAdm.fxml"));
             this.telaLoginAdm = new Scene(fxmlLoader.load());
@@ -138,6 +138,9 @@ public class SceneManager {
             case "TelaCadastro.fxml" -> this.stage.setScene(this.telaCadastro);
             case "TelaPesquisa.fxml" -> this.stage.setScene(this.telaPesquisa);
             case "TelaCarro.fxml" -> this.stage.setScene(this.telaCarro);
+            case "PrimeiraTela.fxml" -> this.stage.setScene(this.primeiraTela);
+            case "TelaLoginAdm.fxml" -> this.stage.setScene(this.telaLoginAdm);
+            case "TelaREservaConfirmada.fxml" -> this.stage.setScene(this.telaReservaConfirmada);
         }
         stage.setTitle(titleScreen);
 
