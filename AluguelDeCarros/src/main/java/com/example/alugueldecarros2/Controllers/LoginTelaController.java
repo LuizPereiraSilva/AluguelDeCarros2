@@ -1,20 +1,19 @@
 package com.example.alugueldecarros2.Controllers;
 
-import com.example.alugueldecarros2.Controllers.SceneManager.SceneManager;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+<<<<<<< Updated upstream
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+=======
+>>>>>>> Stashed changes
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginTelaController{
 
@@ -54,7 +53,11 @@ public class LoginTelaController{
         SceneManager sceneManager = SceneManager.getInstance();
 
         try{
-            login = fachada.buscarContaPeloCpf(cpf);
+            auxConta = fachada.buscarContaPeloCpf(cpf);
+
+            if(auxConta.getSenha().equals(password)){
+                login = auxConta;
+            }
         } catch(ContaNaoExisteException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("");

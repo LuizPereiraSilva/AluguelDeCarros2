@@ -15,6 +15,7 @@ public abstract class Conta implements Serializable{
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.senha = senha;
         this.administrador = administrador;
     }
 

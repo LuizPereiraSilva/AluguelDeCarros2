@@ -19,10 +19,10 @@ public class Teste2 {
 //                fachada.removerCarro(i);
 //                fachada.cadastrarCarro(2, 123f, "Honda");
 
-//                fachada.cadastrarCliente("Roberto", "123", "2345");
+//                fachada.cadastrarCliente("Roberto", "123", "2345", "243");
 //                fachada.removerConta(i);
 
-                fachada.atualizarConta("Reberto", "123", "12345", "9876");
+//                fachada.atualizarConta("Reberto", "123", "12345", "9876");
 
 //                fachada.cadastrarReserva(fachada.buscarCarro(1), fachada.buscarConta(1),
 //                        LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
