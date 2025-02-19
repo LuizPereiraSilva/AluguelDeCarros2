@@ -8,13 +8,15 @@ public abstract class Conta implements Serializable{
     private int idConta;
     private String cpf;
     private String telefone;
+    private String email;
     private String senha;
     private boolean administrador;
 
-    public Conta(String nome, String cpf, String telefone, String senha, boolean administrador){
+    public Conta(String nome, String cpf, String telefone, String email, String senha, boolean administrador){
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.email = email;
         this.senha = senha;
         this.administrador = administrador;
     }
@@ -53,6 +55,10 @@ public abstract class Conta implements Serializable{
         this.telefone = telefone;
     }
 
+    public void setEmail(String email){ this.email = email; }
+
+    public String getEmail(){ return this.email; }
+
     public String getSenha(){
         return this.senha;
     }
@@ -65,9 +71,9 @@ public abstract class Conta implements Serializable{
     @Override
     public String toString(){
         if(this.administrador) {
-            return "Administrador: " + this.getNome() + "\nID: " + this.getIdConta() + "\nCPF: " + this.getCpf() + "\nTelefone: " + this.getTelefone();
+            return "Administrador: " + this.getNome() + "\nID: " + this.getIdConta() + "\nCPF: " + this.getCpf() + "\nTelefone: " + this.getTelefone() + "\nEmail: " + this.getEmail() + "\nSenha: " + this.getSenha();
         } else {
-            return "Cliente: " + this.getNome()+ "\nID: " + this.getIdConta() + "\nCPF: " + this.getCpf() + "\nTelefone: " + this.getTelefone() + "\nSenha: " + this.getSenha();
+            return "Cliente: " + this.getNome()+ "\nID: " + this.getIdConta() + "\nCPF: " + this.getCpf() + "\nTelefone: " + this.getTelefone() + "\nEmail: " + this.getEmail() + "\nSenha: " + this.getSenha();
         }
     }
 

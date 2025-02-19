@@ -12,6 +12,7 @@ public class CadastroConta {
 
     private ContasRepositorio repositorio;
     private int ultimoId;
+    private static Conta cadastro;
     private static CadastroConta instancia;
 
     private CadastroConta(){
@@ -26,19 +27,23 @@ public class CadastroConta {
         return instancia;
     }
 
-    public void cadastrarCliente(String nome, String cpf, String telefone, String senha) throws
+    public static Conta getCadastro(){ return cadastro; }
+
+    public static void setCadastro(Conta cadastro){ CadastroConta.cadastro = cadastro; }
+
+    public void cadastrarCliente(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
 
-        Conta cliente = new Cliente(nome, cpf, telefone, senha);
+        Conta cliente = new Cliente(nome, cpf, telefone, email, senha);
         cliente.setIdConta(this.ultimoId + 1);
         this.ultimoId++;
         this.repositorio.adicionarConta(cliente);
     }
 
-    public void cadastrarAdministrador(String nome, String cpf, String telefone, String senha) throws
+    public void cadastrarAdministrador(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
 
-        Conta administrador = new Administrador(nome, cpf, telefone, senha);
+        Conta administrador = new Administrador(nome, cpf, telefone, email, senha);
         administrador.setIdConta(this.ultimoId + 1);
         this.ultimoId++;
         this.repositorio.adicionarConta(administrador);
@@ -56,18 +61,18 @@ public class CadastroConta {
         return repositorio.buscarPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, String cpf, String telefone, String senha) throws
+    public void atualizarConta(String nome, String cpf, String telefone, String email, String senha) throws
             ContaNaoExisteException{
 
         Conta conta = repositorio.buscarPeloCpf(cpf);
 
         if(conta != null) {
             if (conta.getAdministrador()) {
-                Conta administrador = new Administrador(nome, cpf, telefone, senha);
+                Conta administrador = new Administrador(nome, cpf, telefone, email, senha);
                 administrador.setIdConta(conta.getIdConta());
                 repositorio.atualizarConta(administrador);
             } else {
-                Conta cliente = new Cliente(nome, cpf, telefone, senha);
+                Conta cliente = new Cliente(nome, cpf, telefone, email, senha);
                 cliente.setIdConta(conta.getIdConta());
                 repositorio.atualizarConta(cliente);
             }

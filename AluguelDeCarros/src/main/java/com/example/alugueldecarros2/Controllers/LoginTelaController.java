@@ -6,7 +6,6 @@ import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
@@ -33,13 +32,10 @@ public class LoginTelaController{
 
     private Fachada fachada = Fachada.getInstance();
 
-    private Conta login = null;
-
     @FXML
     void handleCadastroButtonAction(ActionEvent event) {
 
         SceneManager sceneManager = SceneManager.getInstance();
-
         sceneManager.changeScreen("TelaCadastro.fxml", "TelaCadastro");
 
     }
@@ -48,6 +44,7 @@ public class LoginTelaController{
     void handleLoginButtonAction(ActionEvent event) {
         String cpf = TextCpf.getText();
         String password = TextPassword.getText();
+        Fachada fachada = Fachada.getInstance();
         Conta auxConta = null;
         SceneManager sceneManager = SceneManager.getInstance();
 
@@ -55,18 +52,21 @@ public class LoginTelaController{
             auxConta = fachada.buscarContaPeloCpf(cpf);
 
             if(auxConta.getSenha().equals(password)){
-                login = auxConta;
+                fachada.setCadastro(auxConta);
+                sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Problema durante o login");
+                alert.setContentText("Senha incorreta ");
+                alert.show();
             }
         } catch(ContaNaoExisteException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("");
-            alert.setTitle("Conta Não encontrada");
+            alert.setTitle("Problema durante o login");
             alert.setContentText("Conta não existe");
             alert.show();
-        }
-
-        if(login != null){
-            sceneManager.changeScreen("TelaPesquisa.fxml", "TelaPesquisa");
         }
     }
 }

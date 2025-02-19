@@ -32,16 +32,22 @@ public class Fachada {
         return instance;
     }
 
+    //Métodos de Cadastro
+
+    public Conta getCadastro(){ return CadastroConta.getCadastro(); }
+
+    public void setCadastro(Conta conta){ CadastroConta.setCadastro(conta); }
+
     //Métodos de Conta
 
-    public void cadastrarCliente(String nome, String cpf, String telefone, String senha) throws
+    public void cadastrarCliente(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
-        contas.cadastrarCliente(nome, cpf, telefone, senha);
+        contas.cadastrarCliente(nome, cpf, telefone, email, senha);
     }
 
-    public void cadastrarAdministrador(String nome, String cpf, String telefone, String senha) throws
+    public void cadastrarAdministrador(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
-        contas.cadastrarAdministrador(nome, cpf, telefone, senha);
+        contas.cadastrarAdministrador(nome, cpf, telefone, email, senha);
     }
 
     public void removerConta(int contaId) throws ContaNaoExisteException{
@@ -56,9 +62,9 @@ public class Fachada {
         return contas.buscarContaPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, String cpf, String telefone, String senha) throws
+    public void atualizarConta(String nome, String cpf, String telefone, String email, String senha) throws
             ContaNaoExisteException{
-        contas.atualizarConta(nome, cpf, telefone, senha);
+        contas.atualizarConta(nome, cpf, telefone, email, senha);
     }
 
     public String listarContas(){

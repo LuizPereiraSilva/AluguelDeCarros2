@@ -6,7 +6,7 @@ public class Teste2 {
 
     public static void main(String[] args) {
         Fachada fachada = Fachada.getInstance();
-        try {
+//        try {
 
 //            fachada.cadastrarCliente("Roberto", "1230", "1234");
 //            fachada.cadastrarCarro(1, 200f, "Masserati");
@@ -32,9 +32,9 @@ public class Teste2 {
 //            }
 
 //            print(fachada.buscarReserva(1).toString());
-        }catch(Exception e){
-            print(e.getMessage());
-        }
+//        }catch(Exception e){
+//            print(e.getMessage());
+//        }
 //        print(fachada.listarCarros());
         print(fachada.listarContas());
 //        print(fachada.listarReservas());

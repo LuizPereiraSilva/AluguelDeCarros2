@@ -15,13 +15,14 @@ public class PrimeiraTelaController {
 
     @FXML
     void ClienteBtnClicked(){
-
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("LoginTela.fxml", "Login Cliente");
     }
 
     @FXML
     void AdmBtnClicked(){
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("TelaLoginAdm.fxml", "Login Administrador");
     }
 
 

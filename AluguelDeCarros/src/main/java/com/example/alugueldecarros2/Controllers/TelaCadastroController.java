@@ -1,7 +1,11 @@
 package com.example.alugueldecarros2.Controllers;
 
+import com.example.alugueldecarros2.Exceptions.Contas.ContaJaExisteException;
+import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
+import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -37,13 +41,29 @@ public class TelaCadastroController {
 
     @FXML
     void handleVoltarLoginButtonAction(){
-
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("TelaLogin.fxml", "Tela Login");
     }
 
     @FXML
     void handleConcluirCadastroButtonAction(){
+        Fachada fachada = Fachada.getInstance();
+        Conta contaAux = null;
 
+        try{
+            fachada.cadastrarCliente(TextNome.getText()+ TextSobrenome.getText(), TextCpf.getText(),
+                    TextTelefone.getText(), TextEmail.getText(), TextSenha.getText());
+
+            SceneManager sceneManager = SceneManager.getInstance();
+            sceneManager.changeScreen("TelaLogin.fxml", "Tela Login");
+
+        } catch (ContaJaExisteException | RepositorioCheioException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao cadastrar conta ");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
     }
 
 
