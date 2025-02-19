@@ -6,13 +6,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-<<<<<<< Updated upstream:AluguelDeCarros/src/main/java/com/example/alugueldecarros2/Controllers/SceneManager/SceneManager.java
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-=======
->>>>>>> Stashed changes:AluguelDeCarros/src/main/java/com/example/alugueldecarros2/Controllers/SceneManager.java
 import java.io.IOException;
 
 public class SceneManager {
