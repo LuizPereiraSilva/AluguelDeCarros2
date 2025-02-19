@@ -11,14 +11,9 @@ public class AluguelDeCarrosApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setScene(SceneManager.getInstance().getPrimeiraTela());
-        stage.setTitle("Sistema de Aluguel de Carros");
-
-        stage.setWidth(800);
-        stage.setHeight(534);
-        stage.setResizable(false);
-
-        SceneManager.getInstance().setStage(stage);
+        SceneManager.setStage(stage);
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PrimeiraTela.fxml", "Primeira Tela");
 
         stage.show();
     }
