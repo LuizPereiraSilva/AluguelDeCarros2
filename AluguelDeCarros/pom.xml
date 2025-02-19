@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.alugueldecarrosteste2/com.example.alugueldecarrosteste2.HelloApplication
+                                com.example.alugueldecarrosteste2/com.example.alugueldecarros2.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
