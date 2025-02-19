@@ -2,8 +2,6 @@ package com.example.alugueldecarros2;
 
 import com.example.alugueldecarros2.Controllers.SceneManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -13,14 +11,14 @@ public class AluguelDeCarrosApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        SceneManager sceneManager = SceneManager.getInstance();
-        SceneManager.setStage(stage);
-        sceneManager.changeScreen("PrimeiraTela.fxml", "PrimeiraTela");
+        stage.setScene(SceneManager.getInstance().getPrimeiraTela());
+        stage.setTitle("Sistema de Aluguel de Carros");
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginTela.fxml"));
-//
-//        stage.setScene(new Scene(fxmlLoader.load(), 800, 600));
-//        stage.setTitle("Login Tela");
+        stage.setWidth(800);
+        stage.setHeight(534);
+        stage.setResizable(false);
+
+        SceneManager.getInstance().setStage(stage);
 
         stage.show();
     }
