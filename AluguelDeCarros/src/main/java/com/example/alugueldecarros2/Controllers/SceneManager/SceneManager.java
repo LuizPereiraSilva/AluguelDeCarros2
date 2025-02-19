@@ -1,8 +1,13 @@
 package com.example.alugueldecarros2.Controllers.SceneManager;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import com.example.alugueldecarros2.Controllers.LoginTelaController;
 import com.example.alugueldecarros2.Controllers.PerfilClienteController;
@@ -14,7 +19,7 @@ import java.io.IOException;
 public class SceneManager {
 
     private static SceneManager instance;
-    private static Stage stage;
+    private Stage stage;
 
     private Scene loginTela;
     private Scene perfilCliente;
@@ -40,9 +45,9 @@ public class SceneManager {
 
 
 
-    public static void setStage(Stage stage){ SceneManager.stage = stage; }
+    public void setStage(Stage stage){ this.stage = stage; }
 
-    public static Stage getStage(){ return stage; }
+    public Stage getStage(){ return stage; }
 
 
 
@@ -66,26 +71,29 @@ public class SceneManager {
 
 
 
-    public void screenLoader(){
+    private void screenLoader(){
         try {
-            FXMLLoader loginTelaPane = new FXMLLoader(getClass().getResource("LoginTela.fxml"));
-            this.loginTela = new Scene(loginTelaPane.load());
-            this.loginTelaController = loginTelaPane.getController();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            VBox loginTelaPane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/LoginTela.fxml"));
+            this.loginTela = new Scene(loginTelaPane);
+            this.loginTelaController = (LoginTelaController) fxmlLoader.getController();
 
-            FXMLLoader perfilClientePane = new FXMLLoader(getClass().getResource("PerfilCliente.fxml"));
-            this.perfilCliente = new Scene(perfilClientePane.load());
-            this.perfilClienteController = perfilClientePane.getController();
+            fxmlLoader = new FXMLLoader();
+            VBox perfilClientePane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/PerfilCliente.fxml"));
+            this.perfilCliente = new Scene(perfilClientePane);
+            this.perfilClienteController = (PerfilClienteController) fxmlLoader.getController();
 
-            FXMLLoader telaCadastro = new FXMLLoader(getClass().getResource("TelaCadastro.fxml"));
-            this.telaCadastro = new Scene(telaCadastro.load());
-            this.telaCadastroController = telaCadastro.getController();
+            fxmlLoader = new FXMLLoader();
+            VBox TelaCadastropane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/TelaCadastro.fxml"));
+            this.telaCadastro = new Scene(TelaCadastropane);
+            this.telaCadastroController= (TelaCadastroController) fxmlLoader.getController();
 
-            FXMLLoader telaPesquisa = new FXMLLoader(getClass().getResource("TelaPesquisa.fxml"));
-            this.telaPesquisa = new Scene(telaPesquisa.load());
-            this.telaPesquisaController = telaPesquisa.getController();
-
+            fxmlLoader = new FXMLLoader();
+            VBox TelaPesquisapane = fxmlLoader.load(getClass().getResource("/com/example/alugueldecarros2/TelaPesquisa.fxml"));
+            this.telaPesquisa = new Scene(TelaPesquisapane);
+            this.telaPesquisaController = (TelaPesquisaController) fxmlLoader.getController();
         } catch(IOException e){
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
