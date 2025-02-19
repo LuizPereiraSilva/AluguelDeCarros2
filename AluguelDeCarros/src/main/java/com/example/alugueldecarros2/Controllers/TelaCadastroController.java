@@ -35,6 +35,20 @@ public class TelaCadastroController {
     private Fachada fachada = Fachada.getInstance();
 
 
+    @FXML
+    void handleVoltarLoginButtonAction(){
+
+
+    }
+
+    @FXML
+    void handleConcluirCadastroButtonAction(){
+
+    }
+
+
+
+
 
 
 

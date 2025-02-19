@@ -7,6 +7,7 @@ import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -55,8 +56,11 @@ public class LoginTelaController{
         try{
             login = fachada.buscarContaPeloCpf(cpf);
         } catch(ContaNaoExisteException e){
-            TextCpf.setText("Conta não existe. ");
-            TextPassword.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("");
+            alert.setTitle("Conta Não encontrada");
+            alert.setContentText("Conta não existe");
+            alert.show();
         }
 
         if(login != null){

@@ -73,8 +73,6 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="hiddenButton2" layoutX="6.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleHiddenButton2" opacity="0.0" text="Configurações" />
-                  <Button fx:id="hiddenButton1" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHiddenButton1" opacity="0.0" text="Editar Perfil" />
                   <Button fx:id="SairButton" layoutX="19.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleSairButtonAction" prefHeight="31.0" prefWidth="67.0" text="Sair">
                      <font>
                         <Font name="Arial" size="20.0" />
