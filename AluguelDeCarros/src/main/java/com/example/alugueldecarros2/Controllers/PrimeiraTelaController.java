@@ -1,26 +1,28 @@
 package com.example.alugueldecarros2.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class PrimeiraTelaController {
 
-    @FXML
-    private Button LoginAdmButton;
 
     @FXML
-    private Button LoginClienteButton;
+    private Button btnCliente;
 
     @FXML
-    void handleLoginAdmButton(ActionEvent event) {
+    private Button btnAdm;
+
+
+    @FXML
+    void ClienteBtnClicked(){
+
 
     }
 
     @FXML
-    void handleLoginClienteButton(ActionEvent event) {
+    void AdmBtnClicked(){
 
     }
+
 
 }
-

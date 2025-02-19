@@ -30,12 +30,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="LoginAdmButton" layoutX="209.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleLoginAdmButton" text="Administrador">
+                  <Button fx:id="btnAdm" layoutX="209.0" layoutY="378.0" mnemonicParsing="false" onAction="#AdmBtnClicked" text="Administrador">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="LoginClienteButton" layoutX="237.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleLoginClienteButton" text="Cliente">
+                  <Button fx:id="btnCliente" layoutX="237.0" layoutY="319.0" mnemonicParsing="false" onAction="#ClienteBtnClicked" text="Cliente">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
