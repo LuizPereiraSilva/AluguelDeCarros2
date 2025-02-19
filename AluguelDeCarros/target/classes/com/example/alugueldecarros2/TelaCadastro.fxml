@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.CadastroController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.CadastroController">
    <children>
       <SplitPane dividerPositions="0.15037593984962405, 0.8508771929824561" prefHeight="600.0" prefWidth="800.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="147.0">
                <children>
-                  <Button fx:id="VoltarLoginButton" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarLoginButtonAction" text="Voltar">
+                  <Button fx:id="btnVoltarLogin" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarLoginButtonAction" text="Voltar">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font></Button>
@@ -68,7 +68,7 @@
                         <Font name="Arial" size="48.0" />
                      </font>
                   </Label>
-                  <Button fx:id="CadastrarButton" layoutX="392.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleConcluirCadastroButtonAction" text="Cadastre-se">
+                  <Button fx:id="btnCadastrar" layoutX="392.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleConcluirCadastroButtonAction" text="Cadastre-se">
                      <font>
                         <Font name="Arial" size="19.0" />
                      </font></Button>

@@ -24,7 +24,7 @@ public class AluguelDeCarrosApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        AluguelDeCarrosApp.launch(args);
     }
 
 }

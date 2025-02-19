@@ -39,6 +39,10 @@ public class LoginTelaController{
     @FXML
     void handleCadastroButtonAction(ActionEvent event) {
 
+        SceneManager sceneManager = SceneManager.getInstance();
+
+        sceneManager.changeScreen("TelaCadastro.fxml", "TelaCadastro");
+
     }
 
     @FXML
