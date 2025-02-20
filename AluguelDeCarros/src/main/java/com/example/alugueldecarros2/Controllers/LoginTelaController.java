@@ -25,6 +25,9 @@ public class LoginTelaController{
     private Button LoginButton;
 
     @FXML
+    private Button btnVoltar;
+
+    @FXML
     private TextField TextCpf;
 
     @FXML
@@ -38,6 +41,12 @@ public class LoginTelaController{
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("TelaCadastro.fxml", "TelaCadastro");
 
+    }
+
+    @FXML
+    void btnVoltarClicked(){
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PrimeiraTela.fxml", "PrimeiraTela");
     }
 
     @FXML
