@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.LivroController">
+    <children>
+        <SplitPane prefHeight="46.0" prefWidth="800.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="526.0">
+                    <children>
+                        <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></Button>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <SplitPane prefHeight="568.0" prefWidth="800.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="798.0">
+                    <children>
+                        <ImageView fx:id="FotoCarro" fitHeight="255.0" fitWidth="255.0" layoutX="38.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="329.0">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="ModeloCarro" layoutX="123.0" layoutY="143.0" prefHeight="40.0" prefWidth="173.0" text="Gol">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label fx:id="MarcaCarro" layoutX="106.0" layoutY="178.0" prefHeight="40.0" prefWidth="277.0" text="VolksWagen">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label fx:id="TipoCarro" layoutX="95.0" layoutY="208.0" prefHeight="40.0" prefWidth="131.0" text="Hatch">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                        <Label layoutX="45.0" layoutY="248.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="213.0" text="Tipo:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="183.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="148.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="302.0" prefHeight="73.0" prefWidth="145.0" text="Carro">
+                            <font>
+                                <Font name="Arial Bold" size="50.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="334.0" layoutY="321.0" prefHeight="30.0" prefWidth="173.0" text="Confirmar edição:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                  <Button fx:id="EditarButton" layoutX="507.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleEditarButtonAction" prefHeight="33.0" prefWidth="113.0" text="CONFIRMAR!">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Label fx:id="TituloLivro11" layoutX="45.0" layoutY="280.0" prefHeight="35.0" prefWidth="78.0" text="Diaria: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ValorDiaria" layoutX="109.0" layoutY="275.0" prefHeight="45.0" prefWidth="123.0" text="R$100,00">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CategoriaCarro" layoutX="141.0" layoutY="243.0" prefHeight="40.0" prefWidth="145.0" text="Popular">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="368.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar informações:" wrappingWidth="329.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="401.0" layoutY="151.0" />
+                  <TextField layoutX="401.0" layoutY="186.0" />
+                  <TextField layoutX="401.0" layoutY="218.0" />
+                  <TextField layoutX="401.0" layoutY="251.0" />
+                  <TextField layoutX="401.0" layoutY="285.0" />
+                  <Button fx:id="RemoverCarroButton" layoutX="318.0" layoutY="496.0" mnemonicParsing="false" onAction="#handleRemoverCarroButton" prefHeight="33.0" prefWidth="113.0" text="REMOVER!">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="TituloLivro111" layoutX="170.0" layoutY="495.0" prefHeight="35.0" prefWidth="149.0" text="Remover carro: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</VBox>
