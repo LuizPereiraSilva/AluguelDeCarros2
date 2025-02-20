@@ -52,8 +52,15 @@ public class LoginTelaController{
             auxConta = fachada.buscarContaPeloCpf(cpf);
 
             if(auxConta.getSenha().equals(password)){
-                fachada.setCadastro(auxConta);
-                sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
+                if(!auxConta.getAdministrador()) {
+                    fachada.setCadastro(auxConta);
+                    sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
+                } else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Problema durante o login");
+                    alert.setContentText("Não pode entrar com uma conta administrador ");
+                }
             } else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");

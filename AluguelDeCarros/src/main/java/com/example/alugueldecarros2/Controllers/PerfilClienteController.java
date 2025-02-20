@@ -34,6 +34,7 @@ public class PerfilClienteController{
         Fachada fachada = Fachada.getInstance();
 
         sceneManager.changeScreen("LoginTela.fxml", "Login Tela");
+        sceneManager.getLoginTelaController().setFieldsNull();
         fachada.setCadastro(null);
     }
 
@@ -45,8 +46,11 @@ public class PerfilClienteController{
 
     public void initialize(){
         Fachada fachada = Fachada.getInstance();
-        LabelCpf.setText(fachada.getCadastro().getCpf());
-        LabelNome.setText(fachada.getCadastro().getNome());
+
+        if(fachada.getCadastro() != null) {
+            LabelCpf.setText(fachada.getCadastro().getCpf());
+            LabelNome.setText(fachada.getCadastro().getNome());
+        }
     }
 
 }

@@ -1,7 +1,11 @@
 package com.example.alugueldecarros2.Controllers;
 
+import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
+import com.example.alugueldecarros2.Negocio.Basico.Conta;
+import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,7 +30,39 @@ public class TelaLoginAdmController {
 
     @FXML
     void handleLoginAdmButtonAction(ActionEvent event) {
+        String cpf = TextCpfAdm.getText();
+        String password = TextPasswordAdm.getText();
+        Fachada fachada = Fachada.getInstance();
+        Conta auxConta = null;
+        SceneManager sceneManager = SceneManager.getInstance();
 
+        try{
+            auxConta = fachada.buscarContaPeloCpf(cpf);
+
+            if(auxConta.getSenha().equals(password)){
+                if(auxConta.getAdministrador()) {
+                    fachada.setCadastro(auxConta);
+                    sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
+                } else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Problema durante o login");
+                    alert.setContentText("Não pode entrar com uma conta cliente ");
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Problema durante o login");
+                alert.setContentText("Senha incorreta ");
+                alert.show();
+            }
+        } catch(ContaNaoExisteException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("");
+            alert.setTitle("Problema durante o login");
+            alert.setContentText("Conta não existe");
+            alert.show();
+        }
     }
 
     @FXML
