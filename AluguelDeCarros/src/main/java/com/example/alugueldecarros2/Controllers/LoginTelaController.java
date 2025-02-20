@@ -69,4 +69,9 @@ public class LoginTelaController{
             alert.show();
         }
     }
+
+    public void setFieldsNull(){
+        TextCpf.setText(null);
+        TextPassword.setText(null);
+    }
 }

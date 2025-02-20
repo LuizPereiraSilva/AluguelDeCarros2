@@ -31,7 +31,7 @@ public class TelaCadastroController {
     private TextField TextEmail;
 
     @FXML
-    private TextField TextNome;
+    private TextField TextName;
 
     @FXML
     private TextField TextSobrenome;
@@ -42,7 +42,7 @@ public class TelaCadastroController {
     @FXML
     void handleVoltarLoginButtonAction(){
         SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.changeScreen("TelaLogin.fxml", "Tela Login");
+        sceneManager.changeScreen("LoginTela.fxml", "Tela Login");
     }
 
     @FXML
@@ -51,11 +51,13 @@ public class TelaCadastroController {
         Conta contaAux = null;
 
         try{
-            fachada.cadastrarCliente(TextNome.getText()+ TextSobrenome.getText(), TextCpf.getText(),
+
+            String nome = TextName.getText() + TextSobrenome.getText();
+            fachada.cadastrarCliente(nome, TextCpf.getText(),
                     TextTelefone.getText(), TextEmail.getText(), TextSenha.getText());
 
             SceneManager sceneManager = SceneManager.getInstance();
-            sceneManager.changeScreen("TelaLogin.fxml", "Tela Login");
+            sceneManager.changeScreen("LoginTela.fxml", "Tela Login");
 
         } catch (ContaJaExisteException | RepositorioCheioException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);

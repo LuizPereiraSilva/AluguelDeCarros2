@@ -36,7 +36,7 @@ public class Teste2 {
 //            print(e.getMessage());
 //        }
 //        print(fachada.listarCarros());
-        print(fachada.listarContas());
+//        print(fachada.listarContas());
 //        print(fachada.listarReservas());
 
     }
