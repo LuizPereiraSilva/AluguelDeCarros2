@@ -60,7 +60,6 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <Button fx:id="VoltarButton" layoutY="1.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar" />
                         <ListView fx:id="ListResultados" layoutX="112.0" layoutY="156.0" prefHeight="208.0" prefWidth="454.0" />
                         <Button fx:id="VoltarButton1" layoutY="30.0" mnemonicParsing="false" onAction="#handleVoltarButton1Action" prefHeight="25.0" prefWidth="48.0" text="Perfil" />
                      </children>

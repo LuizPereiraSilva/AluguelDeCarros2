@@ -23,7 +23,7 @@ public class TelaPesquisaController {
 
     @FXML
     private ListView<?> ListResultados;
-    
+
 
     @FXML
     private Button VoltarButton1;
@@ -32,6 +32,8 @@ public class TelaPesquisaController {
     @FXML
     void handleVoltarButton1Action(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getPerfilClienteController().initialize();
         sceneManager.changeScreen("PerfilCliente.fxml", "PerfilCliente ");
+
     }
 }
