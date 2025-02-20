@@ -26,7 +26,7 @@ public class TelaPesquisaController {
     @FXML
     private Button VoltarButton1;
 
-    public void corregarCarros(){
+    public void carregarCarros(){
 
 
     }
