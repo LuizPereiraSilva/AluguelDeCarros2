@@ -10,13 +10,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.LivroController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alugueldecarros2.Controllers.AddCarroController">
     <children>
         <SplitPane prefHeight="46.0" prefWidth="800.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="526.0">
                     <children>
-                        <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar">
+                        <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#btnVoltarClicked" text="Voltar">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font></Button>
@@ -64,12 +64,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="145.0" layoutY="151.0" />
-                  <TextField layoutX="145.0" layoutY="186.0" />
-                  <TextField layoutX="145.0" layoutY="216.0" />
-                  <TextField layoutX="145.0" layoutY="251.0" />
-                  <TextField layoutX="145.0" layoutY="285.0" />
-                  <Button fx:id="AddCarroButton" layoutX="465.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleAddCarroButton" prefHeight="33.0" prefWidth="113.0" text="ADICIONAR!">
+                  <TextField fx:id="ModeloTxt" layoutX="145.0" layoutY="151.0" />
+                  <TextField fx:id="MarcaTxt" layoutX="145.0" layoutY="186.0" />
+                  <TextField fx:id="TipoTxt" layoutX="145.0" layoutY="216.0" />
+                  <TextField fx:id="CategoriaTxt" layoutX="145.0" layoutY="251.0" />
+                  <TextField fx:id="DiariaTxt" layoutX="145.0" layoutY="285.0" />
+                  <Button fx:id="AddCarroButton" layoutX="465.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="33.0" prefWidth="113.0" text="ADICIONAR!">
                      <font>
                         <Font size="15.0" />
                      </font>

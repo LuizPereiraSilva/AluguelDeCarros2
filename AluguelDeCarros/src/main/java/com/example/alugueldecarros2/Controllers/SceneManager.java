@@ -26,6 +26,16 @@ public class SceneManager {
     private Scene primeiraTela;
     private Scene telaLoginAdm;
     private Scene telaReservaConfirmada;
+    private Scene addAdm;
+    private Scene addCarro;
+    private Scene editarCarro;
+    private Scene painelDeControle;
+    private Scene perfilAdm;
+    private Scene pesquisarCarroAdm;
+    private Scene pesquisarReservasAdm;
+    private Scene pesquisarUsuarioAdm;
+    private Scene telaUsuarioAdm;
+
 
 
     private LoginTelaController loginTelaController;
@@ -36,6 +46,15 @@ public class SceneManager {
     private PrimeiraTelaController primeiraTelaContoller;
     private TelaLoginAdmController telaLoginAdmController;
     private TelaReservaConfirmadaController telaReservaConfirmadaController;
+    private AddAdmController addAdmController;
+    private AddCarroController addCarroController;
+    private EditarCarroController editarCarroController;
+    private PainelDeControleController painelDeControleController;
+    private PerfilAdmController perfilAdmController;
+    private PesquisarCarroAdmController pesquisarCarroAdmController;
+    private PesquisarReservasAdmController pesquisarReservasAdmController;
+    private PesquisarUsuarioAdmController pesquisarUsuarioAdmController;
+    private TelaUsuarioAdmController telaUsuarioAdmController;
 
     private SceneManager(){
         this.screenLoader();
@@ -71,7 +90,27 @@ public class SceneManager {
 
     public Scene getTelaLoginAdm(){ return this.telaLoginAdm; }
 
-    public Scene getTelaReservaConfirmada(){ return this.telaReservaConfirmada; }
+    public Scene getTelaReservaConfirmada(){ return this.telaReservaConfirmada;}
+
+    public Scene getAddAdm(){ return this.addAdm; }
+
+    public Scene getAddCarro(){ return this.addCarro; }
+
+    public Scene getEditarCarro(){ return this.editarCarro; }
+
+    public Scene getPainelDeControle(){ return this.painelDeControle; }
+
+    public Scene getPerfilAdm(){ return this.perfilAdm; }
+
+    public Scene getPesquisarCarroAdm(){ return this.pesquisarCarroAdm; }
+
+    public Scene getPesquisarReservasAdm(){ return this.pesquisarReservasAdm; }
+
+    public Scene getPesquisarUsuarioAdm(){ return this.pesquisarUsuarioAdm; }
+
+    public Scene getTelaUsuarioAdm(){ return this.telaUsuarioAdm; }
+
+
 
 
 
@@ -90,6 +129,26 @@ public class SceneManager {
      public TelaLoginAdmController getTelaLoginAdmController(){ return this.telaLoginAdmController; }
 
      public TelaReservaConfirmadaController getTelaReservaConfirmadaController(){ return this.telaReservaConfirmadaController; }
+
+    public AddAdmController getAddAdmController(){ return this.addAdmController; }
+
+    public AddCarroController getAddCarroController(){ return this.addCarroController; }
+
+    public EditarCarroController getEditarCarroController(){ return this.editarCarroController; }
+
+    public PainelDeControleController getPainelDeControleController(){ return this.painelDeControleController; }
+
+    public PerfilAdmController getPerfilAdmController(){ return this.perfilAdmController; }
+
+    public PesquisarCarroAdmController getPesquisarCarroAdmController(){ return this.pesquisarCarroAdmController; }
+
+    public PesquisarReservasAdmController getPesquisarReservasAdmController(){ return this.pesquisarReservasAdmController; }
+
+    public PesquisarUsuarioAdmController getPesquisarUsuarioAdmController(){ return this.pesquisarUsuarioAdmController; }
+
+    public TelaUsuarioAdmController getTelaUsuarioAdmController(){ return this.telaUsuarioAdmController; }
+
+
 
 
 
@@ -127,6 +186,42 @@ public class SceneManager {
             this.telaReservaConfirmada = new Scene(fxmlLoader.load());
             this.telaReservaConfirmadaController = fxmlLoader.getController();
 
+            fxmlLoader = new FXMLLoader(getClass().getResource("/AddAdm.fxml"));
+            this.addAdm = new Scene(fxmlLoader.load());
+            this.addAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/AddCarro.fxml"));
+            this.addCarro = new Scene(fxmlLoader.load());
+            this.addCarroController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/EditarCarro.fxml"));
+            this.editarCarro = new Scene(fxmlLoader.load());
+            this.editarCarroController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PainelDeControle.fxml"));
+            this.painelDeControle = new Scene(fxmlLoader.load());
+            this.painelDeControleController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PerfilAdm.fxml"));
+            this.perfilAdm = new Scene(fxmlLoader.load());
+            this.perfilAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PesquisarCarroAdm.fxml"));
+            this.pesquisarCarroAdm = new Scene(fxmlLoader.load());
+            this.pesquisarCarroAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PesquisarReservasAdm.fxml"));
+            this.pesquisarReservasAdm = new Scene(fxmlLoader.load());
+            this.pesquisarReservasAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PesquisarUsuarioAdm.fxml"));
+            this.pesquisarUsuarioAdm = new Scene(fxmlLoader.load());
+            this.pesquisarUsuarioAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaUsuarioAdm.fxml"));
+            this.telaUsuarioAdm = new Scene(fxmlLoader.load());
+            this.telaUsuarioAdmController = fxmlLoader.getController();
+
 
         } catch(IOException e){
             e.printStackTrace();
@@ -146,6 +241,19 @@ public class SceneManager {
             case "PrimeiraTela.fxml" -> stage.setScene(this.primeiraTela);
             case "TelaLoginAdm.fxml" -> stage.setScene(this.telaLoginAdm);
             case "TelaReservaConfirmada.fxml" -> stage.setScene(this.telaReservaConfirmada);
+            case "AddAdm.fxml" -> stage.setScene(this.addAdm);
+            case "AddCarro.fxml" -> stage.setScene(this.addCarro);
+            case "EditarCarro.fxml" -> stage.setScene(this.editarCarro);
+            case "PainelDeControle.fxml" -> stage.setScene(this.painelDeControle);
+            case "PerfilAdm.fxml" -> stage.setScene(this.perfilAdm);
+            case "PesquisarCarroAdm.fxml" -> stage.setScene(this.pesquisarCarroAdm);
+            case "PesquisarReservasAdm.fxml" -> stage.setScene(this.pesquisarReservasAdm);
+            case "PesquisarUsuarioAdm.fxml" -> stage.setScene(this.pesquisarUsuarioAdm);
+            case "TelaUsuarioAdm.fxml" -> stage.setScene(this.telaUsuarioAdm);
+            default -> {
+                System.out.println("Erro ao trocar de tela");
+                System.exit(0);
+            }
         }
         stage.setTitle(titleScreen);
 

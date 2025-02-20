@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alugueldecarros2.Controllers.PesquisarReservasAdmController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alugueldecarros2.Controllers.PesquisarReservasAdmController">
    <children>
       <SplitPane prefHeight="400.0" prefWidth="609.0">
          <items>
@@ -67,20 +67,20 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="284.0" layoutY="27.0" />
+                                    <TextField fx:id="TextNumeroReserva" layoutX="284.0" layoutY="27.0" />
                                     <Label layoutX="284.0" layoutY="54.0" text="CPF:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="284.0" layoutY="75.0" />
+                                    <TextField fx:id="TextCpf" layoutX="284.0" layoutY="75.0" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </HBox>
                         <Button fx:id="VoltarButton" layoutY="1.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar" />
                         <ListView fx:id="ListResultados" layoutX="112.0" layoutY="156.0" prefHeight="208.0" prefWidth="454.0" />
-                        <Button fx:id="VoltarButton1" layoutY="30.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" prefHeight="25.0" prefWidth="48.0" text="Perfil" />
+                        <Button fx:id="btnPerfil" layoutY="30.0" mnemonicParsing="false" onAction="#handleVoltarPerfilAction" prefHeight="25.0" prefWidth="48.0" text="Perfil" />
                         <Button fx:id="GerarRelatorioButton" layoutX="25.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleGerarRelatorioButtonAction" prefHeight="25.0" prefWidth="57.0" text="GERAR!" />
                         <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="6.0" layoutY="290.0" prefHeight="32.0" prefWidth="96.0" text="Relatório:">
                            <font>

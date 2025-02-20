@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.minimundo.controllers.PerfilController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alugueldecarros2.Controllers.PerfilAdmController">
    <children>
       <SplitPane dividerPositions="0.9949832775919732" prefHeight="40.0" prefWidth="600.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" prefHeight="31.0" prefWidth="67.0" text="Voltar">
+                  <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#btnVoltarClicked" prefHeight="31.0" prefWidth="67.0" text="Voltar">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font></Button>
@@ -60,9 +60,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="hiddenButton2" layoutX="6.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleHiddenButton2" opacity="0.0" text="Configurações" />
-                  <Button fx:id="hiddenButton1" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHiddenButton1" opacity="0.0" text="Editar Perfil" />
-                  <Button fx:id="SairButton" layoutX="19.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleSairButtonAction" prefHeight="31.0" prefWidth="67.0" text="Sair">
+                  <Button fx:id="SairButton" layoutX="19.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnSairClicked" prefHeight="31.0" prefWidth="67.0" text="Sair">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font></Button>

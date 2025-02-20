@@ -33,8 +33,8 @@
                            </children>
                         </HBox>
                         <Button fx:id="VoltarButton" layoutY="1.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar" />
-                        <ListView fx:id="ListResultados" layoutX="73.0" layoutY="172.0" prefHeight="208.0" prefWidth="454.0" />
-                        <TextField fx:id="TextPlaca" layoutX="73.0" layoutY="140.0" prefHeight="25.0" prefWidth="131.0" />
+                        <ListView fx:id="ListaUsuarios" layoutX="73.0" layoutY="172.0" prefHeight="208.0" prefWidth="454.0" />
+                        <TextField fx:id="TextCpf" layoutX="73.0" layoutY="140.0" prefHeight="25.0" prefWidth="131.0" />
                         <Label layoutX="73.0" layoutY="119.0" prefHeight="21.0" prefWidth="106.0" text="Cpf:">
                            <font>
                               <Font size="15.0" />
