@@ -159,6 +159,16 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         escreverArquivo();
     }
 
+    public String[] getListaCarros(){
+        String[] resultado = new String[this.carrosIndex];
+
+        for(int i = 0; i < carrosIndex; i++){
+            resultado[i] = carros[i].adicionarNaLista();
+        }
+
+        return resultado;
+    }
+
     public String toString(){
         String resultado = "\n\nLista de carros: \n";
 

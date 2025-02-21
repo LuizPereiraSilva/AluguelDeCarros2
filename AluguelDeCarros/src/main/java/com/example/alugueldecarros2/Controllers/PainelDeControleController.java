@@ -20,22 +20,30 @@ public class PainelDeControleController {
 
     @FXML
     void handleAccessCarrosAdmButton(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PesquisarCarroAdm.fxml",
+                "Pesquisa de Carros do Administrador");
     }
 
     @FXML
     void handleAccessPerfilAdmButtonAction(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PerfilAdm.fxml",
+                "Perfil do Administrador ");
     }
 
     @FXML
     void handleAccessReservasAdmButton(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PesquisarReservasAdm.fxml",
+                "Pesquisa de Reservas do Administrador");
     }
 
     @FXML
     void handleAccessUsersAdmButton(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PesquisarUsuarioAdm.fxml",
+                "Pesquisa de Usuarios do Administrador");
     }
 
 }

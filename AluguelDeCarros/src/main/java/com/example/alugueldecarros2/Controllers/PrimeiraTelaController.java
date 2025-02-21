@@ -23,6 +23,7 @@ public class PrimeiraTelaController {
     void AdmBtnClicked(){
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("TelaLoginAdm.fxml", "Login Administrador");
+        sceneManager.getTelaLoginAdmController().setFieldsNull();
     }
 
 

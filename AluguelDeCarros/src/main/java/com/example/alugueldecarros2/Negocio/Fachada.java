@@ -73,8 +73,8 @@ public class Fachada {
 
     //Métodos de Carro
 
-    public void cadastrarCarro(int modelo, float preco, String caracteristicas) throws RepositorioCheioException{
-        carros.cadastrarCarro(modelo, preco, caracteristicas);
+    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas) throws RepositorioCheioException{
+        carros.cadastrarCarro(modelo, preco, placa, caracteristicas);
     }
 
     public void removerCarro(int id) throws CarroNaoExisteException{
@@ -87,6 +87,10 @@ public class Fachada {
 
     public void atualizarPreco(int id, float novoPreco) throws CarroNaoExisteException{
         carros.atualizarPreco(id, novoPreco);
+    }
+
+    public String[] getListaCarros(){
+        return carros.getListaCarros();
     }
 
     public String listarCarros(){

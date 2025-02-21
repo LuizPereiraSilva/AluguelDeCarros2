@@ -42,12 +42,13 @@ public class TelaLoginAdmController {
             if(auxConta.getSenha().equals(password)){
                 if(auxConta.getAdministrador()) {
                     fachada.setCadastro(auxConta);
-                    sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
+                    sceneManager.changeScreen("PainelDeControle.fxml", "Painel de Controle");
                 } else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("");
                     alert.setTitle("Problema durante o login");
                     alert.setContentText("Não pode entrar com uma conta cliente ");
+                    alert.show();
                 }
             } else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -67,7 +68,13 @@ public class TelaLoginAdmController {
 
     @FXML
     void handleLoginClienteButton(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("LoginTela.fxml",
+                "Tela de Login");
     }
 
+    public void setFieldsNull(){
+        TextCpfAdm.setText(null);
+        TextPasswordAdm.setText(null);
+    }
 }

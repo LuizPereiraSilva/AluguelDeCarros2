@@ -1,5 +1,6 @@
 package com.example.alugueldecarros2.Controllers;
 
+import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +23,9 @@ public class PerfilAdmController {
 
     @FXML
     void btnVoltarClicked(ActionEvent event){
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PainelDeControle.fxml",
+                "Painel de Controle");
     }
 
     @FXML

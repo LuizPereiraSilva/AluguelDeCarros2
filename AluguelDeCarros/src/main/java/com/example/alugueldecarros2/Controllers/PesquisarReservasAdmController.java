@@ -39,7 +39,9 @@ public class PesquisarReservasAdmController {
 
     @FXML
     void handleVoltarButtonAction(ActionEvent event) {
-
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("PainelDeControle.fxml",
+                "Painel de Controle");
     }
 
     @FXML

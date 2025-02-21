@@ -24,9 +24,9 @@ public class CadastroCarro {
         return instance;
     }
 
-    public void cadastrarCarro(int modelo, float preco, String caracteristicas) throws RepositorioCheioException {
+    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas) throws RepositorioCheioException {
         if(0 < modelo && modelo < 5 && preco > 0){
-            Carro carro = new Carro(modelo, this.ultimoId +1, preco, caracteristicas);
+            Carro carro = new Carro(modelo, this.ultimoId +1, preco, placa, caracteristicas);
             this.repositorio.adicionarCarro(carro);
             ultimoId++;
         }
@@ -44,6 +44,10 @@ public class CadastroCarro {
         if(novoPreco > 0) {
             this.repositorio.atualizarPreco(id, novoPreco);
         }
+    }
+
+    public String[] getListaCarros(){
+        return this.repositorio.getListaCarros();
     }
 
     public String listarCarros(){

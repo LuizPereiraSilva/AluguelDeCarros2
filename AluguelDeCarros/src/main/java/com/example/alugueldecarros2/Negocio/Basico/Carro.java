@@ -9,12 +9,14 @@ public class Carro implements Serializable{
     private int idCarro; // A placa do carro
     private float preco;
     private String caracteristicas;
+    private String placa;
     private boolean disponivel;
     
-    public Carro(int modelo, int idCarro, float preco, String caracteristicas) {
+    public Carro(int modelo, int idCarro, float preco, String placa, String caracteristicas) {
         this.setIdModelo(modelo);
         this.idCarro = idCarro;
         this.preco = preco;
+        this.placa  = placa;
         this.caracteristicas = caracteristicas;
     }
 
@@ -79,6 +81,8 @@ public class Carro implements Serializable{
         this.disponivel = disponivel;
     }
 
+    public boolean getDisponivel(){ return this.disponivel; }
+
     // metodo para ver informacao do carro
     public String toString() {
         String resultado = "\n\nCarro " + this.idCarro + ": ";
@@ -86,6 +90,15 @@ public class Carro implements Serializable{
         resultado += " \nID do carro: " + this.idCarro;
         resultado += " \nPreço: R$ " + this.preco;
         resultado += " \nCaracterísticas: " + this.caracteristicas;
+
+        return resultado;
+    }
+
+    public String adicionarNaLista(){
+        String resultado = "";
+        resultado += "Marca e Modelo:" + this.caracteristicas;
+        resultado += " / Tipo de Carro: " + this.modelo;
+        resultado += "\nPreco: R$" + this.preco;
 
         return resultado;
     }

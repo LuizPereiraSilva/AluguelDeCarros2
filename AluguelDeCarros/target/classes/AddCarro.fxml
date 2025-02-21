@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alugueldecarros2.Controllers.AddCarroController">
+    <children>
+        <SplitPane prefHeight="46.0" prefWidth="800.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="526.0">
+                    <children>
+                        <Button fx:id="VoltarButton" layoutY="2.0" mnemonicParsing="false" onAction="#btnVoltarClicked" text="Voltar">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></Button>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <SplitPane prefHeight="568.0" prefWidth="800.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="798.0">
+                    <children>
+                        <ImageView fx:id="FotoCarro" fitHeight="255.0" fitWidth="255.0" layoutX="38.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="329.0">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                        <Label layoutX="45.0" layoutY="248.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="213.0" text="Tipo:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="183.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="148.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="256.0" layoutY="8.0" prefHeight="73.0" prefWidth="336.0" text="Novo Carro">
+                            <font>
+                                <Font name="Arial Bold" size="50.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="TituloLivro11" layoutX="45.0" layoutY="280.0" prefHeight="35.0" prefWidth="78.0" text="Diaria: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ModeloTxt" layoutX="145.0" layoutY="151.0" />
+                  <TextField fx:id="MarcaTxt" layoutX="145.0" layoutY="186.0" />
+                  <TextField fx:id="TipoTxt" layoutX="145.0" layoutY="216.0" />
+                  <TextField fx:id="CategoriaTxt" layoutX="145.0" layoutY="251.0" />
+                  <TextField fx:id="DiariaTxt" layoutX="145.0" layoutY="285.0" />
+                  <Button fx:id="AddCarroButton" layoutX="465.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="33.0" prefWidth="113.0" text="ADICIONAR!">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="TituloLivro111" layoutX="424.0" layoutY="181.0" prefHeight="35.0" prefWidth="255.0" text="Adicionar novo carro: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</VBox>
