@@ -1,5 +1,6 @@
 package com.example.alugueldecarros2.Negocio;
 
+import com.example.alugueldecarros2.Exceptions.Carros.CarroJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
@@ -62,8 +63,8 @@ public class Fachada {
         return contas.buscarContaPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, String cpf, String telefone, String email, String senha) throws
-            ContaNaoExisteException{
+    public void atualizarConta(String nome, String cpf, String telefone, String email, String senha)
+            throws ContaNaoExisteException{
         contas.atualizarConta(nome, cpf, telefone, email, senha);
     }
 
@@ -73,7 +74,8 @@ public class Fachada {
 
     //Métodos de Carro
 
-    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas) throws RepositorioCheioException{
+    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas)
+            throws RepositorioCheioException, CarroJaExisteException {
         carros.cadastrarCarro(modelo, preco, placa, caracteristicas);
     }
 
@@ -85,11 +87,15 @@ public class Fachada {
         return carros.buscarCarro(id);
     }
 
+    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException {
+        return carros.buscarCarroPorPlaca(placa);
+    }
+
     public void atualizarPreco(int id, float novoPreco) throws CarroNaoExisteException{
         carros.atualizarPreco(id, novoPreco);
     }
 
-    public String[] getListaCarros(){
+    public Carro[] getListaCarros(){
         return carros.getListaCarros();
     }
 

@@ -1,5 +1,6 @@
 package com.example.alugueldecarros2.Dados;
 
+import com.example.alugueldecarros2.Exceptions.Carros.CarroJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Interfaces.RepositorioCarroInterface;
@@ -134,6 +135,24 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         throw new CarroNaoExisteException();
     }
 
+    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException{
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getPlaca().equals(placa)){
+                return carros[i];
+            }
+        }
+
+        throw new CarroNaoExisteException();
+    }
+
+    public void verificarPlaca(String placa) throws CarroJaExisteException {
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getPlaca().equals(placa)){
+                throw new CarroJaExisteException();
+            }
+        }
+    }
+
     // buscar carro por modelo
     public Carro[] buscarCarrosPorModelo(int modelo) {
         Carro[] carrosEncontrados = new Carro[this.tamanho];
@@ -159,11 +178,11 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         escreverArquivo();
     }
 
-    public String[] getListaCarros(){
-        String[] resultado = new String[this.carrosIndex];
+    public Carro[] getListaCarros(){
+        Carro[] resultado = new Carro[this.carrosIndex];
 
-        for(int i = 0; i < carrosIndex; i++){
-            resultado[i] = carros[i].adicionarNaLista();
+        for(int i = 0; i < this.carrosIndex; i++){
+            resultado[i] = this.carros[i];
         }
 
         return resultado;

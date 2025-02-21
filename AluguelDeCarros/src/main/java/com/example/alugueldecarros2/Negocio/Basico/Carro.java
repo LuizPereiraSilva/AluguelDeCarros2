@@ -69,6 +69,14 @@ public class Carro implements Serializable{
         this.preco = preco;
     }
 
+    public String getPlaca() {
+        return this.placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
     public String getCaracteristicas() {
         return caracteristicas;
     }
@@ -98,6 +106,7 @@ public class Carro implements Serializable{
         String resultado = "";
         resultado += "Marca e Modelo:" + this.caracteristicas;
         resultado += " / Tipo de Carro: " + this.modelo;
+        resultado += " / Placa do Carro: " + this.placa;
         resultado += "\nPreco: R$" + this.preco;
 
         return resultado;

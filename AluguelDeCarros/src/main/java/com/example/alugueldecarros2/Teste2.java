@@ -15,13 +15,13 @@ public class Teste2 {
 //                    LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
 //                    "Boquete");
 
-            for(int i = 1; i< 8; i++) {
+//            for(int i = 1; i< 8; i++) {
 //                fachada.removerCarro(i);
-                fachada.cadastrarCarro(i%4 +1, i*100, "HXR 0322", "Honda");
+//                fachada.cadastrarCarro(i%4 +1, i*100, "HXR 0322", "Honda");
 
 //                fachada.cadastrarAdministrador("Luiz Felipe", "707816",
 //                        "8145", "felipepereira", "0817");
-//                fachada.removerConta(i);
+            fachada.removerConta((fachada.buscarContaPeloCpf("").getIdConta()));
 
 //                fachada.atualizarConta("Reberto", "123", "12345", "9876");
 
@@ -30,7 +30,7 @@ public class Teste2 {
 //                        "Debito");
 
 //                fachada.removerReserva(i);
-            }
+//            }
 
 //            print(fachada.buscarReserva(1).toString());
         }catch(Exception e){

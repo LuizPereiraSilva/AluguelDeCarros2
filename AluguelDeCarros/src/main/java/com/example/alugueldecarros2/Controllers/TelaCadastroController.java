@@ -40,39 +40,41 @@ public class TelaCadastroController {
 
 
     @FXML
-    void handleVoltarLoginButtonAction(){
+    void handleVoltarLoginButtonAction() {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("LoginTela.fxml", "Tela Login");
     }
 
     @FXML
-    void handleConcluirCadastroButtonAction(){
+    void handleConcluirCadastroButtonAction() {
         Fachada fachada = Fachada.getInstance();
         Conta contaAux = null;
+        if (!TextName.getText().isEmpty() && !TextSobrenome.getText().isEmpty() &&
+                !TextTelefone.getText().isEmpty() && !TextEmail.getText().isEmpty() &&
+                !TextCpf.getText().isEmpty() && !TextSenha.getText().isEmpty()) {
+            try {
 
-        try{
+                String nome = TextName.getText() + " " + TextSobrenome.getText();
+                fachada.cadastrarCliente(nome, TextCpf.getText(),
+                        TextTelefone.getText(), TextEmail.getText(), TextSenha.getText());
 
-            String nome = TextName.getText() + TextSobrenome.getText();
-            fachada.cadastrarCliente(nome, TextCpf.getText(),
-                    TextTelefone.getText(), TextEmail.getText(), TextSenha.getText());
+                SceneManager sceneManager = SceneManager.getInstance();
+                sceneManager.changeScreen("LoginTela.fxml", "Tela Login");
 
-            SceneManager sceneManager = SceneManager.getInstance();
-            sceneManager.changeScreen("LoginTela.fxml", "Tela Login");
-
-        } catch (ContaJaExisteException | RepositorioCheioException e){
+            } catch (ContaJaExisteException | RepositorioCheioException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro ao cadastrar conta ");
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.show();
+            }
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao cadastrar conta ");
             alert.setHeaderText(null);
-            alert.setContentText(e.getMessage());
+            alert.setContentText("Todos os campos devem estar preenchidos. ");
             alert.show();
         }
     }
-
-
-
-
-
-
-
 
 }
