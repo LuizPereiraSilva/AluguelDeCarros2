@@ -4,54 +4,25 @@ import java.io.Serializable;
 
 public class Carro implements Serializable{
 
-    private String modelo;
-    private int idModelo;
+    private String categoria;
+    private int idCategoria;
     private int idCarro; // A placa do carro
     private float preco;
-    private String caracteristicas;
+    private String modelo;
+    private String marca;
     private String placa;
     private boolean disponivel;
     
-    public Carro(int modelo, int idCarro, float preco, String placa, String caracteristicas) {
-        this.setIdModelo(modelo);
+    public Carro(String categoria, int idCarro, float preco, String placa, String modelo, String marca) {
+        this.categoria = categoria;
         this.idCarro = idCarro;
         this.preco = preco;
         this.placa  = placa;
-        this.caracteristicas = caracteristicas;
+        this.modelo = modelo;
+        this.marca = marca;
     }
 
     // Métodos get set
-    public int getIdModelo(){ return this.idModelo; }
-
-    public void setIdModelo(int id){
-        this.idModelo = id;
-
-        switch(id){
-            case 1:
-                this.modelo = "Hatchback";
-                break;
-
-            case 2:
-                this.modelo = "Sedan";
-                break;
-
-            case 3:
-                this.modelo = "Pickup";
-                break;
-
-            case 4:
-                this.modelo = "SUV";
-                break;
-
-            default:
-                this.modelo = null;
-                break;
-        }
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
 
     public int getIdCarro() {
         return idCarro;
@@ -77,13 +48,19 @@ public class Carro implements Serializable{
         this.placa = placa;
     }
 
-    public String getCaracteristicas() {
-        return caracteristicas;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
+    public void setModelo(String caracteristicas) {
+        this.modelo = caracteristicas;
     }
+
+    public String getMarca() { return marca; }
+
+    public void setMarca(String Marca){ this.marca = marca; }
+
+    public String getCategoria(){ return this.categoria; }
 
     public void setDisponivel(boolean disponivel){
         this.disponivel = disponivel;
@@ -94,18 +71,21 @@ public class Carro implements Serializable{
     // metodo para ver informacao do carro
     public String toString() {
         String resultado = "\n\nCarro " + this.idCarro + ": ";
-        resultado += " \nModelo: " + this.modelo;
+        resultado += " \nModelo: " + this.categoria;
         resultado += " \nID do carro: " + this.idCarro;
         resultado += " \nPreço: R$ " + this.preco;
-        resultado += " \nCaracterísticas: " + this.caracteristicas;
+        resultado += " \nMarca: " + this.marca;
+        resultado += " \nModelo: " + this.modelo;
+        resultado += " \nPlaca: " + this.placa;
 
         return resultado;
     }
 
     public String adicionarNaLista(){
         String resultado = "";
-        resultado += "Marca e Modelo:" + this.caracteristicas;
-        resultado += " / Tipo de Carro: " + this.modelo;
+        resultado += "Marca: " + this.marca;
+        resultado += " / Modelo: " + this.modelo;
+        resultado += " / Categoria de Carro: " + this.categoria;
         resultado += " / Placa do Carro: " + this.placa;
         resultado += "\nPreco: R$" + this.preco;
 

@@ -26,18 +26,21 @@ public class CadastroCarro {
         return instance;
     }
 
-    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas)
-            throws RepositorioCheioException, CarroJaExisteException {
+    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
+            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException {
         repositorio.verificarPlaca(placa);
-        if (0 < modelo && modelo < 5 && preco > 0) {
-            Carro carro = new Carro(modelo, this.ultimoId + 1, preco, placa, caracteristicas);
+        if (preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
+                !modelo.isEmpty() && !marca.isEmpty()) {
+            Carro carro = new Carro(categoria, this.ultimoId + 1, preco, placa, modelo, marca);
             this.repositorio.adicionarCarro(carro);
             ultimoId++;
+        } else{
+            throw new OperacaoInvalidaException();
         }
     }
 
-    public void removerCarro(int id) throws CarroNaoExisteException {
-        this.repositorio.removerCarro(id);
+    public void removerCarro(String placa) throws CarroNaoExisteException {
+        this.repositorio.removerCarro(placa);
     }
 
     public Carro buscarCarro(int id) throws CarroNaoExisteException{
@@ -48,27 +51,32 @@ public class CadastroCarro {
         return this.repositorio.buscarCarroPorPlaca(placa);
     }
 
-    public void atualizarPreco(int id, float novoPreco) throws CarroNaoExisteException{
-        if(novoPreco > 0) {
-            this.repositorio.atualizarPreco(id, novoPreco);
+    public void atualizarPreco(String categoria, float preco, String placa, String modelo, String marca)
+            throws CarroNaoExisteException, OperacaoInvalidaException{
+        if(preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
+                !modelo.isEmpty() && !marca.isEmpty()) {
+            Carro carro = new Carro(categoria, 0, preco, placa, modelo, marca);
+            repositorio.atualizarCarro(carro);
+        } else{
+            throw new OperacaoInvalidaException();
         }
     }
 
-    public Carro[] getListaCarros(String tipo, String faixaDePreco)
+    public Carro[] getListaCarros(String categoria, String faixaDePreco)
             throws OperacaoInvalidaException{
-        if(tipo.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
+        if(categoria.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
             throw new OperacaoInvalidaException();
         }
 
-        if(tipo.equals("Qualquer categoria")){
+        if(categoria.equals("Qualquer categoria")){
             return repositorio.getListaCarrosPorPreco(faixaDePreco);
         }
 
         if(faixaDePreco.equals("Qualquer preço")){
-            return repositorio.getListaCarrosPorCategoria(tipo);
+            return repositorio.getListaCarrosPorCategoria(categoria);
         }
-        if(!tipo.equals("Hatchback") && !tipo.equals("Sedan") &&
-                !tipo.equals("Pickup") && !tipo.equals("SUV")){
+        if(!categoria.equals("Hatchback") && !categoria.equals("Sedan") &&
+                !categoria.equals("Pickup") && !categoria.equals("SUV")){
 
             throw new OperacaoInvalidaException();
         }
@@ -79,7 +87,7 @@ public class CadastroCarro {
             throw new OperacaoInvalidaException();
         }
 
-        return this.repositorio.getListaCarros(tipo, faixaDePreco);
+        return this.repositorio.getListaCarros(categoria, faixaDePreco);
     }
 
     public Carro[] getListaInicialCarros(){

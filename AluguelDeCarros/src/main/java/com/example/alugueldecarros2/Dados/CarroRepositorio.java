@@ -101,8 +101,8 @@ public class CarroRepositorio implements RepositorioCarroInterface{
     }
 
     // remover carro pelo id
-    public void removerCarro(int idCarro)  throws CarroNaoExisteException{
-        int aux = this.buscarIndexCarro(idCarro);
+    public void removerCarro(String placa)  throws CarroNaoExisteException{
+        int aux = this.buscarIndexCarro(this.buscarCarroPorPlaca(placa).getIdCarro());
 
         for(int i = aux; i < carrosIndex; i++){
             if(i < carrosIndex-1) {
@@ -154,27 +154,11 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         }
     }
 
-    // buscar carro por modelo
-    public Carro[] buscarCarrosPorModelo(int modelo) {
-        Carro[] carrosEncontrados = new Carro[this.tamanho];
-        int j = 0;
-
-        for (int i = 0; i < this.carrosIndex; i++) {
-            if (carros[i].getIdModelo() == modelo) {
-                carrosEncontrados[j] = carros[i];
-                j++;
-            }
-        }
-
-        return carrosEncontrados;
-    }
-
     // atualizar o preço
-    public void atualizarPreco(int idCarro, float novoPreco) throws CarroNaoExisteException{
-        Carro carro = buscarCarroPorId(idCarro);
-        if (carro != null) {
-            carro.setPreco(novoPreco);
-        }
+    public void atualizarCarro(Carro carro) throws CarroNaoExisteException{
+        int auxInt = buscarCarroPorPlaca(carro.getPlaca()).getIdCarro();
+        carro.setIdCarro(auxInt);
+        carros[this.buscarIndexCarro(auxInt)] = carro;
 
         escreverArquivo();
     }
@@ -258,13 +242,19 @@ public class CarroRepositorio implements RepositorioCarroInterface{
     }
 
     public Carro[] getListaInicialCarros(){
-        int i = 0;
+        int j = 0;
         Carro[] lista = new Carro[this.carrosIndex];
 
-        do{
-            lista[i] = carros[i];
-            i++;
-        }while(carros[i+1] != null);
+        System.out.println("Bucetaaaa ");
+
+        for(int i = 0; i < this.carrosIndex; i++){
+            System.out.println("Filho da puta");
+            if(carros[i] != null){
+                System.out.println("puta que pariu");
+                lista[j] = carros[i];
+                j++;
+            }
+        }
 
         return lista;
     }

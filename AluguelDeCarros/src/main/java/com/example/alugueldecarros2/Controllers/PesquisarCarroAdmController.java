@@ -53,6 +53,16 @@ public class PesquisarCarroAdmController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 SceneManager sceneManager = SceneManager.getInstance();
+
+                Carro carro = null;
+                int i = 0;
+                while(carros[i] != null){
+                    if(t1.contains(carros[i].getPlaca())){
+                        carro = carros[i];
+                        break;
+                    }
+                }
+                sceneManager.getEditarCarroController().initialize(carro);
                 sceneManager.changeScreen("EditarCarro.fxml", "Editar Carro");
             }
         });
@@ -94,6 +104,8 @@ public class PesquisarCarroAdmController implements Initializable {
         } catch(OperacaoInvalidaException e){
             lista = fachada.getListaInicialCarros();
         }
+
+        carros = lista;
 
         ListResultados.getItems().clear();
 

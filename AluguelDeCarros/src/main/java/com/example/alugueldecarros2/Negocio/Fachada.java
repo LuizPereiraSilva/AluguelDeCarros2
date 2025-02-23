@@ -75,13 +75,13 @@ public class Fachada {
 
     //Métodos de Carro
 
-    public void cadastrarCarro(int modelo, float preco, String placa, String caracteristicas)
-            throws RepositorioCheioException, CarroJaExisteException {
-        carros.cadastrarCarro(modelo, preco, placa, caracteristicas);
+    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
+            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException{
+        carros.cadastrarCarro(categoria, preco, placa, modelo, marca);
     }
 
-    public void removerCarro(int id) throws CarroNaoExisteException{
-        carros.removerCarro(id);
+    public void removerCarro(String placa) throws CarroNaoExisteException{
+        carros.removerCarro(placa);
     }
 
     public Carro buscarCarro(int id) throws CarroNaoExisteException {
@@ -92,8 +92,9 @@ public class Fachada {
         return carros.buscarCarroPorPlaca(placa);
     }
 
-    public void atualizarPreco(int id, float novoPreco) throws CarroNaoExisteException{
-        carros.atualizarPreco(id, novoPreco);
+    public void atualizarCarro(String categoria, float preco, String placa, String modelo,
+                               String marca) throws CarroNaoExisteException, OperacaoInvalidaException{
+        carros.atualizarPreco(categoria, preco, placa, modelo, marca);
     }
 
     public Carro[] getListaInicialCarros(){ return carros.getListaInicialCarros(); }
