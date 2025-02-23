@@ -5,6 +5,7 @@ import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.DataInvalidaException;
+import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Exceptions.Reservas.NenhumaReservaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
@@ -95,8 +96,10 @@ public class Fachada {
         carros.atualizarPreco(id, novoPreco);
     }
 
-    public Carro[] getListaCarros(){
-        return carros.getListaCarros();
+    public Carro[] getListaInicialCarros(){ return carros.getListaInicialCarros(); }
+
+    public Carro[] getListaCarros(String tipo, String faixaDePreco) throws OperacaoInvalidaException {
+        return carros.getListaCarros(tipo, faixaDePreco);
     }
 
     public String listarCarros(){

@@ -23,7 +23,6 @@ public class PainelDeControleController {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("PesquisarCarroAdm.fxml",
                 "Pesquisa de Carros do Administrador");
-        sceneManager.getPesquisarCarroAdmController().listarCarros();
     }
 
     @FXML

@@ -1,5 +1,7 @@
 package com.example.alugueldecarros2;
 
+import com.example.alugueldecarros2.Dados.CarroRepositorio;
+import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Fachada;
 
 public class Teste2 {
@@ -17,11 +19,11 @@ public class Teste2 {
 
 //            for(int i = 1; i< 8; i++) {
 //                fachada.removerCarro(i);
-//                fachada.cadastrarCarro(i%4 +1, i*100, "HXR 0322", "Honda");
+//                fachada.cadastrarCarro(i%3+1, i*100, "HXR 032"+i+3, "Toyota");
 
 //                fachada.cadastrarAdministrador("Luiz Felipe", "707816",
 //                        "8145", "felipepereira", "0817");
-            fachada.removerConta((fachada.buscarContaPeloCpf("").getIdConta()));
+//            fachada.removerConta((fachada.buscarContaPeloCpf("").getIdConta()));
 
 //                fachada.atualizarConta("Reberto", "123", "12345", "9876");
 
@@ -33,11 +35,18 @@ public class Teste2 {
 //            }
 
 //            print(fachada.buscarReserva(1).toString());
+
+//            fachada.listarCarros();
+//            Carro[] carros = fachada.getListaCarros();
+//            for(int i = 0; i < carros.length; i++){
+//                print(carros[i].adicionarNaLista());
+//            }
+
         }catch(Exception e){
             print(e.getMessage());
         }
-//        print(fachada.listarCarros());
-//        print(fachada.listarContas());
+        print(fachada.listarCarros());
+        print(fachada.listarContas());
 //       print(fachada.listarReservas());
 
     }

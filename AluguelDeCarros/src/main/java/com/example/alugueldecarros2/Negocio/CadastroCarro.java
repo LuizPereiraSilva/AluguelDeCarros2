@@ -3,6 +3,7 @@ package com.example.alugueldecarros2.Negocio;
 import com.example.alugueldecarros2.Dados.CarroRepositorio;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroJaExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 
@@ -53,8 +54,36 @@ public class CadastroCarro {
         }
     }
 
-    public Carro[] getListaCarros(){
-        return this.repositorio.getListaCarros();
+    public Carro[] getListaCarros(String tipo, String faixaDePreco)
+            throws OperacaoInvalidaException{
+        if(tipo.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
+            throw new OperacaoInvalidaException();
+        }
+
+        if(tipo.equals("Qualquer categoria")){
+            return repositorio.getListaCarrosPorPreco(faixaDePreco);
+        }
+
+        if(faixaDePreco.equals("Qualquer preço")){
+            return repositorio.getListaCarrosPorCategoria(tipo);
+        }
+        if(!tipo.equals("Hatchback") && !tipo.equals("Sedan") &&
+                !tipo.equals("Pickup") && !tipo.equals("SUV")){
+
+            throw new OperacaoInvalidaException();
+        }
+
+        if(!faixaDePreco.equals("Popular") && !faixaDePreco.equals("Médio") &&
+                !faixaDePreco.equals("Luxo")){
+
+            throw new OperacaoInvalidaException();
+        }
+
+        return this.repositorio.getListaCarros(tipo, faixaDePreco);
+    }
+
+    public Carro[] getListaInicialCarros(){
+        return repositorio.getListaInicialCarros();
     }
 
     public String listarCarros(){

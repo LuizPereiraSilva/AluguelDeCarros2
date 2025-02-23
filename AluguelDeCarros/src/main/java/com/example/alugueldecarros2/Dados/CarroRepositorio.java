@@ -2,6 +2,7 @@ package com.example.alugueldecarros2.Dados;
 
 import com.example.alugueldecarros2.Exceptions.Carros.CarroJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Interfaces.RepositorioCarroInterface;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
@@ -178,14 +179,94 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         escreverArquivo();
     }
 
-    public Carro[] getListaCarros(){
+    public Carro[] getListaCarros(String tipo, String faixaDePreco){
         Carro[] resultado = new Carro[this.carrosIndex];
+        int j = 0;
+        float precoMaisBaixo = 0;
+        float precoMaisAlto = 0;
 
-        for(int i = 0; i < this.carrosIndex; i++){
-            resultado[i] = this.carros[i];
+        switch(faixaDePreco){
+            case "Popular":
+                precoMaisAlto = 150;
+                break;
+            case "Médio":
+                precoMaisBaixo = 151;
+                precoMaisAlto = 500;
+                break;
+            case "Luxo":
+                precoMaisBaixo = 501;
+                precoMaisAlto = 1000000;
+                break;
+        }
+
+        for (int i = 0; i < this.carrosIndex; i++) {
+            if(this.carros[i].getModelo().equals(tipo) &&
+                    this.carros[i].getPreco() > precoMaisBaixo &&
+                    this.carros[i].getPreco()< precoMaisAlto){
+
+                resultado[j] = this.carros[i];
+                j++;
+            }
         }
 
         return resultado;
+    }
+
+    public Carro[] getListaCarrosPorCategoria(String categoria){
+        Carro[] carrosEncontrados = new Carro[this.carrosIndex];
+        int j = 0;
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getModelo().equals(categoria)) {
+                carrosEncontrados[j] = carros[i];
+                j++;
+            }
+        }
+
+        return carrosEncontrados;
+    }
+
+    public Carro[] getListaCarrosPorPreco(String faixaDePreco){
+        Carro[] carrosEncontrados = new Carro[this.carrosIndex];
+
+        float precoMaisBaixo = 0;
+        float precoMaisAlto = 0;
+
+        switch(faixaDePreco){
+            case "Popular":
+                precoMaisAlto = 150;
+                break;
+            case "Médio":
+                precoMaisBaixo = 151;
+                precoMaisAlto = 500;
+                break;
+            case "Luxo":
+                precoMaisBaixo = 501;
+                precoMaisAlto = 1000000;
+                break;
+        }
+
+        int j = 0;
+
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getPreco()> precoMaisBaixo && carros[i].getPreco() < precoMaisAlto) {
+                carrosEncontrados[j] = carros[i];
+                j++;
+            }
+        }
+
+        return carrosEncontrados;
+    }
+
+    public Carro[] getListaInicialCarros(){
+        int i = 0;
+        Carro[] lista = new Carro[this.carrosIndex];
+
+        do{
+            lista[i] = carros[i];
+            i++;
+        }while(carros[i+1] != null);
+
+        return lista;
     }
 
     public String toString(){
