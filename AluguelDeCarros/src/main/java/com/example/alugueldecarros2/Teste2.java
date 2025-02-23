@@ -18,7 +18,7 @@ public class Teste2 {
 //                    "Boquete");
 
 //            for(int i = 1; i< 20; i++) {
-////                fachada.removerCarro(i);
+//                fachada.removerCarro(i);
 //                switch(i%4) {
 //                    case 0:
 //                        fachada.cadastrarCarro( "Hatchback", i * 50,
@@ -61,6 +61,8 @@ public class Teste2 {
 //            for(int i = 0; i < carros.length; i++){
 //                print(carros[i].adicionarNaLista());
 //            }
+
+//            fachada.buscarCarroPorPlaca("HXR 0322")
 
         }catch(Exception e){
             print(e.getMessage());

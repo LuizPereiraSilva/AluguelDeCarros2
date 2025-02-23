@@ -200,7 +200,7 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         Carro[] carrosEncontrados = new Carro[this.carrosIndex];
         int j = 0;
         for(int i = 0; i < carrosIndex; i++){
-            if(carros[i].getModelo().equals(categoria)) {
+            if(carros[i].getCategoria().equals(categoria)) {
                 carrosEncontrados[j] = carros[i];
                 j++;
             }

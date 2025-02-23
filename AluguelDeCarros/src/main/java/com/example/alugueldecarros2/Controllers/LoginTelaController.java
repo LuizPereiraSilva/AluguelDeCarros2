@@ -63,7 +63,7 @@ public class LoginTelaController{
 
             if(auxConta.getSenha().equals(password)){
                 if(!auxConta.getAdministrador()) {
-                    fachada.setCadastro(auxConta);
+                    sceneManager.getPerfilClienteController().setCadastro(auxConta);
                     sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
                 } else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);

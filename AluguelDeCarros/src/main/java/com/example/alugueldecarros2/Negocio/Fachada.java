@@ -5,6 +5,7 @@ import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.DataInvalidaException;
+import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Exceptions.Reservas.NenhumaReservaException;
@@ -34,11 +35,6 @@ public class Fachada {
         return instance;
     }
 
-    //Métodos de Cadastro
-
-    public Conta getCadastro(){ return CadastroConta.getCadastro(); }
-
-    public void setCadastro(Conta conta){ CadastroConta.setCadastro(conta); }
 
     //Métodos de Conta
 
@@ -76,7 +72,8 @@ public class Fachada {
     //Métodos de Carro
 
     public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
-            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException{
+            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
+            OperacaoBemSucedidaException {
         carros.cadastrarCarro(categoria, preco, placa, modelo, marca);
     }
 

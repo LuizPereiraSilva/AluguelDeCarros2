@@ -12,7 +12,6 @@ public class CadastroConta {
 
     private ContasRepositorio repositorio;
     private int ultimoId;
-    private static Conta cadastro;
     private static CadastroConta instancia;
 
     private CadastroConta(){
@@ -27,9 +26,6 @@ public class CadastroConta {
         return instancia;
     }
 
-    public static Conta getCadastro(){ return cadastro; }
-
-    public static void setCadastro(Conta cadastro){ CadastroConta.cadastro = cadastro; }
 
     public void cadastrarCliente(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{

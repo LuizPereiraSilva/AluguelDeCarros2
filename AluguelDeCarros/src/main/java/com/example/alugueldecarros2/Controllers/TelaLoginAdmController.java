@@ -41,7 +41,7 @@ public class TelaLoginAdmController {
 
             if(auxConta.getSenha().equals(password)){
                 if(auxConta.getAdministrador()) {
-                    fachada.setCadastro(auxConta);
+                    sceneManager.getPerfilAdmController().setCadastro(auxConta);
                     sceneManager.changeScreen("PainelDeControle.fxml", "Painel de Controle");
                 } else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);

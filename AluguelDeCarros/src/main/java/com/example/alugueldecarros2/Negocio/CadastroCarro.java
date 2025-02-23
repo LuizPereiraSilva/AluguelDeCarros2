@@ -3,6 +3,7 @@ package com.example.alugueldecarros2.Negocio;
 import com.example.alugueldecarros2.Dados.CarroRepositorio;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroJaExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
@@ -27,7 +28,8 @@ public class CadastroCarro {
     }
 
     public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
-            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException {
+            throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
+            OperacaoBemSucedidaException {
         repositorio.verificarPlaca(placa);
         if (preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
                 !modelo.isEmpty() && !marca.isEmpty()) {
@@ -37,6 +39,8 @@ public class CadastroCarro {
         } else{
             throw new OperacaoInvalidaException();
         }
+
+        throw new OperacaoBemSucedidaException();
     }
 
     public void removerCarro(String placa) throws CarroNaoExisteException {
@@ -69,10 +73,12 @@ public class CadastroCarro {
         }
 
         if(categoria.equals("Qualquer categoria")){
+            System.out.println("aiii");
             return repositorio.getListaCarrosPorPreco(faixaDePreco);
         }
 
         if(faixaDePreco.equals("Qualquer preço")){
+            System.out.println("auuuuuuu baby im praying on you tonight");
             return repositorio.getListaCarrosPorCategoria(categoria);
         }
         if(!categoria.equals("Hatchback") && !categoria.equals("Sedan") &&

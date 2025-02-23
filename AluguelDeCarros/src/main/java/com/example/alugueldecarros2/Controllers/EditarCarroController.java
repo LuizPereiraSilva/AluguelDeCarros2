@@ -20,16 +20,25 @@ public class EditarCarroController {
     private Button EditarButton;
 
     @FXML
+    private Button TrocarDisponibilidadeButton;
+
+
+    @FXML
     private TextField ModeloTxtEditar;
 
     @FXML
     private TextField MarcaTxtEditar;
 
     @FXML
+    private TextField DiariaTxtEditar;
+
+
+    @FXML
     private ChoiceBox<String> CategoriaChoiceBoxEditar;
 
     @FXML
-    private TextField DiariaTxtEditar;
+    private ChoiceBox<String> DisponibilidadeChoiceBox;
+
 
     @FXML
     private Label FaixaDePrecoCarro;
@@ -58,7 +67,13 @@ public class EditarCarroController {
 
         String[] lista = {"Hatchback", "Sedan", "Pickup", "SUV"};
 
+        CategoriaChoiceBoxEditar.getItems().clear();
         CategoriaChoiceBoxEditar.getItems().addAll(lista);
+
+        String[] lista2 = {"Disponível", "Não disponível"};
+
+        DisponibilidadeChoiceBox.getItems().clear();
+        DisponibilidadeChoiceBox.getItems().addAll(lista2);
 
         if(carro.getPreco() < 150){
             FaixaDePrecoCarro.setText("Popular");
@@ -89,12 +104,28 @@ public class EditarCarroController {
     }
 
     @FXML
+    void trocarDisponibilidade(){
+        Fachada fachada = Fachada.getInstance();
+        try {
+            if (DisponibilidadeChoiceBox.getSelectionModel().getSelectedItem().equals("Disponível")) {
+                fachada.buscarCarroPorPlaca(carro.getPlaca()).setDisponivel(true);
+            } else{
+                fachada.buscarCarroPorPlaca(carro.getPlaca()).setDisponivel(false);
+            }
+        }catch(Exception e){}
+
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getPesquisarCarroAdmController().listarCarros();
+        sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carros");
+    }
+
+    @FXML
     void btnEditarClicked(ActionEvent event) {
         Fachada fachada = Fachada.getInstance();
         try{
             fachada.atualizarCarro(CategoriaChoiceBoxEditar.getSelectionModel().getSelectedItem(),
                     Integer.parseInt(DiariaTxtEditar.getText()), carro.getPlaca(),
-                    ModeloCarro.getText(), MarcaCarro.getText());
+                    ModeloTxtEditar.getText(), MarcaTxtEditar.getText());
         } catch(NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao atualizar");

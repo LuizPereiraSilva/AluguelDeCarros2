@@ -1,5 +1,6 @@
 package com.example.alugueldecarros2.Controllers;
 
+import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,13 +21,45 @@ public class PerfilClienteController{
     private Label LabelNome;
 
     @FXML
+    private Label LabelEmail;
+
+    @FXML
+    private Label LabelTelefone;
+
+    @FXML
     private Button SairButton;
 
     @FXML
-    private TableView<?> TabelaReservas;
+    private TableView<String> TabelaReservas;
 
     @FXML
     private Button VoltarButton;
+
+    private Conta cadastro;
+
+
+    public Conta getCadastro(){
+        return cadastro;
+    }
+
+    public void setCadastro(Conta cadastro){
+        this.cadastro = cadastro;
+    }
+
+
+    public void initialize(){
+        Fachada fachada = Fachada.getInstance();
+
+        if(cadastro != null) {
+            LabelCpf.setText(cadastro.getCpf());
+            LabelNome.setText(cadastro.getNome());
+            LabelTelefone.setText(cadastro.getTelefone());
+            LabelEmail.setText(cadastro.getEmail());
+        }
+
+        
+    }
+
 
     @FXML
     void handleSairButtonAction(ActionEvent event) {
@@ -35,7 +68,7 @@ public class PerfilClienteController{
 
         sceneManager.changeScreen("LoginTela.fxml", "Login Tela");
         sceneManager.getLoginTelaController().setFieldsNull();
-        fachada.setCadastro(null);
+        cadastro = null;
     }
 
     @FXML
@@ -43,14 +76,4 @@ public class PerfilClienteController{
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("TelaPesquisa.fxml", "Tela Pesquisa");
     }
-
-    public void initialize(){
-        Fachada fachada = Fachada.getInstance();
-
-        if(fachada.getCadastro() != null) {
-            LabelCpf.setText(fachada.getCadastro().getCpf());
-            LabelNome.setText(fachada.getCadastro().getNome());
-        }
-    }
-
 }

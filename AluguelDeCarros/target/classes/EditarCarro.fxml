@@ -35,29 +35,29 @@
                                 <Font size="24.0" />
                             </font>
                         </Text>
-                        <Label fx:id="ModeloCarro" layoutX="123.0" layoutY="143.0" prefHeight="40.0" prefWidth="173.0" text="Gol">
+                        <Label fx:id="ModeloCarro" layoutX="186.0" layoutY="143.0" prefHeight="40.0" prefWidth="173.0" text="Gol">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label fx:id="MarcaCarro" layoutX="106.0" layoutY="178.0" prefHeight="40.0" prefWidth="277.0" text="VolksWagen">
+                        <Label fx:id="MarcaCarro" layoutX="186.0" layoutY="178.0" prefHeight="40.0" prefWidth="197.0" text="VolksWagen">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label fx:id="TipoCarro" layoutX="95.0" layoutY="208.0" prefHeight="40.0" prefWidth="131.0" text="Hatch">
+                        <Label fx:id="TipoCarro" layoutX="188.0" layoutY="208.0" prefHeight="40.0" prefWidth="131.0" text="Hatch">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                        <Label layoutX="45.0" layoutY="213.0" text="Tipo:">
+                        <Label layoutX="23.0" layoutY="213.0" text="Tipo:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="45.0" layoutY="183.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
+                        <Label layoutX="23.0" layoutY="183.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="45.0" layoutY="148.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
+                        <Label layoutX="23.0" layoutY="148.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -76,12 +76,12 @@
                      <font>
                         <Font size="15.0" />
                      </font></Button>
-                  <Label fx:id="TituloLivro11" layoutX="45.0" layoutY="280.0" prefHeight="35.0" prefWidth="78.0" text="Diaria: ">
+                  <Label fx:id="TituloLivro11" layoutX="28.0" layoutY="280.0" prefHeight="35.0" prefWidth="78.0" text="Diaria: ">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="ValorDiaria" layoutX="109.0" layoutY="275.0" prefHeight="45.0" prefWidth="123.0" text="R$100,00">
+                  <Label fx:id="ValorDiaria" layoutX="192.0" layoutY="275.0" prefHeight="45.0" prefWidth="123.0" text="R$100,00">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -105,7 +105,7 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="CategoriaChoiceBoxEditar" layoutX="401.0" layoutY="218.0" prefWidth="150.0" />
-                  <Label layoutX="45.0" layoutY="248.0" text="Faixa de Preco:">
+                  <Label layoutX="26.0" layoutY="248.0" text="Faixa de Preco:">
                      <font>
                         <Font size="20.0" />
                      </font>

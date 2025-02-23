@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import javax.swing.event.ChangeEvent;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import java.net.URL;
@@ -61,6 +60,7 @@ public class PesquisarCarroAdmController implements Initializable {
                         carro = carros[i];
                         break;
                     }
+                    i++;
                 }
                 sceneManager.getEditarCarroController().initialize(carro);
                 sceneManager.changeScreen("EditarCarro.fxml", "Editar Carro");
@@ -119,11 +119,13 @@ public class PesquisarCarroAdmController implements Initializable {
     @FXML
     public void buscarPlaca(){
         Fachada fachada = Fachada.getInstance();
-        ListResultados.getItems().clear();
 
         try {
-            ListResultados.getItems().add(fachada.buscarCarroPorPlaca(
-                    TextPlaca.getText()).adicionarNaLista());
+            Carro carroAux = fachada.buscarCarroPorPlaca(TextPlaca.getText());
+            if(carroAux != null){
+                ListResultados.getItems().clear();
+                ListResultados.getItems().add(carroAux.adicionarNaLista());
+            }
         } catch(CarroNaoExisteException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problema ao buscar");
@@ -144,5 +146,6 @@ public class PesquisarCarroAdmController implements Initializable {
     void handleNovoCarroButton(ActionEvent event){
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("AddCarro.fxml", "Adicionar Carro");
+        sceneManager.getAddCarroController().inicializar();
     }
 }
