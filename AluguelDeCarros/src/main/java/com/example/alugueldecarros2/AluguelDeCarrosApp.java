@@ -15,7 +15,7 @@ public class AluguelDeCarrosApp extends Application {
     public void start(Stage stage) throws IOException {
         SceneManager.setStage(stage);
         SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.changeScreen("PerfilCliente.fxml", "Primeira Tela");
+        sceneManager.changeScreen("TelaPesquisa.fxml", "Primeira Tela");
 
         stage.show();
     }

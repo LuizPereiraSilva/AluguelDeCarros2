@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TelaPesquisaController implements Initializable {
@@ -49,14 +50,41 @@ public class TelaPesquisaController implements Initializable {
     public void listarCarros(){
 
         Fachada fachada = Fachada.getInstance();
-        String tipo = CategoriaCarroChoiceBox.getSelectionModel().getSelectedItem();
+        String categoria = CategoriaCarroChoiceBox.getSelectionModel().getSelectedItem();
         String faixaDePreco = CategoriaPrecoChoiceBox.getSelectionModel().getSelectedItem();
+        LocalDate dataInicial = DataInicialDatePicker.getValue();
+        LocalDate dataFinal = DataFinalDatePicker.getValue();
         Carro[] lista = new Carro[1];
 
         try {
-            lista = fachada.getListaCarros(tipo, faixaDePreco);
-        } catch(OperacaoInvalidaException e){
-            lista = fachada.getListaInicialCarros();
+            if (dataInicial == null || dataFinal == null) {
+                System.out.println("Sucesso 1");
+                if(dataInicial == null && dataFinal == null) {
+                    System.out.println("Sucesso 2");
+                    lista = fachada.getListaCarros(categoria, faixaDePreco);
+
+                }else if (dataInicial == null) {
+                    System.out.println("Sucesso 3");
+                    lista = fachada.getListaCarrosAntesDaData(dataFinal,
+                            categoria, faixaDePreco);
+
+                } else {
+                    System.out.println("Sucesso 4");
+                    lista = fachada.getListaCarrosAPartirDaData(dataInicial,
+                            categoria, faixaDePreco);
+
+                }
+            } else {
+                System.out.println("Sucesso 5");
+                lista = fachada.getListaCarrosNoPeriodo(dataInicial,
+                        dataFinal, categoria, faixaDePreco);
+
+            }
+        } catch(OperacaoInvalidaException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("");
+            alert.setTitle("Problema durante a busca de carros");
+            alert.setContentText(ex.getMessage());
         }
 
         carros = lista;

@@ -78,10 +78,8 @@ public class CadastroReserva {
         return this.reservaRepositorio.buscarReservasPorCliente(idCliente);
     }
 
-    public String buscarReservasPorCarro(int IdCarro) throws NenhumaReservaException {
-        Reserva[] resultado = this.reservaRepositorio.buscarReservasPorCarro(IdCarro);
-
-        return "\n Reservas encontradas para esse carro: " + Arrays.toString(resultado);
+    public Reserva[] buscarReservasPorCarro(int IdCarro) {
+        return this.reservaRepositorio.buscarReservasPorCarro(IdCarro);
     }
 
     public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {

@@ -3,6 +3,8 @@ package com.example.alugueldecarros2.Controllers;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Basico.Reserva;
 import com.example.alugueldecarros2.Negocio.Fachada;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +43,15 @@ public class PerfilClienteController{
     @FXML
     private Button VoltarButton;
 
+    @FXML
+    private Button CancelarReservaButton;
+
+
     private Conta cadastro;
+
+    private Reserva[] reservas;
+
+    private Reserva reservaSelecionada;
 
 
     public Conta getCadastro(){
@@ -63,7 +73,7 @@ public class PerfilClienteController{
             LabelTelefone.setText(cadastro.getTelefone());
             LabelEmail.setText(cadastro.getEmail());
 
-            Reserva[] reservas = fachada.buscarReservasCliente(cadastro.getIdConta());
+            reservas = fachada.buscarReservasCliente(cadastro.getIdConta());
 
             TabelaReservas.getColumns().clear();
             TabelaReservas.getItems().clear();
@@ -80,15 +90,30 @@ public class PerfilClienteController{
             TableColumn <Reserva, String> formaDePagamento = new TableColumn<>("Forma de Pagamento: ");
             formaDePagamento.setCellValueFactory(new PropertyValueFactory<>("formaPagamento"));
 
+            TableColumn <Reserva, String> valorTotal = new TableColumn<>("Valor total: ");
+            valorTotal.setCellValueFactory(new PropertyValueFactory<>("stringValorTotal"));
+
             TabelaReservas.getColumns().add(carroColuna);
             TabelaReservas.getColumns().add(dataInicioColuna);
             TabelaReservas.getColumns().add(dataFinalColuna);
             TabelaReservas.getColumns().add(formaDePagamento);
+            TabelaReservas.getColumns().add(valorTotal);
 
             ObservableList<Reserva> reservasAux = FXCollections.observableArrayList(reservas);
 
             TabelaReservas.getItems().addAll(reservasAux);
+
+            TabelaReservas.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+                reservaSelecionada = newValue;
+            });
         }
+    }
+
+    @FXML
+    private void cancelarReserva(){
+        Fachada fachada = Fachada.getInstance();
+        fachada.removerReserva(reservaSelecionada.getNumero());
+        this.initialize();
     }
 
     private void setCadastro(){

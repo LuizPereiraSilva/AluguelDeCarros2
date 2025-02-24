@@ -96,7 +96,7 @@ public class Carro implements Serializable{
         String resultado = "";
         resultado += "Marca: " + this.marca;
         resultado += " / Modelo: " + this.modelo;
-        resultado += " / Placa do Carro: " + this.placa;
+        resultado += "\nPlaca do Carro: " + this.placa;
 
         return resultado;
     }

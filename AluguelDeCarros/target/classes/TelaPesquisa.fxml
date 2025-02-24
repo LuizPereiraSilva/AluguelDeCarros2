@@ -56,7 +56,7 @@
                                           <Font name="Arial" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="BuscarButton" layoutX="399.0" layoutY="44.0" mnemonicParsing="false" text="Buscar" />
+                                    <Button fx:id="BuscarButton" layoutX="399.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarCarros" text="Buscar" />
                                  </children>
                               </AnchorPane>
                            </children>

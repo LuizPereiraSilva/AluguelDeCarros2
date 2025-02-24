@@ -14,6 +14,7 @@ public class Reserva implements Serializable{
     private Cliente cliente;
     private LocalDate dataInicio;
     private LocalDate dataFinal;
+    private String stringValorTotal;
     private String formaPagamento;
     private boolean pagamento;
 
@@ -23,6 +24,7 @@ public class Reserva implements Serializable{
         this.cliente = ((Cliente)cliente);
         this.dataInicio = datainicio;
         this.dataFinal = datafinal;
+        this.stringValorTotal = "R$ " + this.getStringValorTotal();
         this.formaPagamento = formapagamento;
         this.pagamento = false;
     }
@@ -82,6 +84,17 @@ public class Reserva implements Serializable{
         this.pagamento = pagamento;
     }
 
+    public String getStringValorTotal(){
+        float DiferencaData = ChronoUnit.DAYS.between(this.dataInicio, this.dataFinal);
+        return "R$ " + (DiferencaData * this.carro.getPreco());
+    }
+
+    public float getValorTotal(){
+        float DiferencaData = ChronoUnit.DAYS.between(this.dataInicio, this.dataFinal);
+        return DiferencaData * this.carro.getPreco();
+    }
+
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -96,10 +109,6 @@ public class Reserva implements Serializable{
         return resultado;
     }
 
-    public float valorTotal(){
-       float DiferencaData = ChronoUnit.DAYS.between(this.dataInicio, this.dataFinal);
-       return DiferencaData * this.carro.getPreco();
-    }
 
     public String gerarRelatorio() {
         StringBuilder relatorio = new StringBuilder("Relatório de reservas do cliente: " + this.cliente.getNome());
@@ -109,7 +118,7 @@ public class Reserva implements Serializable{
         relatorio.append("Carro: ").append(carro.getModelo()).append(" (Placa: ").append(carro.getIdCarro()).append(")\n");
         relatorio.append("Período de aluguel: ").append(dataInicio.format(formatter)).append(" a ").append(dataFinal.format(formatter)).append("\n");
         relatorio.append("Valor por dia: ").append(carro.getPreco()).append("\n");
-        relatorio.append("Valor total: R$ ").append(valorTotal()).append("\n");
+        relatorio.append("Valor total: R$ ").append(getValorTotal()).append("\n");
 
 
 

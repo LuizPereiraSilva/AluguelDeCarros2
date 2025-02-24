@@ -36,6 +36,10 @@ public class Fachada {
     }
 
 
+
+
+
+
     //Métodos de Conta
 
     public void cadastrarCliente(String nome, String cpf, String telefone, String email, String senha) throws
@@ -47,6 +51,11 @@ public class Fachada {
             ContaJaExisteException, RepositorioCheioException{
         contas.cadastrarAdministrador(nome, cpf, telefone, email, senha);
     }
+
+
+
+
+
 
     public void removerConta(int contaId) throws ContaNaoExisteException{
         contas.removerConta(contaId);
@@ -65,9 +74,17 @@ public class Fachada {
         contas.atualizarConta(nome, cpf, telefone, email, senha);
     }
 
+
+
     public String listarContas(){
         return contas.listarContas();
     }
+
+
+
+
+
+
 
     //Métodos de Carro
 
@@ -81,6 +98,15 @@ public class Fachada {
         carros.removerCarro(placa);
     }
 
+    public void atualizarCarro(String categoria, float preco, String placa, String modelo,
+                               String marca) throws CarroNaoExisteException, OperacaoInvalidaException{
+        carros.atualizarPreco(categoria, preco, placa, modelo, marca);
+    }
+
+
+
+
+
     public Carro buscarCarro(int id) throws CarroNaoExisteException {
         return carros.buscarCarro(id);
     }
@@ -89,20 +115,48 @@ public class Fachada {
         return carros.buscarCarroPorPlaca(placa);
     }
 
-    public void atualizarCarro(String categoria, float preco, String placa, String modelo,
-                               String marca) throws CarroNaoExisteException, OperacaoInvalidaException{
-        carros.atualizarPreco(categoria, preco, placa, modelo, marca);
-    }
+
+
+
+
+
+    public Carro[] getListaCarrosAPartirDaData(LocalDate dataInicial,
+                                               String categoria,
+                                               String faixaDePreco)
+            throws OperacaoInvalidaException{
+        return carros.getListaCarrosAPartirDaData(dataInicial, categoria, faixaDePreco); }
+
+
+    public Carro[] getListaCarrosAntesDaData(LocalDate dataFinal,
+                                             String categoria,
+                                             String faixaDePreco)
+            throws OperacaoInvalidaException{
+        return carros.getListaCarrosAntesDaData(dataFinal, categoria, faixaDePreco); }
+
+
+    public Carro[] getListaCarrosNoPeriodo(LocalDate dataInicial, LocalDate dataFinal,
+                                           String categoria, String faixaDePreco)
+            throws OperacaoInvalidaException{
+        return carros.getListaCarrosNoPeriodo(dataInicial, dataFinal, categoria, faixaDePreco); }
+
+
 
     public Carro[] getListaInicialCarros(){ return carros.getListaInicialCarros(); }
+
 
     public Carro[] getListaCarros(String tipo, String faixaDePreco) throws OperacaoInvalidaException {
         return carros.getListaCarros(tipo, faixaDePreco);
     }
 
+
     public String listarCarros(){
         return carros.listarCarros();
     }
+
+
+
+
+
 
     //Métodos de Reserva
 
@@ -124,17 +178,27 @@ public class Fachada {
         reservas.atualizarReserva(idReserva, carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
+
+
+
+
+
     public Reserva[] buscarReservasCliente(int idCliente){
         return reservas.buscarReservasCliente(idCliente);
     }
 
-    public String buscarReservasCarro(int IdCarro) throws NenhumaReservaException {
+    public Reserva[] buscarReservasCarro(int IdCarro) {
         return this.reservas.buscarReservasPorCarro(IdCarro);
     }
 
     public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {
         return this.reservas.buscarReservasPeriodo(dataInicio, dataFinal);
     }
+
+
+
+
+
 
     public String listarReservas(){
         return reservas.toString();

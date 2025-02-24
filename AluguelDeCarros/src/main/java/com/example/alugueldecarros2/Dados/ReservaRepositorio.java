@@ -159,7 +159,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return retorno;
     }
 
-    public Reserva[] buscarReservasPorCarro(int IdCarro) throws NenhumaReservaException {
+    public Reserva[] buscarReservasPorCarro(int IdCarro) {
         Reserva[] resultado = new Reserva[this.tamanho];
         int auxj = 0;
 
@@ -168,9 +168,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
                 resultado[auxj] = this.reservas[i];
                 auxj++;
             }
-        }
-        if (auxj == 0) {
-            throw new NenhumaReservaException();
         }
 
         Reserva[] resultado2 = new Reserva[auxj];
@@ -246,7 +243,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return relatoriozinho;
     }
 
-    public String gerarRelatorioPorCliente(int idCliente) throws NenhumaReservaException {
+    public String gerarRelatorioPorCliente(int idCliente){
 
         Reserva[] reservasDoCliente = buscarReservasPorCliente(idCliente);
 
@@ -257,7 +254,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         float faturamento = 0;
 
         for (int i = 0; i < reservasEncontradas.length; i++) {
-            faturamento += reservasEncontradas[i].valorTotal();
+            faturamento += reservasEncontradas[i].getValorTotal();
         }
         return faturamento;
     }

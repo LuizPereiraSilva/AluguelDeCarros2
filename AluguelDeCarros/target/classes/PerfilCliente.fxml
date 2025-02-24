@@ -58,7 +58,7 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="TabelaReservas" layoutX="32.0" layoutY="294.0" prefHeight="250.0" prefWidth="337.0">
+                  <TableView fx:id="TabelaReservas" layoutX="32.0" layoutY="294.0" prefHeight="250.0" prefWidth="599.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
@@ -89,6 +89,11 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
+                  <Button fx:id="CancelarReservaButton" layoutX="480.0" layoutY="242.0" mnemonicParsing="false" onAction="#cancelarReserva" prefHeight="37.0" prefWidth="151.0" text="Cancelar Reserva">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

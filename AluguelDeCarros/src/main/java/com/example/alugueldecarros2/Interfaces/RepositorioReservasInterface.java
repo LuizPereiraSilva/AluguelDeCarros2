@@ -16,9 +16,9 @@ public interface RepositorioReservasInterface {
 
     public void atualizarReserva(Reserva reservaAtualizada);
 
-    public Reserva[] buscarReservasPorCliente(int idCliente) throws NenhumaReservaException;
+    public Reserva[] buscarReservasPorCliente(int idCliente);
 
-    public Reserva[] buscarReservasPorCarro(int idCarro) throws NenhumaReservaException;
+    public Reserva[] buscarReservasPorCarro(int idCarro);
 
     public Reserva[] buscarReservasPorPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException;
 

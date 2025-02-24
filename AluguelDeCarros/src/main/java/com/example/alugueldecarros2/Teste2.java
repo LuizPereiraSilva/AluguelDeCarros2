@@ -19,29 +19,30 @@ public class Teste2 {
 //                    LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
 //                    "Boquete");
 
-            for(int i = 1; i< 20; i++) {
-//                fachada.removerCarro(i);
-                switch(i%4) {
-                    case 0:
-                        fachada.cadastrarCarro( "Hatchback", i * 25,
-                                "HXR 032"+ i, "Palio","Fiat");
-                        break;
-
-                    case 1:
-                        fachada.cadastrarCarro( "Sedan", i * 25,
-                                "HXR 033"+ i, "Fiesta","Ford");
-                        break;
-
-                    case 2:
-                        fachada.cadastrarCarro( "Pickup", i * 25,
-                                "HXR 034"+ i, "Dodge RAM","Toyota");
-                        break;
-
-                    case 3:
-                        fachada.cadastrarCarro( "SUV", i * 25,
-                                "HXR 035"+ i, "HRV","Honda");
-                        break;
-                }
+//            for(int i = 1; i< 20; i++) {
+//                try {
+//                    switch (i % 4) {
+//                        case 0:
+//                            fachada.cadastrarCarro("Hatchback", i * 25,
+//                                    "HXR 032" + i, "Palio", "Fiat");
+//                            break;
+//
+//                        case 1:
+//                            fachada.cadastrarCarro("Sedan", i * 25,
+//                                    "HXR 033" + i, "Fiesta", "Ford");
+//                            break;
+//
+//                        case 2:
+//                            fachada.cadastrarCarro("Pickup", i * 25,
+//                                    "HXR 034" + i, "Dodge RAM", "Toyota");
+//                            break;
+//
+//                        case 3:
+//                            fachada.cadastrarCarro("SUV", i * 25,
+//                                    "HXR 035" + i, "HRV", "Honda");
+//                            break;
+//                    }
+//                } catch (Exception e) {}
 
 //                fachada.cadastrarAdministrador("Luiz Felipe", "707816",
 //                        "8145", "felipepereira", "0817");
@@ -57,7 +58,7 @@ public class Teste2 {
 //                } catch(Exception e){}
 
 //                fachada.removerReserva(1);
-            }
+//            }
 
 //            print(fachada.buscarReserva(1).toString());
 

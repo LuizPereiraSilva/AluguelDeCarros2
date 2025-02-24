@@ -7,6 +7,9 @@ import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
+import com.example.alugueldecarros2.Negocio.Basico.Reserva;
+
+import java.time.LocalDate;
 
 public class CadastroCarro {
 
@@ -19,6 +22,10 @@ public class CadastroCarro {
         this.ultimoId = repositorio.getMaiorIdCarro();
     }
 
+
+
+
+
     protected static CadastroCarro getInstance(){
         if (instance == null) {
             instance = new CadastroCarro();
@@ -26,6 +33,10 @@ public class CadastroCarro {
 
         return instance;
     }
+
+
+
+
 
     public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
             throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
@@ -43,6 +54,9 @@ public class CadastroCarro {
         throw new OperacaoBemSucedidaException();
     }
 
+
+
+
     public void removerCarro(String placa) throws CarroNaoExisteException {
         this.repositorio.removerCarro(placa);
     }
@@ -55,6 +69,10 @@ public class CadastroCarro {
         return this.repositorio.buscarCarroPorPlaca(placa);
     }
 
+
+
+
+
     public void atualizarPreco(String categoria, float preco, String placa, String modelo, String marca)
             throws CarroNaoExisteException, OperacaoInvalidaException{
         if(preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
@@ -65,6 +83,10 @@ public class CadastroCarro {
             throw new OperacaoInvalidaException();
         }
     }
+
+
+
+
 
     public Carro[] getListaCarros(String categoria, String faixaDePreco)
             throws OperacaoInvalidaException{
@@ -77,12 +99,10 @@ public class CadastroCarro {
         }
 
         if(categoria.equals("Qualquer categoria")){
-            System.out.println("aiii");
             return repositorio.getListaCarrosPorPreco(faixaDePreco);
         }
 
         if(faixaDePreco.equals("Qualquer preço")){
-            System.out.println("auuuuuuu baby im praying on you tonight");
             return repositorio.getListaCarrosPorCategoria(categoria);
         }
         if(!categoria.equals("Hatchback") && !categoria.equals("Sedan") &&
@@ -99,6 +119,151 @@ public class CadastroCarro {
 
         return this.repositorio.getListaCarros(categoria, faixaDePreco);
     }
+
+
+
+
+
+
+    public Carro[] getListaCarrosAPartirDaData(
+            LocalDate dataInicial, String categoria, String faixaDePreco)
+            throws OperacaoInvalidaException{
+
+        Carro[] carrosAux = this.getListaCarros(categoria, faixaDePreco);
+        Carro[] resultado = new Carro[carrosAux.length];
+
+        int auxIndex = 0;
+
+        for(int i = 0; i < carrosAux.length; i++){
+            try {
+                this.verificarDisponibilidadeAPartirDaData(dataInicial, carrosAux[i]);
+            } catch(OperacaoBemSucedidaException e){
+                resultado[auxIndex] = carrosAux[i];
+                auxIndex++;
+            }
+        }
+
+        return resultado;
+    }
+
+    private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Carro carro)
+            throws OperacaoBemSucedidaException{
+
+        CadastroReserva reservas = CadastroReserva.getInstance();
+        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
+        boolean sucesso = true;
+
+        for(int i = 0; i < reservasAux.length; i++){
+            if(reservasAux[i] != null && reservasAux[i].getDataFinal().isAfter(dataInicial)){
+                sucesso = false;
+                break;
+            }
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
+
+
+
+    public Carro[] getListaCarrosAntesDaData(LocalDate dataFinal,
+                                             String categoria, String faixaDePreco)
+            throws OperacaoInvalidaException{
+
+        Carro[] carrosAux = this.getListaCarros(categoria, faixaDePreco);
+        Carro[] resultado = new Carro[carrosAux.length];
+
+        int auxIndex = 0;
+
+        for(int i = 0; i < carrosAux.length; i++){
+            try {
+                this.verificarDisponibilidadeAntesDaData(dataFinal, carrosAux[i]);
+            } catch(OperacaoBemSucedidaException e){
+                resultado[auxIndex] = carrosAux[i];
+                auxIndex++;
+            }
+        }
+
+        return resultado;
+    }
+
+    private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Carro carro)
+            throws OperacaoBemSucedidaException{
+
+        CadastroReserva reservas = CadastroReserva.getInstance();
+        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
+        boolean sucesso = true;
+
+        for(int i = 0; i < reservasAux.length; i++){
+            if(reservasAux[i] != null && reservasAux[i].getDataInicio().isBefore(dataFinal)
+                    && reservasAux[i].getDataFinal().isAfter(LocalDate.now())){
+                sucesso = false;
+                break;
+            }
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
+
+
+
+    public Carro[] getListaCarrosNoPeriodo(LocalDate dataInicial, LocalDate dataFinal,
+                                           String categoria, String faixaDePreco)
+            throws OperacaoInvalidaException{
+
+        Carro[] carrosAux = this.getListaCarros(categoria, faixaDePreco);
+        Carro[] resultado = new Carro[carrosAux.length];
+
+        int auxIndex = 0;
+
+        for(int i = 0; i < carrosAux.length; i++){
+            try {
+                this.verificarAmbasDisponibilidades(dataInicial, dataFinal, carrosAux[i]);
+            } catch(OperacaoBemSucedidaException e){
+                resultado[auxIndex] = carrosAux[i];
+                auxIndex++;
+            }
+        }
+
+        return resultado;
+    }
+
+    private void verificarAmbasDisponibilidades(LocalDate dataInicial, LocalDate dataFinal,
+                                                Carro carro)
+            throws OperacaoBemSucedidaException{
+
+        Exception e1 = null;
+        Exception e2 = null;
+
+        try{
+            this.verificarDisponibilidadeAPartirDaData(dataInicial, carro);
+        } catch(OperacaoBemSucedidaException e){
+            e1 = e;
+        }
+
+        try{
+            this.verificarDisponibilidadeAntesDaData(dataFinal, carro);
+        }catch(OperacaoBemSucedidaException e){
+            e2 = e;
+        }
+
+        if(!(e1 == null || e2 == null)){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
+
 
     public Carro[] getListaInicialCarros(){
         return repositorio.getListaInicialCarros();
