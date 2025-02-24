@@ -84,12 +84,44 @@ public class CadastroReserva {
 
 
 
+    public Reserva[] getListaReservas(String categoria, String faixaDePreco)
+            throws OperacaoInvalidaException{
+        if(categoria == null || faixaDePreco == null){
+            System.out.println("Erro1");
+            throw new OperacaoInvalidaException();
+        }
+
+        if(categoria.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
+            System.out.println("Erro2");
+            throw new OperacaoInvalidaException();
+        }
+
+        if(categoria.equals("Qualquer categoria")){
+            return reservaRepositorio.getListaReservasPorPreco(faixaDePreco);
+        }
+
+        if(faixaDePreco.equals("Qualquer preço")){
+            return reservaRepositorio.getListaReservasPorCategoria(categoria);
+        }
+        if(!categoria.equals("Hatchback") && !categoria.equals("Sedan") &&
+                !categoria.equals("Pickup") && !categoria.equals("SUV")){
+
+            throw new OperacaoInvalidaException();
+        }
+
+        if(!faixaDePreco.equals("Popular") && !faixaDePreco.equals("Médio") &&
+                !faixaDePreco.equals("Luxo")){
+
+            throw new OperacaoInvalidaException();
+        }
+
+        return this.reservaRepositorio.getListaReservas(categoria, faixaDePreco);
+    }
 
 
     public Reserva[] getListaReservasAPartirDaData(
             LocalDate dataInicial, String categoria, String faixaDePreco) {
 
-        System.out.println("Cheguei Brasil");
         Reserva[] reservasAux = null;
         Reserva[] resultado = null;
 
@@ -104,11 +136,13 @@ public class CadastroReserva {
         int auxIndex = 0;
 
         for(int i = 0; i < reservasAux.length; i++){
-            try {
-                this.verificarDisponibilidadeAPartirDaData(dataInicial, reservasAux[i]);
-            } catch(OperacaoBemSucedidaException e){
-                resultado[auxIndex] = reservasAux[i];
-                auxIndex++;
+            if(reservasAux[i] != null) {
+                try {
+                    this.verificarDisponibilidadeAPartirDaData(dataInicial, reservasAux[i]);
+                } catch (OperacaoBemSucedidaException e) {
+                    resultado[auxIndex] = reservasAux[i];
+                    auxIndex++;
+                }
             }
         }
 
@@ -121,17 +155,10 @@ public class CadastroReserva {
     private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Reserva reserva)
             throws OperacaoBemSucedidaException{
 
-        CadastroReserva reservas = CadastroReserva.getInstance();
-        Reserva[] reservasAux = reservas.buscarReservasPorCarro(reserva.getCarro().getIdCarro());
-
         boolean sucesso = true;
 
-        for(int i = 0; i < reservasAux.length; i++){
-
-            if(reservasAux[i] != null && reservasAux[i].getDataFinal().isAfter(dataInicial)){
-                sucesso = false;
-                break;
-            }
+        if(reserva != null && !reserva.getDataFinal().isAfter(dataInicial)){
+            sucesso = false;
         }
 
         if(sucesso){
@@ -151,8 +178,9 @@ public class CadastroReserva {
             reservasAux = this.getListaReservas(categoria, faixaDePreco);
         } catch (OperacaoInvalidaException ex) {
             reservasAux = this.getListaInicialReservas();
-            resultado = new Reserva[reservasAux.length];
         }
+
+        resultado = new Reserva[reservasAux.length];
 
         int auxIndex = 0;
 
@@ -227,15 +255,10 @@ public class CadastroReserva {
     private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Reserva reserva)
             throws OperacaoBemSucedidaException{
 
-        Reserva[] reservasAux = this.buscarReservasPorCarro(reserva.getCarro().getIdCarro());
         boolean sucesso = true;
 
-        for(int i = 0; i < reservasAux.length; i++){
-            if(reservasAux[i] != null && reservasAux[i].getDataInicio().isBefore(dataFinal)
-                    && reservasAux[i].getDataFinal().isAfter(LocalDate.now())){
-                sucesso = false;
-                break;
-            }
+        if(reserva != null && !reserva.getDataInicio().isBefore(dataFinal)){
+            sucesso = false;
         }
 
         if(sucesso){
@@ -258,38 +281,6 @@ public class CadastroReserva {
     }
 
 
-
-    public Reserva[] getListaReservas(String categoria, String faixaDePreco)
-            throws OperacaoInvalidaException {
-        if(categoria == null || faixaDePreco == null){
-            throw new OperacaoInvalidaException();
-        }
-
-        if(categoria.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
-            throw new OperacaoInvalidaException();
-        }
-
-        if(categoria.equals("Qualquer categoria")){
-            return reservaRepositorio.getListaReservasPorPreco(faixaDePreco);
-        }
-
-        if(faixaDePreco.equals("Qualquer preço")){
-            return reservaRepositorio.getListaReservasPorCategoria(categoria);
-        }
-        if(!categoria.equals("Hatchback") && !categoria.equals("Sedan") &&
-                !categoria.equals("Pickup") && !categoria.equals("SUV")){
-
-            throw new OperacaoInvalidaException();
-        }
-
-        if(!faixaDePreco.equals("Popular") && !faixaDePreco.equals("Médio") &&
-                !faixaDePreco.equals("Luxo")){
-
-            throw new OperacaoInvalidaException();
-        }
-
-        return this.reservaRepositorio.getListaReservas(categoria, faixaDePreco);
-    }
 
 
     public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {

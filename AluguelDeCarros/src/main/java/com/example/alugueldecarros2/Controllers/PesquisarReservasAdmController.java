@@ -1,6 +1,7 @@
 package com.example.alugueldecarros2.Controllers;
 
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Basico.Reserva;
@@ -56,6 +57,8 @@ public class PesquisarReservasAdmController implements Initializable {
     @FXML
     private Button GerarRelatorioButton2;
 
+    private Reserva[] reservas;
+
     @FXML
     void handleVoltarButtonAction(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
@@ -63,15 +66,51 @@ public class PesquisarReservasAdmController implements Initializable {
                 "Painel de Controle");
     }
 
-    @FXML
-    void handleVoltarPerfilAction(ActionEvent event) {
-
-    }
 
     @FXML
     void handleGerarRelatorioButtonAction(ActionEvent event) {
+        Fachada fachada = Fachada.getInstance();
+        String categoria = CategoriaCarroChoiceBox.getSelectionModel().getSelectedItem();
+        String faixaDePreco = CategoriaPrecoChoiceBox.getSelectionModel().getSelectedItem();
+        LocalDate dataInicial = DataInicialDatePicker.getValue();
+        LocalDate dataFinal = DataFinalDatePicker.getValue();
+        Reserva[] lista = null;
 
+        try {
+            if (dataInicial == null || dataFinal == null) {
+
+                if(dataInicial == null && dataFinal == null) {
+                    lista = fachada.getListaReservas(categoria, faixaDePreco);
+
+                }else if (dataInicial == null) {
+                    lista = fachada.getListaReservasAntesDaData(dataFinal,
+                            categoria, faixaDePreco);
+
+                } else {
+                    lista = fachada.getListaReservasAPartirDaData(dataInicial,
+                            categoria, faixaDePreco);
+
+                }
+            } else {
+                lista = fachada.getListaReservasNoPeriodo(dataInicial,
+                        dataFinal, categoria, faixaDePreco);
+
+            }
+        } catch(OperacaoInvalidaException ex) {
+            lista = fachada.getListaInicialReservas();
+        }
+
+        reservas = lista;
+
+        ReservasTableView.getItems().clear();
+
+        for (int i = 0; i < lista.length; i++) {
+            if(lista[i] != null) {
+                ReservasTableView.getItems().add(lista[i]);
+            }
+        }
     }
+
 
     @FXML
     void handleGerarRelatorioButtonAction1(ActionEvent event){
@@ -90,12 +129,26 @@ public class PesquisarReservasAdmController implements Initializable {
 
         Reserva[] reservas = fachada.buscarReservasCliente(contaAux.getIdConta());
 
-
+        ReservasTableView.getItems().clear();
+        ReservasTableView.getItems().addAll(reservas);
     }
 
     @FXML
     void handleGerarRelatorioButtonAction2(ActionEvent event){
+        Fachada fachada = Fachada.getInstance();
+        Reserva reservaAux = null;
+        try {
+            reservaAux = fachada.buscarReserva(Integer.parseInt(TextNumeroReserva.getText()));
+        }catch(NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("");
+            alert.setContentText(e.getMessage());
+            alert.setTitle("Erro ao gerar relatorio");
+            alert.show();
+        }
 
+        ReservasTableView.getItems().clear();
+        ReservasTableView.getItems().addAll(reservaAux);
     }
 
     void initialize(){

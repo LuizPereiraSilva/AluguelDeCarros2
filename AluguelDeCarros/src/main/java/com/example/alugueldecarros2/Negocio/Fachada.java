@@ -199,6 +199,10 @@ public class Fachada {
         return reservas.getListaInicialReservas();
     }
 
+    public Reserva[] getListaReservas(String categoria, String faixaDePreco) throws OperacaoInvalidaException{
+        return reservas.getListaReservas(categoria, faixaDePreco);
+    }
+
 
 
 

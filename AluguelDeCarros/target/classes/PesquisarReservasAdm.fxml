@@ -80,7 +80,6 @@
                            </children>
                         </HBox>
                         <Button fx:id="VoltarButton" layoutY="1.0" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar" />
-                        <Button fx:id="btnPerfil" layoutY="30.0" mnemonicParsing="false" onAction="#handleVoltarPerfilAction" prefHeight="25.0" prefWidth="48.0" text="Perfil" />
                         <Button fx:id="GerarRelatorioButton" layoutX="25.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleGerarRelatorioButtonAction" prefHeight="25.0" prefWidth="57.0" text="GERAR!" />
                         <Label alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="6.0" layoutY="290.0" prefHeight="32.0" prefWidth="96.0" text="Relatório:">
                            <font>
