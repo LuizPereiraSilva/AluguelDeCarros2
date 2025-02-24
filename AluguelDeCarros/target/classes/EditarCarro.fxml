@@ -67,12 +67,12 @@
                                 <Font name="Arial Bold" size="50.0" />
                             </font>
                         </Label>
-                        <Label layoutX="334.0" layoutY="321.0" prefHeight="30.0" prefWidth="173.0" text="Confirmar edição:">
+                        <Label layoutX="288.0" layoutY="336.0" prefHeight="30.0" prefWidth="173.0" text="Confirmar edição:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                  <Button fx:id="EditarButton" layoutX="507.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnEditarClicked" prefHeight="33.0" prefWidth="113.0" text="CONFIRMAR!">
+                  <Button fx:id="EditarButton" layoutX="477.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnEditarClicked" prefHeight="33.0" prefWidth="113.0" text="CONFIRMAR!">
                      <font>
                         <Font size="15.0" />
                      </font></Button>
@@ -115,6 +115,22 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
+                  <Label fx:id="TituloLivro112" layoutX="26.0" layoutY="397.0" prefHeight="35.0" prefWidth="161.0" text="Disponibilidade:  ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="DisponibilidadeCarro" layoutX="188.0" layoutY="394.0" prefHeight="40.0" prefWidth="131.0" text="Disponivel">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="DisponibilidadeChoiceBox" layoutX="368.0" layoutY="402.0" prefWidth="150.0" />
+                  <Button fx:id="TrocarDisponibilidadeButton" layoutX="551.0" layoutY="398.0" mnemonicParsing="false" onAction="#trocarDisponibilidade" prefHeight="35.0" prefWidth="204.0" text="TROCAR DISPONIBILIDADE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </items>

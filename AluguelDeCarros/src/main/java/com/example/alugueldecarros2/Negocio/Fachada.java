@@ -124,7 +124,7 @@ public class Fachada {
         reservas.atualizarReserva(idReserva, carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
-    public String buscarReservasCliente(int idCliente) throws NenhumaReservaException {
+    public Reserva[] buscarReservasCliente(int idCliente){
         return reservas.buscarReservasCliente(idCliente);
     }
 

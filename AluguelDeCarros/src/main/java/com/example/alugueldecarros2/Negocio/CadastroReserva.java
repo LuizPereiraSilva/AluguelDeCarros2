@@ -74,10 +74,8 @@ public class CadastroReserva {
         }
     }
 
-    public String buscarReservasCliente(int idCliente) throws NenhumaReservaException {
-       Reserva[] resultado = this.reservaRepositorio.buscarReservasPorCliente(idCliente);
-
-        return "\n Reservas encontradas para esse Id: " + Arrays.toString(resultado);
+    public Reserva[] buscarReservasCliente(int idCliente) {
+        return this.reservaRepositorio.buscarReservasPorCliente(idCliente);
     }
 
     public String buscarReservasPorCarro(int IdCarro) throws NenhumaReservaException {

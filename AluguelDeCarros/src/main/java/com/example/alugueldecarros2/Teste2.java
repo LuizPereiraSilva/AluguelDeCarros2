@@ -4,6 +4,8 @@ import com.example.alugueldecarros2.Dados.CarroRepositorio;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Fachada;
 
+import java.time.LocalDate;
+
 public class Teste2 {
 
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class Teste2 {
 //                    LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
 //                    "Boquete");
 
-//            for(int i = 1; i< 20; i++) {
+            for(int i = 1; i< 20; i++) {
 //                fachada.removerCarro(i);
 //                switch(i%4) {
 //                    case 0:
@@ -47,12 +49,13 @@ public class Teste2 {
 
 //                fachada.atualizarConta("Reberto", "123", "12345", "9876");
 
-//                fachada.cadastrarReserva(fachada.buscarCarro(1), fachada.buscarConta(1),
-//                        LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
+//                fachada.cadastrarReserva(fachada.buscarCarro(i), fachada.buscarConta(1),
+//                        LocalDate.of(2024, 12, 23),
+//                        LocalDate.of(2025, 01, 04),
 //                        "Debito");
 
 //                fachada.removerReserva(i);
-//            }
+            }
 
 //            print(fachada.buscarReserva(1).toString());
 
@@ -69,7 +72,7 @@ public class Teste2 {
         }
         print(fachada.listarCarros());
         print(fachada.listarContas());
-//       print(fachada.listarReservas());
+       print(fachada.listarReservas());
 
     }
 

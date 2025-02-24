@@ -1,15 +1,19 @@
 package com.example.alugueldecarros2.Controllers;
 
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
+import com.example.alugueldecarros2.Negocio.Basico.Reserva;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PerfilClienteController{
@@ -30,7 +34,7 @@ public class PerfilClienteController{
     private Button SairButton;
 
     @FXML
-    private TableView<String> TabelaReservas;
+    private TableView<Reserva> TabelaReservas;
 
     @FXML
     private Button VoltarButton;
@@ -57,7 +61,19 @@ public class PerfilClienteController{
             LabelEmail.setText(cadastro.getEmail());
         }
 
-        
+        if(cadastro != null) {
+            Reserva[] reservas = fachada.buscarReservasCliente(cadastro.getIdConta());
+
+            TabelaReservas.getColumns().clear();
+            TabelaReservas.getItems().clear();
+
+            TabelaReservas.getColumns().add(new TableColumn<Reserva, String>("Carro Reservado: "));
+            TabelaReservas.getColumns().add(new TableColumn<Reserva, LocalDate>("Data de Início: "));
+            TabelaReservas.getColumns().add(new TableColumn<Reserva, LocalDate>("Data final: "));
+            TabelaReservas.getColumns().add(new TableColumn<Reserva, String>("Forma de Pagamento: "));
+
+
+        }
     }
 
 

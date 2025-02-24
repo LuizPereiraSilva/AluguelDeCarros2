@@ -16,7 +16,7 @@ public class AluguelDeCarrosApp extends Application {
         Fachada fachada = Fachada.getInstance();
         SceneManager.setStage(stage);
         SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.changeScreen("TelaPesquisa.fxml", "Primeira Tela");
+        sceneManager.changeScreen("PerfilCliente.fxml", "Primeira Tela");
 
         stage.show();
     }

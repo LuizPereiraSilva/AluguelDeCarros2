@@ -139,7 +139,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         this.escreverArquivo();
     }
 
-    public Reserva[] buscarReservasPorCliente(int idCliente) throws NenhumaReservaException {
+    public Reserva[] buscarReservasPorCliente(int idCliente) {
         Reserva[] auxReservas = new Reserva[this.tamanho];
         int auxContador = 0;
 
@@ -148,9 +148,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
                 auxReservas[auxContador] = this.reservas[i];
                 auxContador++;
             }
-        }
-        if (auxContador == 0) {
-            throw new NenhumaReservaException();
         }
 
         Reserva[] retorno = new Reserva[auxContador];

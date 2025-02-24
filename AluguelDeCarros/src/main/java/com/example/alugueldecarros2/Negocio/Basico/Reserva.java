@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 
 public class Reserva implements Serializable{
     private Carro carro;
+    private String CarroCaracteristicas;
     private int numero;
     private Cliente cliente;
     private LocalDate datainicio;
@@ -18,6 +19,7 @@ public class Reserva implements Serializable{
 
     public Reserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal, String formapagamento) {
         this.carro = carro;
+        this.CarroCaracteristicas = carro.adicionarNaLista();
         this.cliente = ((Cliente)cliente);
         this.datainicio = datainicio;
         this.datafinal = datafinal;

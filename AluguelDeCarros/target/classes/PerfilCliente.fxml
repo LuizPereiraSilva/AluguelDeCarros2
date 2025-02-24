@@ -33,7 +33,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="643.0">
                <children>
-                  <Label fx:id="LabelNome" layoutX="140.0" layoutY="120.0" prefHeight="45.0" prefWidth="337.0" text="José Da Silva">
+                  <Label fx:id="LabelNome" layoutX="168.0" layoutY="75.0" prefHeight="45.0" prefWidth="337.0" text="José Da Silva">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Font name="Arial" size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="50.0" layoutY="120.0" prefHeight="45.0" prefWidth="67.0" text="Nome:">
+                  <Label layoutX="50.0" layoutY="75.0" prefHeight="45.0" prefWidth="67.0" text="Nome:">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -53,20 +53,40 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="LabelCpf" layoutX="140.0" layoutY="160.0" prefHeight="45.0" prefWidth="337.0" text="123.456.789.10">
+                  <Label fx:id="LabelCpf" layoutX="168.0" layoutY="160.0" prefHeight="45.0" prefWidth="337.0" text="123.456.789.10">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="TabelaReservas" layoutX="32.0" layoutY="274.0" prefHeight="250.0" prefWidth="337.0">
+                  <TableView fx:id="TabelaReservas" layoutX="32.0" layoutY="294.0" prefHeight="250.0" prefWidth="337.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <Label layoutX="32.0" layoutY="229.0" prefHeight="45.0" prefWidth="241.0" text="Histórico de reservas:">
+                  <Label layoutX="32.0" layoutY="249.0" prefHeight="45.0" prefWidth="241.0" text="Histórico de reservas:">
                      <font>
                         <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="120.0" prefHeight="45.0" prefWidth="67.0" text="Email: ">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LabelEmail" layoutX="168.0" layoutY="120.0" prefHeight="45.0" prefWidth="337.0" text="jose123@hotmail">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="205.0" prefHeight="45.0" prefWidth="97.0" text="Telefone:">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LabelTelefone" layoutX="168.0" layoutY="205.0" prefHeight="45.0" prefWidth="337.0" text="876543231">
+                     <font>
+                        <Font size="21.0" />
                      </font>
                   </Label>
                </children>
