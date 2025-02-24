@@ -3,6 +3,8 @@ package com.example.alugueldecarros2.Controllers;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Basico.Reserva;
 import com.example.alugueldecarros2.Negocio.Fachada;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,27 +55,46 @@ public class PerfilClienteController{
 
     public void initialize(){
         Fachada fachada = Fachada.getInstance();
+        this.setCadastro();
 
         if(cadastro != null) {
             LabelCpf.setText(cadastro.getCpf());
             LabelNome.setText(cadastro.getNome());
             LabelTelefone.setText(cadastro.getTelefone());
             LabelEmail.setText(cadastro.getEmail());
-        }
 
-        if(cadastro != null) {
             Reserva[] reservas = fachada.buscarReservasCliente(cadastro.getIdConta());
 
             TabelaReservas.getColumns().clear();
             TabelaReservas.getItems().clear();
 
-            TabelaReservas.getColumns().add(new TableColumn<Reserva, String>("Carro Reservado: "));
-            TabelaReservas.getColumns().add(new TableColumn<Reserva, LocalDate>("Data de Início: "));
-            TabelaReservas.getColumns().add(new TableColumn<Reserva, LocalDate>("Data final: "));
-            TabelaReservas.getColumns().add(new TableColumn<Reserva, String>("Forma de Pagamento: "));
+            TableColumn <Reserva, String> carroColuna = new TableColumn<>("Carro Reservado: ");
+            carroColuna.setCellValueFactory(new PropertyValueFactory<>("carroCaracteristicas"));
 
+            TableColumn <Reserva, LocalDate> dataInicioColuna = new TableColumn<>("Data de Início: ");
+            dataInicioColuna.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
 
+            TableColumn <Reserva, LocalDate> dataFinalColuna = new TableColumn<>("Data final: ");
+            dataFinalColuna.setCellValueFactory(new PropertyValueFactory<>("dataFinal"));
+
+            TableColumn <Reserva, String> formaDePagamento = new TableColumn<>("Forma de Pagamento: ");
+            formaDePagamento.setCellValueFactory(new PropertyValueFactory<>("formaPagamento"));
+
+            TabelaReservas.getColumns().add(carroColuna);
+            TabelaReservas.getColumns().add(dataInicioColuna);
+            TabelaReservas.getColumns().add(dataFinalColuna);
+            TabelaReservas.getColumns().add(formaDePagamento);
+
+            ObservableList<Reserva> reservasAux = FXCollections.observableArrayList(reservas);
+
+            TabelaReservas.getItems().addAll(reservasAux);
         }
+    }
+
+    private void setCadastro(){
+        try {
+            this.cadastro = Fachada.getInstance().buscarConta(1);
+        } catch (Exception ex) {}
     }
 
 

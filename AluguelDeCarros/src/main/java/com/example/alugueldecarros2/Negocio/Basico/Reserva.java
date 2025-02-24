@@ -9,21 +9,21 @@ import java.time.temporal.ChronoUnit;
 
 public class Reserva implements Serializable{
     private Carro carro;
-    private String CarroCaracteristicas;
+    private String carroCaracteristicas;
     private int numero;
     private Cliente cliente;
-    private LocalDate datainicio;
-    private LocalDate datafinal;
-    private String formapagamento;
+    private LocalDate dataInicio;
+    private LocalDate dataFinal;
+    private String formaPagamento;
     private boolean pagamento;
 
     public Reserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal, String formapagamento) {
         this.carro = carro;
-        this.CarroCaracteristicas = carro.adicionarNaLista();
+        this.carroCaracteristicas = carro.adicionarNaTabela();
         this.cliente = ((Cliente)cliente);
-        this.datainicio = datainicio;
-        this.datafinal = datafinal;
-        this.formapagamento = formapagamento;
+        this.dataInicio = datainicio;
+        this.dataFinal = datafinal;
+        this.formaPagamento = formapagamento;
         this.pagamento = false;
     }
     public Cliente getCliente() {
@@ -46,28 +46,32 @@ public class Reserva implements Serializable{
         this.carro = carro;
     }
 
-    public LocalDate getDatainicio() {
-        return datainicio;
+    public String getCarroCaracteristicas(){
+        return carroCaracteristicas;
     }
 
-    public void setDatainicio(LocalDate datainicio) {
-        this.datainicio = datainicio;
+    public LocalDate getDataInicio() {
+        return dataInicio;
     }
 
-    public LocalDate getDatafinal() {
-        return datafinal;
+    public void setDataInicio(LocalDate datainicio) {
+        this.dataInicio = datainicio;
     }
 
-    public void setDatafinal(LocalDate datafinal) {
-        this.datafinal = datafinal;
+    public LocalDate getDataFinal() {
+        return dataFinal;
     }
 
-    public String getFormapagamento() {
-        return formapagamento;
+    public void setDataFinal(LocalDate datafinal) {
+        this.dataFinal = datafinal;
     }
 
-    public void setFormapagamento(String formapagamento) {
-        this.formapagamento = formapagamento;
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formapagamento) {
+        this.formaPagamento = formapagamento;
     }
 
     public boolean getPagamento() {
@@ -84,16 +88,16 @@ public class Reserva implements Serializable{
         String resultado = "\nReserva " + this.numero + ": \n\n";
         resultado += this.cliente.toString();
         resultado += this.carro.toString();
-        resultado += " \n\nData de inicio: " + this.datainicio.format(formatter);
-        resultado += " \nData final: " + this.datafinal.format(formatter);
-        resultado += " \nForma de pagamento: " + this.formapagamento;
+        resultado += " \n\nData de inicio: " + this.dataInicio.format(formatter);
+        resultado += " \nData final: " + this.dataFinal.format(formatter);
+        resultado += " \nForma de pagamento: " + this.formaPagamento;
         resultado += " \nStatus do pagamento: " + this.pagamento;
 
         return resultado;
     }
 
     public float valorTotal(){
-       float DiferencaData = ChronoUnit.DAYS.between(this.datainicio, this.datafinal);
+       float DiferencaData = ChronoUnit.DAYS.between(this.dataInicio, this.dataFinal);
        return DiferencaData * this.carro.getPreco();
     }
 
@@ -103,7 +107,7 @@ public class Reserva implements Serializable{
         relatorio.append("\n\n").append("Número da reserva: ").append(numero).append("\n");
         relatorio.append("Cliente: ").append(cliente.getNome()).append(" (CPF: ").append(cliente.getCpf()).append(")\n");
         relatorio.append("Carro: ").append(carro.getModelo()).append(" (Placa: ").append(carro.getIdCarro()).append(")\n");
-        relatorio.append("Período de aluguel: ").append(datainicio.format(formatter)).append(" a ").append(datafinal.format(formatter)).append("\n");
+        relatorio.append("Período de aluguel: ").append(dataInicio.format(formatter)).append(" a ").append(dataFinal.format(formatter)).append("\n");
         relatorio.append("Valor por dia: ").append(carro.getPreco()).append("\n");
         relatorio.append("Valor total: R$ ").append(valorTotal()).append("\n");
 

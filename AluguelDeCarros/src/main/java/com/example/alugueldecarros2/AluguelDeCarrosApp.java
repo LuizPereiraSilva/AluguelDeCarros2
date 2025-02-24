@@ -13,7 +13,6 @@ public class AluguelDeCarrosApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Fachada fachada = Fachada.getInstance();
         SceneManager.setStage(stage);
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("PerfilCliente.fxml", "Primeira Tela");

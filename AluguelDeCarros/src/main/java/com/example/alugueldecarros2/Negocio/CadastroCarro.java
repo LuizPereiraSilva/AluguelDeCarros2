@@ -68,6 +68,10 @@ public class CadastroCarro {
 
     public Carro[] getListaCarros(String categoria, String faixaDePreco)
             throws OperacaoInvalidaException{
+        if(categoria == null || faixaDePreco == null){
+            throw new OperacaoInvalidaException();
+        }
+
         if(categoria.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
             throw new OperacaoInvalidaException();
         }

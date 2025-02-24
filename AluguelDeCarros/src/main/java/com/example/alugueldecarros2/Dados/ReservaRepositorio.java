@@ -189,8 +189,8 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         for (int i = 0; i < this.reservasIndex; i++) {
             Reserva reserva = this.reservas[i];
             if (reserva != null) {
-                LocalDate reservaDataInicio = reserva.getDatainicio();
-                LocalDate reservaDataFinal = reserva.getDatafinal();
+                LocalDate reservaDataInicio = reserva.getDataInicio();
+                LocalDate reservaDataFinal = reserva.getDataFinal();
 
                 if ((reservaDataInicio.isBefore(datafinal) || reservaDataInicio.isEqual(datafinal)) &&
                         (reservaDataFinal.isAfter(datainicio) || reservaDataFinal.isEqual(datainicio))) {
@@ -209,8 +209,8 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         for (int i = 0; i < this.reservasIndex; i++) {
             Reserva reserva = this.reservas[i];
             if (reserva != null) {
-                LocalDate reservaDataInicio = reserva.getDatainicio();
-                LocalDate reservaDataFinal = reserva.getDatafinal();
+                LocalDate reservaDataInicio = reserva.getDataInicio();
+                LocalDate reservaDataFinal = reserva.getDataFinal();
 
                 if ((reservaDataInicio.isBefore(datafinal) || reservaDataInicio.isEqual(datafinal)) &&
                         (reservaDataFinal.isAfter(datainicio) || reservaDataFinal.isEqual(datainicio))) {

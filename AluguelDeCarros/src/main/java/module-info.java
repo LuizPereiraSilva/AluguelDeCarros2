@@ -12,4 +12,6 @@ module com.example.alugueldecarrosteste2 {
     exports com.example.alugueldecarros2;
     exports com.example.alugueldecarros2.Controllers;
     opens com.example.alugueldecarros2.Controllers to javafx.fxml;
+    exports com.example.alugueldecarros2.Negocio.Basico;
+    opens com.example.alugueldecarros2.Negocio.Basico to javafx.fxml;
 }

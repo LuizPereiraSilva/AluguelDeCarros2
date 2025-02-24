@@ -245,12 +245,8 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         int j = 0;
         Carro[] lista = new Carro[this.carrosIndex];
 
-        System.out.println("Bucetaaaa ");
-
         for(int i = 0; i < this.carrosIndex; i++){
-            System.out.println("Filho da puta");
             if(carros[i] != null){
-                System.out.println("puta que pariu");
                 lista[j] = carros[i];
                 j++;
             }

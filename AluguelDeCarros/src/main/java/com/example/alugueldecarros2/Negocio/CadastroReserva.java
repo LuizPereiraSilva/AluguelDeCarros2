@@ -23,8 +23,8 @@ public class CadastroReserva {
     private static CadastroReserva instance;
 
     private CadastroReserva(){
-        this.ultimoIdReserva = 0;
         this.reservaRepositorio = ReservaRepositorio.getInstance();
+        this.ultimoIdReserva = reservaRepositorio.getMaiorId();
         this.contasRepositorio = ContasRepositorio.getInstance();
         this.carroRepositorio = CarroRepositorio.getInstance();
     }

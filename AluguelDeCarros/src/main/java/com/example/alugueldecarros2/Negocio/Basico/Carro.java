@@ -91,4 +91,13 @@ public class Carro implements Serializable{
 
         return resultado;
     }
+
+    public String adicionarNaTabela(){
+        String resultado = "";
+        resultado += "Marca: " + this.marca;
+        resultado += " / Modelo: " + this.modelo;
+        resultado += " / Placa do Carro: " + this.placa;
+
+        return resultado;
+    }
 }
