@@ -180,6 +180,25 @@ public class Fachada {
         reservas.atualizarReserva(idReserva, carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
+    public Reserva[] getListaReservasAPartirDaData(LocalDate dataInicial,
+                                                 String categoria, String faixaDePreco){
+        return reservas.getListaReservasAPartirDaData(dataInicial, categoria, faixaDePreco);
+    }
+
+    public Reserva[] getListaReservasNoPeriodo(LocalDate dataInicial, LocalDate dataFinal,
+                                               String categoria, String faixaDePreco){
+        return reservas.getListaReservasNoPeriodo(dataInicial, dataFinal, categoria, faixaDePreco);
+    }
+
+    public Reserva[] getListaReservasAntesDaData(LocalDate dataFinal,
+                                               String categoria, String faixaDePreco){
+        return reservas.getListaReservasAntesDaData(dataFinal, categoria, faixaDePreco);
+    }
+
+    public Reserva[] getListaInicialReservas(){
+        return reservas.getListaInicialReservas();
+    }
+
 
 
 

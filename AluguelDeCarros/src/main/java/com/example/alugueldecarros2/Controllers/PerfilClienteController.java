@@ -113,7 +113,7 @@ public class PerfilClienteController{
     private void cancelarReserva(){
         Fachada fachada = Fachada.getInstance();
         fachada.removerReserva(reservaSelecionada.getNumero());
-        this.initialize();
+        this.initialize(this.cadastro);
     }
 
 

@@ -71,18 +71,15 @@ public class TelaPesquisaController implements Initializable {
                     lista = fachada.getListaCarros(categoria, faixaDePreco);
 
                 }else if (dataInicial == null) {
-                    System.out.println("Sucesso 1");
                     lista = fachada.getListaCarrosAntesDaData(dataFinal,
                             categoria, faixaDePreco);
 
                 } else {
-                    System.out.println("Sucesso 2");
                     lista = fachada.getListaCarrosAPartirDaData(dataInicial,
                             categoria, faixaDePreco);
 
                 }
             } else {
-                System.out.println("Sucesso 3");
                 lista = fachada.getListaCarrosNoPeriodo(dataInicial,
                         dataFinal, categoria, faixaDePreco);
 

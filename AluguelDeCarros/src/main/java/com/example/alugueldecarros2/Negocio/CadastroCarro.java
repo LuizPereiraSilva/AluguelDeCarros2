@@ -128,7 +128,6 @@ public class CadastroCarro {
     public Carro[] getListaCarrosAPartirDaData(
             LocalDate dataInicial, String categoria, String faixaDePreco) {
 
-        System.out.println("Cheguei Brasil");
         Carro[] carrosAux = null;
         Carro[] resultado = null;
 
@@ -146,7 +145,6 @@ public class CadastroCarro {
             try {
                 this.verificarDisponibilidadeAPartirDaData(dataInicial, carrosAux[i]);
             } catch(OperacaoBemSucedidaException e){
-                System.out.println("Sucesso 5");
                 resultado[auxIndex] = carrosAux[i];
                 auxIndex++;
             }
@@ -164,9 +162,7 @@ public class CadastroCarro {
         boolean sucesso = true;
 
         for(int i = 0; i < reservasAux.length; i++){
-//            System.out.println("Sucesso 3");
             if(reservasAux[i] != null && reservasAux[i].getDataFinal().isAfter(dataInicial)){
-                System.out.println("Sucesso 4");
                 sucesso = false;
                 break;
             }

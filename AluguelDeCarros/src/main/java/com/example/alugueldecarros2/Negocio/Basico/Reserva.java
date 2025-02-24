@@ -115,7 +115,7 @@ public class Reserva implements Serializable{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         relatorio.append("\n\n").append("Número da reserva: ").append(numero).append("\n");
         relatorio.append("Cliente: ").append(cliente.getNome()).append(" (CPF: ").append(cliente.getCpf()).append(")\n");
-        relatorio.append("Carro: ").append(carro.getModelo()).append(" (Placa: ").append(carro.getIdCarro()).append(")\n");
+        relatorio.append("Carro: ").append(carro.getModelo()).append(" (Placa: ").append(carro.getMarca()).append(")\n");
         relatorio.append("Período de aluguel: ").append(dataInicio.format(formatter)).append(" a ").append(dataFinal.format(formatter)).append("\n");
         relatorio.append("Valor por dia: ").append(carro.getPreco()).append("\n");
         relatorio.append("Valor total: R$ ").append(getValorTotal()).append("\n");

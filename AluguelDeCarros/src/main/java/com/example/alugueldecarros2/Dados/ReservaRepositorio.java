@@ -3,6 +3,7 @@ package com.example.alugueldecarros2.Dados;
 import com.example.alugueldecarros2.Exceptions.DataInvalidaException;
 import com.example.alugueldecarros2.Exceptions.Reservas.NenhumaReservaException;
 import com.example.alugueldecarros2.Interfaces.RepositorioReservasInterface;
+import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Basico.Reserva;
 
 import java.io.FileInputStream;
@@ -139,6 +140,122 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         this.escreverArquivo();
     }
 
+
+
+
+
+    public Reserva[] getListaInicialReservas(){
+        int j = 0;
+        Reserva[] lista = new Reserva[this.reservasIndex];
+
+        for(int i = 0; i < this.reservasIndex; i++){
+            if(reservas[i] != null){
+                lista[j] = reservas[i];
+                j++;
+            }
+        }
+
+        return lista;
+    }
+
+
+
+
+
+    public Reserva[] getListaReservas(String CategoriaCarro, String CategoriaPreco){
+        Reserva[] resultado = new Reserva[reservasIndex];
+        float precoMaisBaixo = 0;
+        float precoMaisAlto = 0;
+        int j = 0;
+
+        switch(CategoriaPreco){
+            case "Popular":
+                precoMaisBaixo = 0;
+                precoMaisAlto = 150;
+                break;
+            case "Médio":
+                precoMaisBaixo = 151;
+                precoMaisAlto = 500;
+                break;
+            case "Luxo":
+                precoMaisBaixo = 501;
+                precoMaisAlto = 1000000;
+                break;
+        }
+
+        for(int i = 0; i < reservasIndex; i++){
+            if(this.reservas[i].getCarro().getCategoria().equals(CategoriaCarro)
+                    && this.reservas[i].getCarro().getPreco() < precoMaisAlto
+                    && this.reservas[i].getCarro().getPreco() > precoMaisBaixo){
+
+                resultado[j] = reservas[i];
+                j++;
+            }
+        }
+
+        return resultado;
+    }
+
+
+
+
+
+
+    public Reserva[] getListaReservasPorCategoria(String categoria){
+        Reserva[] reservasEncontradas = new Reserva[this.reservasIndex];
+        int j = 0;
+        for(int i = 0; i < reservasIndex; i++){
+            if(reservas[i].getCarro().getCategoria().equals(categoria)) {
+                reservasEncontradas[j] = reservas[i];
+                j++;
+            }
+        }
+
+        return reservasEncontradas;
+    }
+
+
+
+
+
+
+    public Reserva[] getListaReservasPorPreco(String faixaDePreco){
+        Reserva[] reservasEncontradas = new Reserva[this.reservasIndex];
+
+        float precoMaisBaixo = 0;
+        float precoMaisAlto = 0;
+
+        switch(faixaDePreco){
+            case "Popular":
+                precoMaisAlto = 150;
+                break;
+            case "Médio":
+                precoMaisBaixo = 151;
+                precoMaisAlto = 500;
+                break;
+            case "Luxo":
+                precoMaisBaixo = 501;
+                precoMaisAlto = 1000000;
+                break;
+        }
+
+        int j = 0;
+
+        for(int i = 0; i < reservasIndex; i++){
+            if(reservas[i].getCarro().getPreco()> precoMaisBaixo && reservas[i].getCarro().getPreco() < precoMaisAlto) {
+                reservasEncontradas[j] = reservas[i];
+                j++;
+            }
+        }
+
+        return reservasEncontradas;
+    }
+
+
+
+
+
+
     public Reserva[] buscarReservasPorCliente(int idCliente) {
         Reserva[] auxReservas = new Reserva[this.tamanho];
         int auxContador = 0;
@@ -159,6 +276,12 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return retorno;
     }
 
+
+
+
+
+
+
     public Reserva[] buscarReservasPorCarro(int IdCarro) {
         Reserva[] resultado = new Reserva[this.tamanho];
         int auxj = 0;
@@ -178,6 +301,12 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
         return resultado2;
     }
+
+
+
+
+
+
 
     public Reserva[] buscarReservasPorPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException {
 
@@ -219,6 +348,12 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
         return reservasDentroDoPeriodo;
     }
+
+
+
+
+
+
 
 
     public String toString() {
