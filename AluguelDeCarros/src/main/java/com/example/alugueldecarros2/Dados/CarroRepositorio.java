@@ -163,7 +163,12 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         escreverArquivo();
     }
 
-    public Carro[] getListaCarros(String tipo, String faixaDePreco){
+
+
+
+
+
+    public Carro[] getListaCarros(String categoria, String faixaDePreco){
         Carro[] resultado = new Carro[this.carrosIndex];
         int j = 0;
         float precoMaisBaixo = 0;
@@ -184,7 +189,7 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         }
 
         for (int i = 0; i < this.carrosIndex; i++) {
-            if(this.carros[i].getModelo().equals(tipo) &&
+            if(this.carros[i].getCategoria().equals(categoria) &&
                     this.carros[i].getPreco() > precoMaisBaixo &&
                     this.carros[i].getPreco()< precoMaisAlto){
 
@@ -195,6 +200,11 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         return resultado;
     }
+
+
+
+
+
 
     public Carro[] getListaCarrosPorCategoria(String categoria){
         Carro[] carrosEncontrados = new Carro[this.carrosIndex];
@@ -208,6 +218,12 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         return carrosEncontrados;
     }
+
+
+
+
+
+
 
     public Carro[] getListaCarrosPorPreco(String faixaDePreco){
         Carro[] carrosEncontrados = new Carro[this.carrosIndex];
@@ -241,6 +257,12 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         return carrosEncontrados;
     }
 
+
+
+
+
+
+
     public Carro[] getListaInicialCarros(){
         int j = 0;
         Carro[] lista = new Carro[this.carrosIndex];
@@ -254,6 +276,12 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         return lista;
     }
+
+
+
+
+
+
 
     public String toString(){
         String resultado = "\n\nLista de carros: \n";

@@ -26,12 +26,12 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="798.0">
                     <children>
-                        <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="329.0">
+                        <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do usuario:" wrappingWidth="329.0">
                             <font>
                                 <Font size="24.0" />
                             </font>
                         </Text>
-                        <Label fx:id="NomeUserText" layoutX="120.0" layoutY="163.0" prefHeight="40.0" prefWidth="173.0" text="José da Silva">
+                        <Label fx:id="NomeUserText" layoutX="162.0" layoutY="163.0" prefHeight="40.0" prefWidth="173.0" text="José da Silva">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
@@ -60,7 +60,27 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="CpfUserText" layoutX="114.0" layoutY="198.0" prefHeight="40.0" prefWidth="173.0" text="123.456.789-10">
+                  <Label fx:id="CpfUserText" layoutX="162.0" layoutY="198.0" prefHeight="40.0" prefWidth="173.0" text="123.456.789-10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="45.0" layoutY="238.0" prefHeight="30.0" prefWidth="89.0" text="Telefone:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="45.0" layoutY="286.0" prefHeight="30.0" prefWidth="69.0" text="Email:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CpfUserText1" layoutX="162.0" layoutY="238.0" prefHeight="40.0" prefWidth="173.0" text="(81) 92315 - 5500">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CpfUserText2" layoutX="162.0" layoutY="281.0" prefHeight="40.0" prefWidth="173.0" text="jose@ufrpe">
                      <font>
                         <Font size="18.0" />
                      </font>

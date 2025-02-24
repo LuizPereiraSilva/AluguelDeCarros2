@@ -14,10 +14,10 @@ public class PesquisarReservasAdmController {
     private TextField TextCpf;
 
     @FXML
-    private ChoiceBox<?> CategoriaCarroChoiceBox;
+    private ChoiceBox<String> CategoriaCarroChoiceBox;
 
     @FXML
-    private ChoiceBox<?> CategoriaPrecoChoiceBox;
+    private ChoiceBox<String> CategoriaPrecoChoiceBox;
 
     @FXML
     private DatePicker DataFinalDatePicker;
@@ -26,7 +26,7 @@ public class PesquisarReservasAdmController {
     private DatePicker DataInicialDatePicker;
 
     @FXML
-    private ListView<Carro> ListResultados;
+    private ListView<String> ListResultados;
 
     @FXML
     private Button VoltarButton;
@@ -52,6 +52,13 @@ public class PesquisarReservasAdmController {
     @FXML
     void handleGerarRelatorioButtonAction(ActionEvent event) {
 
+    }
+
+    void initialize(){
+        String[] listaCCarro = {"Hatchback", "Sedan", "Pickup", "SUV", "Qualquer categoria"};
+        String[] listaCPreco = {"Popular", "Médio", "Luxo", "Qualquer preço"};
+
+        
     }
 
 

@@ -63,9 +63,9 @@ public class PerfilClienteController{
     }
 
 
-    public void initialize(){
+    public void initialize(Conta conta){
         Fachada fachada = Fachada.getInstance();
-        this.setCadastro();
+        setCadastro(conta);
 
         if(cadastro != null) {
             LabelCpf.setText(cadastro.getCpf());
@@ -114,12 +114,6 @@ public class PerfilClienteController{
         Fachada fachada = Fachada.getInstance();
         fachada.removerReserva(reservaSelecionada.getNumero());
         this.initialize();
-    }
-
-    private void setCadastro(){
-        try {
-            this.cadastro = Fachada.getInstance().buscarConta(1);
-        } catch (Exception ex) {}
     }
 
 

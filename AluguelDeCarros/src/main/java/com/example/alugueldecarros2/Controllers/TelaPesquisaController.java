@@ -3,10 +3,13 @@ package com.example.alugueldecarros2.Controllers;
 import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Fachada;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -43,6 +46,11 @@ public class TelaPesquisaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.listarCarros();
         this.initialize();
+
+        ListResultados.selectionModelProperty().addListener((observable, oldValue, newValue) -> {
+            SceneManager sceneManager = SceneManager.getInstance();
+            sceneManager.changeScreen("TelaCarro.fxml", "Tela Carro Selecionado");
+        });
     }
 
 
@@ -58,33 +66,29 @@ public class TelaPesquisaController implements Initializable {
 
         try {
             if (dataInicial == null || dataFinal == null) {
-                System.out.println("Sucesso 1");
+
                 if(dataInicial == null && dataFinal == null) {
-                    System.out.println("Sucesso 2");
                     lista = fachada.getListaCarros(categoria, faixaDePreco);
 
                 }else if (dataInicial == null) {
-                    System.out.println("Sucesso 3");
+                    System.out.println("Sucesso 1");
                     lista = fachada.getListaCarrosAntesDaData(dataFinal,
                             categoria, faixaDePreco);
 
                 } else {
-                    System.out.println("Sucesso 4");
+                    System.out.println("Sucesso 2");
                     lista = fachada.getListaCarrosAPartirDaData(dataInicial,
                             categoria, faixaDePreco);
 
                 }
             } else {
-                System.out.println("Sucesso 5");
+                System.out.println("Sucesso 3");
                 lista = fachada.getListaCarrosNoPeriodo(dataInicial,
                         dataFinal, categoria, faixaDePreco);
 
             }
         } catch(OperacaoInvalidaException ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("");
-            alert.setTitle("Problema durante a busca de carros");
-            alert.setContentText(ex.getMessage());
+            lista = fachada.getListaInicialCarros();
         }
 
         carros = lista;
@@ -92,7 +96,7 @@ public class TelaPesquisaController implements Initializable {
         ListResultados.getItems().clear();
 
         for (int i = 0; i < lista.length; i++) {
-            if(lista[i] != null) {
+            if(lista[i] != null && lista[i].getDisponivel()) {
                 ListResultados.getItems().add(lista[i].adicionarNaLista());
             }
         }
@@ -102,7 +106,6 @@ public class TelaPesquisaController implements Initializable {
     @FXML
     void handleVoltarButton1Action(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.getPerfilClienteController().initialize();
         sceneManager.changeScreen("PerfilCliente.fxml", "PerfilCliente ");
 
     }
@@ -122,5 +125,18 @@ public class TelaPesquisaController implements Initializable {
         CategoriaPrecoChoiceBox.getItems().add("Médio");
         CategoriaPrecoChoiceBox.getItems().add("Luxo");
         CategoriaPrecoChoiceBox.getItems().add("Qualquer preço");
+
+        ListResultados.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                for(int i = 0; i < carros.length; i++) {
+                    if(carros[i] != null && newValue.equals(carros[i].adicionarNaLista())) {
+                        SceneManager sceneManager = SceneManager.getInstance();
+                        sceneManager.changeScreen("TelaCarro.fxml", "Tela do Carro Selecionado");
+                        sceneManager.getTelaCarroController().initialize(carros[i]);
+                    }
+                }
+            }
+        });
     }
 }

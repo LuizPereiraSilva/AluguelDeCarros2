@@ -144,8 +144,8 @@ public class Fachada {
     public Carro[] getListaInicialCarros(){ return carros.getListaInicialCarros(); }
 
 
-    public Carro[] getListaCarros(String tipo, String faixaDePreco) throws OperacaoInvalidaException {
-        return carros.getListaCarros(tipo, faixaDePreco);
+    public Carro[] getListaCarros(String categoria, String faixaDePreco) throws OperacaoInvalidaException {
+        return carros.getListaCarros(categoria, faixaDePreco);
     }
 
 
@@ -160,9 +160,11 @@ public class Fachada {
 
     //Métodos de Reserva
 
-    public void cadastrarReserva(Carro carro, Conta cliente, LocalDate dataInicio, LocalDate dataFinal,
-                                 String formaDePagamento) throws DataInvalidaException, CarroNaoExisteException{
-        reservas.cadastrarReserva(carro, cliente, dataInicio, dataFinal, formaDePagamento);
+    public Reserva cadastrarReserva(Carro carro, Conta cliente, LocalDate dataInicio,
+                                 LocalDate dataFinal,
+                                 String formaDePagamento)
+            throws DataInvalidaException, CarroNaoExisteException{
+        return reservas.cadastrarReserva(carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
     public void removerReserva(int idReserva){

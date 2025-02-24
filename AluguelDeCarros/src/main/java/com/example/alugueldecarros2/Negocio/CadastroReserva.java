@@ -5,6 +5,7 @@ import com.example.alugueldecarros2.Dados.ContasRepositorio;
 import com.example.alugueldecarros2.Dados.ReservaRepositorio;
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
 import com.example.alugueldecarros2.Exceptions.DataInvalidaException;
+import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.Reservas.NenhumaReservaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
@@ -37,8 +38,9 @@ public class CadastroReserva {
         return instance;
     }
 
-    public void cadastrarReserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal,
-                                 String formaDePagamento) throws DataInvalidaException, CarroNaoExisteException {
+    public Reserva cadastrarReserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal,
+                                 String formaDePagamento)
+            throws DataInvalidaException, CarroNaoExisteException {
 
         Carro auxCarro = this.carroRepositorio.buscarCarroPorId(carro.getIdCarro());
 
@@ -47,6 +49,7 @@ public class CadastroReserva {
             reserva.setNumero(ultimoIdReserva + 1);
             ultimoIdReserva++;
             reservaRepositorio.adicionarReserva(reserva);
+            return reserva;
         }
         else {
             throw new DataInvalidaException();

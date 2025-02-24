@@ -19,7 +19,8 @@ public class Teste2 {
 //                    LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
 //                    "Boquete");
 
-//            for(int i = 1; i< 20; i++) {
+            for(int i = 1; i< 7; i++) {
+//                fachada.removerReserva(i);
 //                try {
 //                    switch (i % 4) {
 //                        case 0:
@@ -50,15 +51,15 @@ public class Teste2 {
 
 //                fachada.atualizarConta("Reberto", "123", "12345", "9876");
 
-//                try {
-//                    fachada.cadastrarReserva(fachada.buscarCarro(i), fachada.buscarConta(1),
-//                            LocalDate.of(2024, 12, 23),
-//                            LocalDate.of(2025, 01, 04),
-//                            "Debito");
-//                } catch(Exception e){}
+                try {
+                    fachada.cadastrarReserva(fachada.buscarCarro(i), fachada.buscarConta(1),
+                            LocalDate.of(2025, 03, 01),
+                            LocalDate.of(2025, 03, 07),
+                            "Debito");
+                } catch(Exception e){}
 
 //                fachada.removerReserva(1);
-//            }
+            }
 
 //            print(fachada.buscarReserva(1).toString());
 
@@ -73,8 +74,8 @@ public class Teste2 {
         }catch(Exception e){
             print(e.getMessage());
         }
-        print(fachada.listarCarros());
-        print(fachada.listarContas());
+//        print(fachada.listarCarros());
+//        print(fachada.listarContas());
        print(fachada.listarReservas());
 
     }
