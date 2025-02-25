@@ -17,7 +17,7 @@ public class Teste2 {
 
 //            fachada.cadastrarReserva(fachada.buscarCarro(1), fachada.buscarConta(1),
 //                    LocalDate.of(2024, 12, 23), LocalDate.of(2025, 01, 04),
-//                    "Boquete");
+//                    "Credito");
 
             for(int i = 1; i< 20; i++) {
 //                fachada.removerReserva(i);
