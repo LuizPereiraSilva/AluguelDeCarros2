@@ -75,6 +75,8 @@ public class Teste2 {
 //                print(carros[i].adicionarNaLista());
             }
 
+            fachada.cadastrarAdministrador("Luiz Felipe Pereira", "707", "8198345", "luiz@ufrpe", "0817");
+
 //            fachada.buscarCarroPorPlaca("HXR 0322")
 
         }catch(Exception e){
@@ -82,7 +84,7 @@ public class Teste2 {
         }
 //        print(fachada.listarCarros());
 //        print(fachada.listarContas());
-       print(fachada.listarReservas());
+//       print(fachada.listarReservas());
 
     }
 

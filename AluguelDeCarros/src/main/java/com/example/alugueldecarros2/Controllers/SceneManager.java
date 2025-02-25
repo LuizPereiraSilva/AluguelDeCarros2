@@ -218,7 +218,7 @@ public class SceneManager {
             this.pesquisarReservasAdmController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/PesquisarUsuarioAdm.fxml"));
-//            this.pesquisarUsuarioAdm = new Scene(fxmlLoader.load());
+            this.pesquisarUsuarioAdm = new Scene(fxmlLoader.load());
             this.pesquisarUsuarioAdmController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/TelaUsuarioAdm.fxml"));

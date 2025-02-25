@@ -33,7 +33,7 @@ public class PesquisarUsuarioAdmController {
                 "Painel de Controle");
     }
 
-    public void initialize(){
+    public void inicializar(){
         Fachada fachada = Fachada.getInstance();
         Conta[] auxConta = fachada.getListaContas();
         Conta cadastro = SceneManager.getInstance().getPerfilAdmController().getCadastro();
