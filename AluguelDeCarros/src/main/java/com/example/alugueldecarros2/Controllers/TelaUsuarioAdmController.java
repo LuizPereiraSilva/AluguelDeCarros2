@@ -35,6 +35,7 @@ public class TelaUsuarioAdmController {
             Fachada.getInstance().removerConta(conta.getIdConta());
         } catch (Exception ex) {}
 
+        SceneManager.getInstance().getPesquisarUsuarioAdmController().inicializar();
         SceneManager.getInstance().changeScreen("PesquisarUsuarioAdm.fxml",
                 "Pesquisar Usuario Administrador");
 

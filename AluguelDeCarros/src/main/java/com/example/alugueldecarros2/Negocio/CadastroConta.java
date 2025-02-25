@@ -56,7 +56,7 @@ public class CadastroConta {
         return repositorio.buscarConta(contaId);
     }
 
-    public Conta buscarContaPeloCpf(String cpf) throws ContaNaoExisteException{
+    public Conta buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
         return repositorio.buscarPeloCpf(cpf);
     }
 

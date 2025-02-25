@@ -189,6 +189,10 @@ public class Fachada {
         reservas.atualizarReserva(idReserva, carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
+    public float[] getFaturamentoNoPeriodo( LocalDate dataInicial, LocalDate dataFinal){
+        return reservas.getFaturamentoNoPeriodo(dataInicial, dataFinal);
+    }
+
     public Reserva[] getListaReservasAPartirDaData(LocalDate dataInicial,
                                                  String categoria, String faixaDePreco){
         return reservas.getListaReservasAPartirDaData(dataInicial, categoria, faixaDePreco);

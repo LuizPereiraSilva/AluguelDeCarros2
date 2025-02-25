@@ -79,9 +79,9 @@ public abstract class Conta implements Serializable{
 
     public String adicionarNaLista(){
         if(this.administrador) {
-            return "Administrador: " + this.getNome() + " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf() + " / Telefone: " + this.getTelefone() + " / Email: " + this.getEmail();
+            return "Administrador: " + this.getNome() + " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf();
         } else {
-            return "Cliente: " + this.getNome()+ " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf() + " / Telefone: " + this.getTelefone() + " / Email: " + this.getEmail();
+            return "Cliente: " + this.getNome()+ " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf();
         }
     }
 

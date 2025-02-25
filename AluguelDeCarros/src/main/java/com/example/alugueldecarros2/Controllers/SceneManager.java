@@ -35,6 +35,7 @@ public class SceneManager {
     private Scene pesquisarReservasAdm;
     private Scene pesquisarUsuarioAdm;
     private Scene telaUsuarioAdm;
+    private Scene telaFaturamento;
 
 
 
@@ -55,6 +56,7 @@ public class SceneManager {
     private PesquisarReservasAdmController pesquisarReservasAdmController;
     private PesquisarUsuarioAdmController pesquisarUsuarioAdmController;
     private TelaUsuarioAdmController telaUsuarioAdmController;
+    private TelaFaturamentoController telaFaturamentoController;
 
     private SceneManager(){
         this.screenLoader();
@@ -111,6 +113,8 @@ public class SceneManager {
 
     public Scene getTelaUsuarioAdm(){ return this.telaUsuarioAdm; }
 
+    public Scene getTelaFaturamento(){ return this.telaFaturamento; }
+
 
 
 
@@ -149,6 +153,7 @@ public class SceneManager {
 
     public TelaUsuarioAdmController getTelaUsuarioAdmController(){ return this.telaUsuarioAdmController; }
 
+    public TelaFaturamentoController getTelaFaturamentoController(){ return this.telaFaturamentoController; }
 
 
 
@@ -225,6 +230,10 @@ public class SceneManager {
             this.telaUsuarioAdm = new Scene(fxmlLoader.load());
             this.telaUsuarioAdmController = fxmlLoader.getController();
 
+            fxmlLoader = new FXMLLoader(getClass().getResource("/TelaFaturamento.fxml"));
+            this.telaFaturamento = new Scene(fxmlLoader.load());
+            this.telaFaturamentoController = fxmlLoader.getController();
+
 
         } catch(IOException e){
             e.printStackTrace();
@@ -253,6 +262,7 @@ public class SceneManager {
             case "PesquisarReservasAdm.fxml" -> stage.setScene(this.pesquisarReservasAdm);
             case "PesquisarUsuarioAdm.fxml" -> stage.setScene(this.pesquisarUsuarioAdm);
             case "TelaUsuarioAdm.fxml" -> stage.setScene(this.telaUsuarioAdm);
+            case "TelaFaturamento.fxml" -> stage.setScene(this.telaFaturamento);
             default -> {
                 System.out.println("Erro ao trocar de tela");
                 System.exit(0);

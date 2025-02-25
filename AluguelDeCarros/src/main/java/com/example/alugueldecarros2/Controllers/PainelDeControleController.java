@@ -19,6 +19,9 @@ public class PainelDeControleController {
     private Button AccessUsersAdmButton;
 
     @FXML
+    private Button AccessFaturamentoAdmButton;
+
+    @FXML
     void handleAccessCarrosAdmButton(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("PesquisarCarroAdm.fxml",
@@ -43,9 +46,18 @@ public class PainelDeControleController {
     @FXML
     void handleAccessUsersAdmButton(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getPesquisarUsuarioAdmController().inicializar();
         sceneManager.changeScreen("PesquisarUsuarioAdm.fxml",
                 "Pesquisa de Usuarios do Administrador");
     }
+
+    @FXML
+    void handleAccessFaturamentoAdmButton(ActionEvent event) {
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("TelaFaturamento.fxml", "Tela de Faturamento");
+        sceneManager.getTelaFaturamentoController().setFieldsNull();
+    }
+
 
 }
 

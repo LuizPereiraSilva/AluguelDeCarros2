@@ -45,6 +45,11 @@
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Button>
+                  <Button fx:id="AccessFaturamentoAdmButton" layoutX="195.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleAccessFaturamentoAdmButton" prefHeight="37.0" prefWidth="149.0" text="Faturamento">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">

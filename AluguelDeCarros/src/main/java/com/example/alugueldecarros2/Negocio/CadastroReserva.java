@@ -109,12 +109,10 @@ public class CadastroReserva {
     public Reserva[] getListaReservas(String categoria, String faixaDePreco)
             throws OperacaoInvalidaException{
         if(categoria == null || faixaDePreco == null){
-            System.out.println("Erro1");
             throw new OperacaoInvalidaException();
         }
 
         if(categoria.equals("Qualquer categoria") && faixaDePreco.equals("Qualquer preço")){
-            System.out.println("Erro2");
             throw new OperacaoInvalidaException();
         }
 
@@ -303,6 +301,9 @@ public class CadastroReserva {
     }
 
 
+    public float[] getFaturamentoNoPeriodo(LocalDate inicio, LocalDate fim){
+        return reservaRepositorio.getFaturamentoNoPeriodo(inicio, fim);
+    }
 
 
     public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {

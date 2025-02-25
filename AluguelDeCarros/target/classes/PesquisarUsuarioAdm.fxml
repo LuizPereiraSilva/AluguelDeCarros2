@@ -46,6 +46,7 @@
                            </font>
                         </Label>
                         <Button fx:id="NovoAdmButton" layoutX="451.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleNovoAdmButton" text="Novo ADM" />
+                        <Button fx:id="BuscarCpf" layoutX="217.0" layoutY="140.0" mnemonicParsing="false" onAction="#buscarPorCpf" text="Buscar" />
                      </children>
                   </AnchorPane>
                </content>

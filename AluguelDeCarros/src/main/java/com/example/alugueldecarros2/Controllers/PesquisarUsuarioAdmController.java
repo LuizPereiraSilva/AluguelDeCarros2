@@ -1,11 +1,13 @@
 package com.example.alugueldecarros2.Controllers;
 
+import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -17,6 +19,9 @@ public class PesquisarUsuarioAdmController {
 
     @FXML
     private Button NovoAdmButton;
+
+    @FXML
+    private Button BuscarCpf;
 
     @FXML
     private TextField TextCpf;
@@ -69,4 +74,22 @@ public class PesquisarUsuarioAdmController {
     }
 
 
+    @FXML
+    void buscarPorCpf(ActionEvent event) {
+        Conta auxConta = null;
+        try {
+            auxConta = Fachada.getInstance().buscarContaPeloCpf(TextCpf.getText());
+        } catch (ContaNaoExisteException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao realizar a busca");
+            alert.setHeaderText("");
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
+
+        if(auxConta != null){
+            ListaUsuarios.getItems().clear();
+            ListaUsuarios.getItems().add(auxConta.adicionarNaLista());
+        }
+    }
 }

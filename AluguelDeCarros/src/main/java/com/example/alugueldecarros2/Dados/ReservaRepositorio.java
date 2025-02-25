@@ -198,6 +198,29 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
 
 
+    public float[] getFaturamentoNoPeriodo(LocalDate dataInicio, LocalDate dataFim){
+        Reserva[] reservas = this.getListaInicialReservas();
+        Reserva[] lista = new Reserva[reservas.length];
+        int auxIndex = 0;
+
+        for(int i = 0; i < reservas.length; i++){
+            if(reservas[i] != null && reservas[i].getDataInicio().isBefore(dataFim)
+                    && reservas[i].getDataInicio().isAfter(dataInicio)){
+                lista[auxIndex] = reservas[i];
+                auxIndex++;
+            }
+        }
+
+        float[] resultado = new float[2];
+        resultado[0] = 0;
+        resultado[1] = auxIndex;
+
+        for(int i = 0; i < auxIndex; i++){
+            resultado[0] += lista[i].getValorTotal();
+        }
+
+        return resultado;
+    }
 
 
 
