@@ -1,6 +1,7 @@
 package com.example.alugueldecarros2.Controllers;
 
 import com.example.alugueldecarros2.Exceptions.DataInvalidaException;
+import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Basico.Conta;
 import com.example.alugueldecarros2.Negocio.Basico.Reserva;
@@ -78,6 +79,12 @@ public class TelaCarroController {
             alert.setTitle("Erro");
             alert.setHeaderText("");
             alert.setContentText("Selecione datas válidas");
+            alert.show();
+        } catch(OperacaoInvalidaException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("");
+            alert.setContentText("Carro já está reservado no período");
             alert.show();
         } catch(Exception e){}
 

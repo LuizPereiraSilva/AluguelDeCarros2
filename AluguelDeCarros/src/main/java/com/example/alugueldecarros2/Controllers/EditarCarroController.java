@@ -117,15 +117,13 @@ public class EditarCarroController {
         Fachada fachada = Fachada.getInstance();
         try {
             if (DisponibilidadeChoiceBox.getSelectionModel().getSelectedItem().equals("Disponível")) {
-                fachada.buscarCarroPorPlaca(carro.getPlaca()).setDisponivel(true);
+                fachada.atualizarDisponibilidadeCarro(carro.getPlaca(), true);
+                DisponibilidadeCarro.setText("Disponivel");
             } else{
-                fachada.buscarCarroPorPlaca(carro.getPlaca()).setDisponivel(false);
+                fachada.atualizarDisponibilidadeCarro(carro.getPlaca(), false);
+                DisponibilidadeCarro.setText("Não disponivel");
             }
         }catch(Exception e){}
-
-        SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.getPesquisarCarroAdmController().listarCarros();
-        sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carros");
     }
 
     @FXML
@@ -150,7 +148,8 @@ public class EditarCarroController {
         } catch(OperacaoBemSucedidaException e){
             SceneManager sceneManager = SceneManager.getInstance();
             sceneManager.getPesquisarCarroAdmController().listarCarros();
-            sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carro Administrador");
+            this.setFieldsNull();
+//            sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carro Administrador");
         }
     }
 
@@ -159,11 +158,12 @@ public class EditarCarroController {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("PesquisarCarroAdm.fxml",
                 "Pesquisar Carro Administrador");
+        this.setFieldsNull();
     }
 
     private void setFieldsNull(){
         ModeloTxtEditar.setText("");
         MarcaTxtEditar.setText("");
-        ValorDiaria
+        DiariaTxtEditar.setText("");
     }
 }

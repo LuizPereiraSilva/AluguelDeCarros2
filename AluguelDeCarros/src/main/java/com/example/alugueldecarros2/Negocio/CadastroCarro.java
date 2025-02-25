@@ -85,6 +85,12 @@ public class CadastroCarro {
     }
 
 
+    public void atualizarDisponibilidadeCarro(String placa, boolean disponibilidade)
+            throws CarroNaoExisteException{
+        repositorio.atualizarDisponibilidadeCarro(placa, disponibilidade);
+    }
+
+
 
     public Carro[] getListaInicialCarros(){
         return repositorio.getListaInicialCarros();

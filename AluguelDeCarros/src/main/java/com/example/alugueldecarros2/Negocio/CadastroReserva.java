@@ -39,12 +39,18 @@ public class CadastroReserva {
 
     public Reserva cadastrarReserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal,
                                  String formaDePagamento)
-            throws DataInvalidaException, CarroNaoExisteException {
+            throws DataInvalidaException, CarroNaoExisteException, OperacaoInvalidaException {
 
         Carro auxCarro = this.carroRepositorio.buscarCarroPorId(carro.getIdCarro());
 
         if(auxCarro != null && datafinal.isAfter(datainicio)){
+            Reserva[] reservas = this.buscarReservasPorCarro(auxCarro.getIdCarro());
             Reserva reserva = new Reserva(carro, cliente, datainicio, datafinal, formaDePagamento);
+
+            if(!this.verificarValidadeDasDatas(reservas, reserva)){
+                throw new OperacaoInvalidaException();
+            }
+
             reserva.setNumero(ultimoIdReserva + 1);
             ultimoIdReserva++;
             reservaRepositorio.adicionarReserva(reserva);
@@ -53,6 +59,22 @@ public class CadastroReserva {
         else {
             throw new DataInvalidaException();
         }
+    }
+
+    private boolean verificarValidadeDasDatas(Reserva[] listaReservas, Reserva reserva){
+        for(int i = 0; i < listaReservas.length; i++){
+            if(listaReservas[i] != null){
+                if(listaReservas[i].getDataInicio().isBefore(reserva.getDataFinal()) &&
+                        listaReservas[i].getDataInicio().isAfter(reserva.getDataInicio())){
+                    if(listaReservas[i].getDataFinal().isBefore(reserva.getDataFinal()) &&
+                            listaReservas[i].getDataFinal().isAfter(reserva.getDataInicio())){
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public void removerReserva(int idReserva){

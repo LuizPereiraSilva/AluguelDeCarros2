@@ -163,6 +163,16 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         escreverArquivo();
     }
 
+    public void atualizarDisponibilidadeCarro(String placa, boolean disponivel)
+            throws CarroNaoExisteException{
+
+        int index =  buscarIndexCarro(this.buscarCarroPorPlaca(placa).getIdCarro());
+
+        carros[index].setDisponivel(disponivel);
+
+        escreverArquivo();
+    }
+
 
 
 

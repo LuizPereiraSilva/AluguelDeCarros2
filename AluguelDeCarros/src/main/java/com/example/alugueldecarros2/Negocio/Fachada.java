@@ -108,6 +108,10 @@ public class Fachada {
         throw new OperacaoBemSucedidaException();
     }
 
+    public void atualizarDisponibilidadeCarro(String placa, boolean disponibilidade)
+            throws CarroNaoExisteException{
+        carros.atualizarDisponibilidadeCarro(placa, disponibilidade);
+    }
 
 
 
@@ -168,7 +172,7 @@ public class Fachada {
     public Reserva cadastrarReserva(Carro carro, Conta cliente, LocalDate dataInicio,
                                  LocalDate dataFinal,
                                  String formaDePagamento)
-            throws DataInvalidaException, CarroNaoExisteException{
+            throws DataInvalidaException, CarroNaoExisteException, OperacaoInvalidaException{
         return reservas.cadastrarReserva(carro, cliente, dataInicio, dataFinal, formaDePagamento);
     }
 
