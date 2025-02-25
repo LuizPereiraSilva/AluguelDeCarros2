@@ -66,8 +66,26 @@ public abstract class Conta implements Serializable{
     public void setSenha(String senha){ this.senha = senha; }
 
 
-    public boolean getAdministrador(){return administrador;}
-    
+    public boolean getAdministrador(){ return administrador; }
+
+
+    public boolean compareTo(Conta conta){
+        if(this.idConta == conta.idConta){
+            return true;
+        }
+        return false;
+    }
+
+
+    public String adicionarNaLista(){
+        if(this.administrador) {
+            return "Administrador: " + this.getNome() + " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf() + " / Telefone: " + this.getTelefone() + " / Email: " + this.getEmail();
+        } else {
+            return "Cliente: " + this.getNome()+ " / ID: " + this.getIdConta() + " / CPF: " + this.getCpf() + " / Telefone: " + this.getTelefone() + " / Email: " + this.getEmail();
+        }
+    }
+
+
     @Override
     public String toString(){
         if(this.administrador) {

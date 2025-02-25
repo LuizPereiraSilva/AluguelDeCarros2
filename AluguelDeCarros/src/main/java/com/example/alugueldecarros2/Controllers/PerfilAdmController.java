@@ -21,7 +21,15 @@ public class PerfilAdmController {
     @FXML
     private Button VoltarButton;
 
+    @FXML
+    private Label LabelTelefone;
+
+    @FXML
+    private Label LabelEmail;
+
+
     private Conta cadastro;
+
 
     public Conta getCadastro(){
         return cadastro;
@@ -40,6 +48,18 @@ public class PerfilAdmController {
 
     @FXML
     void btnSairClicked(ActionEvent event){
+        this.setCadastro(null);
+        SceneManager sceneManager = SceneManager.getInstance();
 
+        sceneManager.changeScreen("TelaLoginAdm.fxml", "Tela Login Administrador");
+    }
+
+    public void inicializar(){
+        if(cadastro != null) {
+            LabelNome.setText(cadastro.getNome());
+            LabelCpf.setText(cadastro.getCpf());
+            LabelTelefone.setText(cadastro.getTelefone());
+            LabelEmail.setText(cadastro.getEmail());
+        }
     }
 }

@@ -41,9 +41,12 @@ public class TelaLoginAdmController {
 
             if(auxConta.getSenha().equals(password)){
                 if(auxConta.getAdministrador()) {
+
                     sceneManager.getPerfilAdmController().setCadastro(auxConta);
+//                    sceneManager.getPerfilAdmController().inicializar();
                     sceneManager.changeScreen("PainelDeControle.fxml", "Painel de Controle");
                 } else{
+
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("");
                     alert.setTitle("Problema durante o login");

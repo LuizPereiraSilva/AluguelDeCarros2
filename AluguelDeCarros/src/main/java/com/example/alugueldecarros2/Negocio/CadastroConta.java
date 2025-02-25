@@ -3,6 +3,7 @@ package com.example.alugueldecarros2.Negocio;
 import com.example.alugueldecarros2.Dados.ContasRepositorio;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaJaExisteException;
 import com.example.alugueldecarros2.Exceptions.Contas.ContaNaoExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.RepositorioCheioException;
 import com.example.alugueldecarros2.Negocio.Basico.Administrador;
 import com.example.alugueldecarros2.Negocio.Basico.Cliente;
@@ -37,12 +38,14 @@ public class CadastroConta {
     }
 
     public void cadastrarAdministrador(String nome, String cpf, String telefone, String email, String senha) throws
-            ContaJaExisteException, RepositorioCheioException{
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException{
 
         Conta administrador = new Administrador(nome, cpf, telefone, email, senha);
         administrador.setIdConta(this.ultimoId + 1);
         this.ultimoId++;
         this.repositorio.adicionarConta(administrador);
+
+        throw new OperacaoBemSucedidaException();
     }
 
     public void removerConta(int contaId) throws ContaNaoExisteException{
@@ -57,8 +60,9 @@ public class CadastroConta {
         return repositorio.buscarPeloCpf(cpf);
     }
 
-    public void atualizarConta(String nome, String cpf, String telefone, String email, String senha) throws
-            ContaNaoExisteException{
+    public void atualizarConta(String nome, String cpf, String telefone,
+                               String email, String senha)
+            throws ContaNaoExisteException{
 
         Conta conta = repositorio.buscarPeloCpf(cpf);
 
@@ -74,6 +78,13 @@ public class CadastroConta {
             }
         }
     }
+
+
+    public Conta[] getListaContas(){
+        return repositorio.getListaContas();
+    }
+
+
 
     public int getUltimoId(){
         return this.ultimoId;

@@ -75,12 +75,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="CpfUserText1" layoutX="162.0" layoutY="238.0" prefHeight="40.0" prefWidth="173.0" text="(81) 92315 - 5500">
+                  <Label fx:id="TelefoneText" layoutX="162.0" layoutY="238.0" prefHeight="40.0" prefWidth="173.0" text="(81) 92315 - 5500">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="CpfUserText2" layoutX="162.0" layoutY="281.0" prefHeight="40.0" prefWidth="173.0" text="jose@ufrpe">
+                  <Label fx:id="EmailText" layoutX="162.0" layoutY="281.0" prefHeight="40.0" prefWidth="173.0" text="jose@ufrpe">
                      <font>
                         <Font size="18.0" />
                      </font>

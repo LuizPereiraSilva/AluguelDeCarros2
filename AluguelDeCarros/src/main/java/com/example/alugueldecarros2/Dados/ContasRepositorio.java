@@ -86,8 +86,14 @@ public class ContasRepositorio implements RepositorioContasInterface{
         }
     }
 
-    public void adicionarConta(Conta conta) throws RepositorioCheioException, ContaJaExisteException{
-        this.buscarCpfConta(conta.getCpf());
+    public void adicionarConta(Conta conta)
+            throws RepositorioCheioException, ContaJaExisteException{
+
+        if(!conta.getAdministrador()) {
+            this.buscarCpfCliente(conta.getCpf());
+        } else{
+            this.buscarCpfAdministrador(conta.getCpf());
+        }
 
         if(contasIndex < this.tamanho) {
             this.contas[this.contasIndex] = conta;
@@ -98,9 +104,17 @@ public class ContasRepositorio implements RepositorioContasInterface{
         }
     }
 
-    private void buscarCpfConta(String cpf) throws ContaJaExisteException{
+    private void buscarCpfCliente(String cpf) throws ContaJaExisteException{
         for(int i = 0; i < this.contasIndex; i++){
-            if(this.contas[i].getCpf().equals(cpf)){
+            if(!this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
+                throw new ContaJaExisteException();
+            }
+        }
+    }
+
+    private void buscarCpfAdministrador(String cpf) throws ContaJaExisteException{
+        for(int i = 0; i < this.contasIndex; i++){
+            if(this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
                 throw new ContaJaExisteException();
             }
         }
@@ -152,6 +166,17 @@ public class ContasRepositorio implements RepositorioContasInterface{
 
         contas[aux] = conta;
         this.escreverArquivo();
+    }
+
+
+    public Conta[] getListaContas(){
+        Conta[] auxContas = new Conta[contasIndex];
+
+        for(int i = 0; i < this.contasIndex; i++){
+            auxContas[i] = contas[i];
+        }
+
+        return auxContas;
     }
 
     public String toString(){

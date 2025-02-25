@@ -43,7 +43,7 @@ public class SceneManager {
     private TelaCadastroController telaCadastroController;
     private TelaPesquisaController telaPesquisaController;
     private TelaCarroController telaCarroController;
-    private PrimeiraTelaController primeiraTelaContoller;
+    private PrimeiraTelaController primeiraTelaController;
     private TelaLoginAdmController telaLoginAdmController;
     private TelaReservaConfirmadaController telaReservaConfirmadaController;
     private AddAdmController addAdmController;
@@ -65,6 +65,7 @@ public class SceneManager {
             instance = new SceneManager();
         }
 
+        System.out.println("Erro 1");
         return instance;
     }
 
@@ -124,7 +125,7 @@ public class SceneManager {
 
     public TelaCarroController getTelaCarroController() { return this.telaCarroController; }
 
-    public PrimeiraTelaController getPrimeiraTelaContoller(){ return this.primeiraTelaContoller; }
+    public PrimeiraTelaController getPrimeiraTelaContoller(){ return this.primeiraTelaController; }
 
      public TelaLoginAdmController getTelaLoginAdmController(){ return this.telaLoginAdmController; }
 
@@ -154,9 +155,11 @@ public class SceneManager {
 
     private void screenLoader(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/PrimeiraTela.fxml"));
+            FXMLLoader fxmlLoader = null;
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/PrimeiraTela.fxml"));
             this.primeiraTela = new Scene(fxmlLoader.load());
-            this.primeiraTelaContoller = fxmlLoader.getController();
+            this.primeiraTelaController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/LoginTela.fxml"));
             this.loginTela = new Scene(fxmlLoader.load());
@@ -215,7 +218,7 @@ public class SceneManager {
             this.pesquisarReservasAdmController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/PesquisarUsuarioAdm.fxml"));
-            this.pesquisarUsuarioAdm = new Scene(fxmlLoader.load());
+//            this.pesquisarUsuarioAdm = new Scene(fxmlLoader.load());
             this.pesquisarUsuarioAdmController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/TelaUsuarioAdm.fxml"));

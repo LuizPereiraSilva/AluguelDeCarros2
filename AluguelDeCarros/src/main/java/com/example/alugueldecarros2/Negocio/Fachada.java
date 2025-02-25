@@ -48,7 +48,7 @@ public class Fachada {
     }
 
     public void cadastrarAdministrador(String nome, String cpf, String telefone, String email, String senha) throws
-            ContaJaExisteException, RepositorioCheioException{
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException{
         contas.cadastrarAdministrador(nome, cpf, telefone, email, senha);
     }
 
@@ -73,6 +73,9 @@ public class Fachada {
             throws ContaNaoExisteException{
         contas.atualizarConta(nome, cpf, telefone, email, senha);
     }
+
+
+    public Conta[] getListaContas(){ return contas.getListaContas(); }
 
 
 
