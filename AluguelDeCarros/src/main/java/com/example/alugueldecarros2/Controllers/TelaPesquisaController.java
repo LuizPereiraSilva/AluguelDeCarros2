@@ -62,29 +62,34 @@ public class TelaPesquisaController implements Initializable {
         String faixaDePreco = CategoriaPrecoChoiceBox.getSelectionModel().getSelectedItem();
         LocalDate dataInicial = DataInicialDatePicker.getValue();
         LocalDate dataFinal = DataFinalDatePicker.getValue();
-        Carro[] lista = new Carro[1];
+        Carro[] lista = null;
 
         try {
             if (dataInicial == null || dataFinal == null) {
 
                 if(dataInicial == null && dataFinal == null) {
+                    System.out.println("Sucesso1");
                     lista = fachada.getListaCarros(categoria, faixaDePreco);
 
                 }else if (dataInicial == null) {
+                    System.out.println("Sucesso2");
                     lista = fachada.getListaCarrosAntesDaData(dataFinal,
                             categoria, faixaDePreco);
 
                 } else {
+                    System.out.println("Sucesso3");
                     lista = fachada.getListaCarrosAPartirDaData(dataInicial,
                             categoria, faixaDePreco);
 
                 }
             } else {
+                System.out.println("Sucesso4");
                 lista = fachada.getListaCarrosNoPeriodo(dataInicial,
                         dataFinal, categoria, faixaDePreco);
 
             }
         } catch(OperacaoInvalidaException ex) {
+            System.out.println("Sucesso5");
             lista = fachada.getListaInicialCarros();
         }
 
@@ -103,6 +108,8 @@ public class TelaPesquisaController implements Initializable {
     @FXML
     void handleVoltarButton1Action(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getPerfilClienteController().initialize(sceneManager.
+                getPerfilClienteController().getCadastro());
         sceneManager.changeScreen("PerfilCliente.fxml", "PerfilCliente ");
 
     }

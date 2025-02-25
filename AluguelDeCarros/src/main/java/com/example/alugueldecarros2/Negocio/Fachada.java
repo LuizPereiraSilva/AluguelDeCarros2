@@ -101,9 +101,11 @@ public class Fachada {
         carros.removerCarro(placa);
     }
 
-    public void atualizarCarro(String categoria, float preco, String placa, String modelo,
-                               String marca) throws CarroNaoExisteException, OperacaoInvalidaException{
-        carros.atualizarPreco(categoria, preco, placa, modelo, marca);
+    public void atualizarCarro(String categoria, float preco, String placa,
+                               String modelo, String marca) throws
+            CarroNaoExisteException, OperacaoInvalidaException, OperacaoBemSucedidaException{
+        carros.atualizarCarro(categoria, preco, placa, modelo, marca);
+        throw new OperacaoBemSucedidaException();
     }
 
 

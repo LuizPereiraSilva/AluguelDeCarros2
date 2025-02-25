@@ -50,6 +50,7 @@ public class PerfilAdmController {
     void btnSairClicked(ActionEvent event){
         this.setCadastro(null);
         SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getTelaLoginAdmController().setFieldsNull();
 
         sceneManager.changeScreen("TelaLoginAdm.fxml", "Tela Login Administrador");
     }

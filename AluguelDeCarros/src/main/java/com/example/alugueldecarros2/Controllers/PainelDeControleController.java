@@ -35,6 +35,7 @@ public class PainelDeControleController {
     @FXML
     void handleAccessReservasAdmButton(ActionEvent event) {
         SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.getPesquisarReservasAdmController().initialize();
         sceneManager.changeScreen("PesquisarReservasAdm.fxml",
                 "Pesquisa de Reservas do Administrador");
     }

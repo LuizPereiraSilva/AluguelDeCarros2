@@ -1,6 +1,7 @@
 package com.example.alugueldecarros2.Controllers;
 
 import com.example.alugueldecarros2.Exceptions.Carros.CarroNaoExisteException;
+import com.example.alugueldecarros2.Exceptions.OperacaoBemSucedidaException;
 import com.example.alugueldecarros2.Exceptions.OperacaoInvalidaException;
 import com.example.alugueldecarros2.Negocio.Basico.Carro;
 import com.example.alugueldecarros2.Negocio.Fachada;
@@ -41,6 +42,9 @@ public class EditarCarroController {
 
 
     @FXML
+    private Label DisponibilidadeCarro;
+
+    @FXML
     private Label FaixaDePrecoCarro;
 
     @FXML
@@ -64,6 +68,11 @@ public class EditarCarroController {
         MarcaCarro.setText(carro.getMarca());
         TipoCarro.setText(carro.getCategoria());
         ValorDiaria.setText("R$ " + carro.getPreco());
+        if(carro.getDisponivel()) {
+            DisponibilidadeCarro.setText("Disponivel");
+        } else{
+            DisponibilidadeCarro.setText("Não disponivel");
+        }
 
         String[] lista = {"Hatchback", "Sedan", "Pickup", "SUV"};
 
@@ -135,11 +144,14 @@ public class EditarCarroController {
             alert.setTitle("Erro ao atualizar");
             alert.setContentText("Todos os campos devem ser preenchidos");
         } catch(CarroNaoExisteException e){
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao atualizar");
+            alert.setContentText("Carro não encontrado");
+        } catch(OperacaoBemSucedidaException e){
+            SceneManager sceneManager = SceneManager.getInstance();
+            sceneManager.getPesquisarCarroAdmController().listarCarros();
+            sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carro Administrador");
         }
-
-        SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carro Administrador");
     }
 
     @FXML
@@ -147,5 +159,11 @@ public class EditarCarroController {
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("PesquisarCarroAdm.fxml",
                 "Pesquisar Carro Administrador");
+    }
+
+    private void setFieldsNull(){
+        ModeloTxtEditar.setText("");
+        MarcaTxtEditar.setText("");
+        ValorDiaria
     }
 }

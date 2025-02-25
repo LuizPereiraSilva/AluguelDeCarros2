@@ -73,7 +73,7 @@ public class CadastroCarro {
 
 
 
-    public void atualizarPreco(String categoria, float preco, String placa, String modelo, String marca)
+    public void atualizarCarro(String categoria, float preco, String placa, String modelo, String marca)
             throws CarroNaoExisteException, OperacaoInvalidaException{
         if(preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
                 !modelo.isEmpty() && !marca.isEmpty()) {
@@ -84,6 +84,11 @@ public class CadastroCarro {
         }
     }
 
+
+
+    public Carro[] getListaInicialCarros(){
+        return repositorio.getListaInicialCarros();
+    }
 
 
 
@@ -283,12 +288,6 @@ public class CadastroCarro {
     }
 
 
-
-
-
-    public Carro[] getListaInicialCarros(){
-        return repositorio.getListaInicialCarros();
-    }
 
     public String listarCarros(){
         return this.repositorio.toString();
