@@ -7,6 +7,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TelaFaturamentoController {
 
@@ -27,6 +35,9 @@ public class TelaFaturamentoController {
 
     @FXML
     private Button VoltarButton;
+
+    @FXML
+    private Button baixarPDF;
 
 
     @FXML
@@ -64,4 +75,78 @@ public class TelaFaturamentoController {
         LabelTotalAlugueis.setText("");
         LabelTotalFaturamento.setText("");
     }
+
+    public void baixarPDFClicked() throws IOException {
+
+        try {
+
+
+            File diretorio = new File(".\\newpdf");
+
+            if (!diretorio.exists()) {
+
+                diretorio.mkdirs();
+            }
+
+            PDDocument Faturamentopdf = new PDDocument();
+
+            PDPage Pagina = new PDPage(PDRectangle.A4);
+
+            Faturamentopdf.addPage(Pagina);
+
+            PDPageContentStream conteudo = new PDPageContentStream(Faturamentopdf, Pagina);
+
+            conteudo.setFont(PDType1Font.COURIER, 14);
+
+            conteudo.beginText();
+            conteudo.newLineAtOffset(50, 700);
+
+            conteudo.showText("Total de Alugueis: " + LabelTotalAlugueis.getText());
+
+            conteudo.endText();
+
+            conteudo.setFont(PDType1Font.COURIER, 14);
+
+            conteudo.beginText();
+            conteudo.newLineAtOffset(50, 600);
+
+            conteudo.showText("Faturamento: " + LabelTotalFaturamento.getText());
+
+            conteudo.endText();
+
+            conteudo.setFont(PDType1Font.TIMES_ROMAN, 20);
+            conteudo.beginText();
+            conteudo.newLineAtOffset(200, 800);
+            conteudo.showText("-Relatório de Faturamento- " );
+            conteudo.endText();
+
+            conteudo.close();
+
+            Faturamentopdf.save(".\\newpdf\\Faturamentopdf.pdf");
+
+            Faturamentopdf.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Gerado");
+            alert.setHeaderText(null);
+            alert.setContentText("PDF foi gerado e salvo com sucesso.");
+            alert.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Notify the user that an error occurred
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Falha em criar PDF");
+            alert.setContentText("Um erro ocorreu ao tentar gerar o PDF: " + e.getMessage());
+            alert.show();
+        }
+
+
+
+
+
+
+    }
 }
+
+

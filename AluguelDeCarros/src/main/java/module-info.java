@@ -6,6 +6,7 @@ module com.example.alugueldecarrosteste2 {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
+    requires org.apache.pdfbox;
 
 
     opens com.example.alugueldecarros2 to javafx.fxml;
