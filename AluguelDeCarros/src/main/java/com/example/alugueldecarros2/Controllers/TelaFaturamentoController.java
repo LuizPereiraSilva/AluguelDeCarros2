@@ -133,7 +133,6 @@ public class TelaFaturamentoController {
             alert.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Notify the user that an error occurred
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Falha em criar PDF");
