@@ -20,7 +20,6 @@ public class CarroRepositorio implements RepositorioCarroInterface{
     private String arquivo;
     private static CarroRepositorio instance;
 
-    // inicializa a lista dos carros
     private CarroRepositorio(int tamanho) {
         this.carros = new Carro[tamanho];
         this.carrosIndex = 0;
@@ -38,16 +37,15 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         return instance;
     }
 
-    public int getMaiorIdCarro(){
-        int auxId = 0;
-        for(int i = 0; i < carrosIndex; i++){
-            if(carros[i].getIdCarro() > auxId){
-                auxId = carros[i].getIdCarro();
-            }
-        }
 
-        return auxId;
-    }
+
+
+
+
+
+
+
+    //Métodos de leitura e escrita de arquivos.
 
     private void lerArquivo(){
         int auxIndex = 0;
@@ -75,7 +73,9 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         this.carrosIndex = auxIndex;
     }
 
-    public void escreverArquivo(){
+
+
+    private void escreverArquivo(){
         try{
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo));
 
@@ -89,7 +89,16 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         }
     }
 
-    // adicionar carro
+
+
+
+
+
+
+
+
+    //Métodos de modificação de elementos da lista.
+
     public void adicionarCarro(Carro carro) throws RepositorioCheioException {
         if(this.carrosIndex < tamanho){
             carros[carrosIndex] = carro;
@@ -100,7 +109,8 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         }
     }
 
-    // remover carro pelo id
+
+
     public void removerCarro(String placa)  throws CarroNaoExisteException{
         int aux = this.buscarIndexCarro(this.buscarCarroPorPlaca(placa).getIdCarro());
 
@@ -116,45 +126,8 @@ public class CarroRepositorio implements RepositorioCarroInterface{
         this.escreverArquivo();
     }
 
-    // buscar carro pelo id (placa)
-    public Carro buscarCarroPorId(int idCarro) throws CarroNaoExisteException{
-        int aux = buscarIndexCarro(idCarro);
 
-        if(aux != -1){
-            return carros[aux];
-        }
 
-        throw new CarroNaoExisteException();
-    }
-
-    private int buscarIndexCarro(int idCarro) throws CarroNaoExisteException{
-        for(int i = 0; i < this.tamanho; i++){
-            if(carros[i].getIdCarro() == idCarro){
-                return i;
-            }
-        }
-        throw new CarroNaoExisteException();
-    }
-
-    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException{
-        for(int i = 0; i < carrosIndex; i++){
-            if(carros[i].getPlaca().equals(placa)){
-                return carros[i];
-            }
-        }
-
-        throw new CarroNaoExisteException();
-    }
-
-    public void verificarPlaca(String placa) throws CarroJaExisteException {
-        for(int i = 0; i < carrosIndex; i++){
-            if(carros[i].getPlaca().equals(placa)){
-                throw new CarroJaExisteException();
-            }
-        }
-    }
-
-    // atualizar o preço
     public void atualizarCarro(Carro carro) throws CarroNaoExisteException{
         int auxInt = buscarCarroPorPlaca(carro.getPlaca()).getIdCarro();
         carro.setIdCarro(auxInt);
@@ -162,6 +135,8 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         escreverArquivo();
     }
+
+
 
     public void atualizarDisponibilidadeCarro(String placa, boolean disponivel)
             throws CarroNaoExisteException{
@@ -175,6 +150,66 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
 
 
+    public void verificarPlaca(String placa) throws CarroJaExisteException {
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getPlaca().equals(placa)){
+                throw new CarroJaExisteException();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de obtenção de informações da lista.
+
+    public int getMaiorIdCarro(){
+        int auxId = 0;
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getIdCarro() > auxId){
+                auxId = carros[i].getIdCarro();
+            }
+        }
+
+        return auxId;
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de obtenção de elementos da lista
+
+    public Carro buscarCarroPorId(int idCarro) throws CarroNaoExisteException{
+        int aux = buscarIndexCarro(idCarro);
+
+        if(aux != -1){
+            return carros[aux];
+        }
+
+        throw new CarroNaoExisteException();
+    }
+
+
+
+    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException{
+        for(int i = 0; i < carrosIndex; i++){
+            if(carros[i].getPlaca().equals(placa)){
+                return carros[i];
+            }
+        }
+
+        throw new CarroNaoExisteException();
+    }
 
 
 
@@ -213,9 +248,6 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
 
 
-
-
-
     public Carro[] getListaCarrosPorCategoria(String categoria){
         Carro[] carrosEncontrados = new Carro[this.carrosIndex];
         int j = 0;
@@ -228,10 +260,6 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         return carrosEncontrados;
     }
-
-
-
-
 
 
 
@@ -269,10 +297,6 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
 
 
-
-
-
-
     public Carro[] getListaInicialCarros(){
         int j = 0;
         Carro[] lista = new Carro[this.carrosIndex];
@@ -293,6 +317,10 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
 
 
+
+
+    //Métodos usados para teste, irrelevantes.
+
     public String toString(){
         String resultado = "\n\nLista de carros: \n";
 
@@ -302,4 +330,24 @@ public class CarroRepositorio implements RepositorioCarroInterface{
 
         return resultado;
     }
+
+
+
+
+
+
+
+
+
+    //Métodos auxiliares privados
+
+    private int buscarIndexCarro(int idCarro) throws CarroNaoExisteException{
+        for(int i = 0; i < this.tamanho; i++){
+            if(carros[i].getIdCarro() == idCarro){
+                return i;
+            }
+        }
+        throw new CarroNaoExisteException();
+    }
+
 }

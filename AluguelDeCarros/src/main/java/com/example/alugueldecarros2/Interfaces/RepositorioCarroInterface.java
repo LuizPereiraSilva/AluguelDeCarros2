@@ -7,19 +7,36 @@ import com.example.alugueldecarros2.Negocio.Basico.Carro;
 
 public interface RepositorioCarroInterface {
 
-    public void adicionarCarro(Carro carro) throws RepositorioCheioException;
 
-    public void removerCarro(String placa) throws CarroNaoExisteException;
+    //Métodods de modificação de itens da lista.
 
-    public Carro buscarCarroPorId(int idCarro) throws CarroNaoExisteException;
+    void adicionarCarro(Carro carro) throws RepositorioCheioException;
 
-    public void atualizarCarro(Carro carro) throws CarroNaoExisteException;
+    void removerCarro(String placa) throws CarroNaoExisteException;
 
-    public void verificarPlaca(String placa) throws CarroJaExisteException;
+    void atualizarCarro(Carro carro) throws CarroNaoExisteException;
 
-    public Carro[] getListaCarros(String categoria, String faixaDePreco);
+    void atualizarDisponibilidadeCarro(String placa, boolean disponivel) throws CarroNaoExisteException;
 
-    public Carro[] getListaCarrosPorCategoria(String categoria);
+    void verificarPlaca(String placa) throws CarroJaExisteException;
 
-    public Carro[] getListaCarrosPorPreco(String faixaDePreco);
+
+    //Métodos de obtenção de informações da lista.
+
+    int getMaiorIdCarro();
+
+
+    //Métodos de obtenção de itens da lista.
+
+    Carro buscarCarroPorId(int idCarro) throws CarroNaoExisteException;
+
+    Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException;
+
+    Carro[] getListaCarros(String categoria, String faixaDePreco);
+
+    Carro[] getListaCarrosPorCategoria(String categoria);
+
+    Carro[] getListaCarrosPorPreco(String faixaDePreco);
+
+    Carro[] getListaInicialCarros();
 }

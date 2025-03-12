@@ -79,18 +79,26 @@ public class PesquisarReservasAdmController implements Initializable {
         try {
             if (dataInicial == null || dataFinal == null) {
 
+                System.out.println("Teste 1");
+
                 if(dataInicial == null && dataFinal == null) {
                     lista = fachada.getListaReservas(categoria, faixaDePreco);
 
-                }else if (dataInicial == null) {
+                }
+
+                if (dataInicial == null && dataFinal != null) {
                     lista = fachada.getListaReservasAntesDaData(dataFinal,
                             categoria, faixaDePreco);
 
-                } else {
+                }
+
+                if (dataInicial != null && dataFinal == null) {
+                    System.out.println("Teste 2");
                     lista = fachada.getListaReservasAPartirDaData(dataInicial,
                             categoria, faixaDePreco);
 
                 }
+
             } else {
                 lista = fachada.getListaReservasNoPeriodo(dataInicial,
                         dataFinal, categoria, faixaDePreco);
@@ -104,11 +112,7 @@ public class PesquisarReservasAdmController implements Initializable {
 
         ReservasTableView.getItems().clear();
 
-        for (int i = 0; i < lista.length; i++) {
-            if(lista[i] != null) {
-                ReservasTableView.getItems().add(lista[i]);
-            }
-        }
+        ReservasTableView.getItems().addAll(lista);
     }
 
 
@@ -153,6 +157,10 @@ public class PesquisarReservasAdmController implements Initializable {
 
     void initialize(){
         Fachada fachada = Fachada.getInstance();
+
+        CategoriaCarroChoiceBox.getItems().clear();
+        CategoriaPrecoChoiceBox.getItems().clear();
+
         String[] listaCCarro = {"Hatchback", "Sedan", "Pickup", "SUV", "Qualquer categoria"};
         String[] listaCPreco = {"Popular", "Médio", "Luxo", "Qualquer preço"};
 

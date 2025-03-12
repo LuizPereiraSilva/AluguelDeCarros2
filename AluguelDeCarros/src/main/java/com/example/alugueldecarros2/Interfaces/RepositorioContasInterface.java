@@ -7,13 +7,26 @@ import com.example.alugueldecarros2.Negocio.Basico.Conta;
 
 public interface RepositorioContasInterface {
 
-    public void adicionarConta(Conta conta) throws RepositorioCheioException, ContaJaExisteException;
 
-    public void removerConta(int idConta) throws ContaNaoExisteException;
+    //Métodos de modificação de itens da lista.
 
-    public Conta buscarConta(int idConta) throws ContaNaoExisteException;
+    void adicionarConta(Conta conta) throws RepositorioCheioException, ContaJaExisteException;
 
-    public Conta buscarPeloCpf(String cpf) throws ContaNaoExisteException;
+    void removerConta(int idConta) throws ContaNaoExisteException;
 
-    public void atualizarConta(Conta conta) throws ContaNaoExisteException;
+    void atualizarConta(Conta conta) throws ContaNaoExisteException;
+
+
+    //Métodos de obtenção de informações da lista.
+
+    int getMaiorId();
+
+
+    //Métodos de obtenção de itens da lista.
+
+    Conta buscarConta(int idConta) throws ContaNaoExisteException;
+
+    Conta buscarPeloCpf(String cpf) throws ContaNaoExisteException;
+
+    Conta[] getListaContas();
 }

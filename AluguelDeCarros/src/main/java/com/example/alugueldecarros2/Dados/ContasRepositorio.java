@@ -35,18 +35,17 @@ public class ContasRepositorio implements RepositorioContasInterface{
         return repositorio;
     }
 
-    public int getMaiorId(){
-        int auxInt = 0;
-        for(int i = 0; i < this.contasIndex; i++){
-            if(contas[i].getIdConta() > auxInt){
-                auxInt = contas[i].getIdConta();
-            }
-        }
 
-        return auxInt;
-    }
 
-    public void lerArquivo(){
+
+
+
+
+
+
+    //Métodos de leitura e escrita de arquivos;
+
+    private void lerArquivo(){
         Conta[] auxcontas = new Conta[tamanho];
         Object o = null;
         int contasIndex = 0;
@@ -72,7 +71,7 @@ public class ContasRepositorio implements RepositorioContasInterface{
         this.contasIndex = contasIndex;
     }
 
-    public void escreverArquivo(){
+    private void escreverArquivo(){
         try{
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo));
 
@@ -85,6 +84,16 @@ public class ContasRepositorio implements RepositorioContasInterface{
 
         }
     }
+
+
+
+
+
+
+
+
+
+    //Métodos de modificação de elementos da lista.
 
     public void adicionarConta(Conta conta)
             throws RepositorioCheioException, ContaJaExisteException{
@@ -104,40 +113,7 @@ public class ContasRepositorio implements RepositorioContasInterface{
         }
     }
 
-    private void buscarCpfCliente(String cpf) throws ContaJaExisteException{
-        for(int i = 0; i < this.contasIndex; i++){
-            if(!this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
-                throw new ContaJaExisteException();
-            }
-        }
-    }
 
-    private void buscarCpfAdministrador(String cpf) throws ContaJaExisteException{
-        for(int i = 0; i < this.contasIndex; i++){
-            if(this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
-                throw new ContaJaExisteException();
-            }
-        }
-    }
-
-    public Conta buscarPeloCpf(String cpf) throws ContaNaoExisteException{
-        for(int i = 0; i < this.contasIndex; i++){
-            if(this.contas[i].getCpf().equals(cpf)){
-                return contas[i];
-            }
-        }
-        throw new ContaNaoExisteException();
-    }
-
-    private int buscarIndexConta(int id) throws ContaNaoExisteException{
-        for (int i = 0; i < this.tamanho; i++){
-            if(contas[i].getIdConta() == id){
-                return i;
-            }
-        }
-
-        throw new ContaNaoExisteException();
-    }
 
     public void removerConta(int idConta) throws ContaNaoExisteException{
         int aux = this.buscarIndexConta(idConta);
@@ -155,11 +131,7 @@ public class ContasRepositorio implements RepositorioContasInterface{
 
     }
 
-    public Conta buscarConta(int idConta) throws ContaNaoExisteException{
-        int aux = this.buscarIndexConta(idConta);
 
-        return contas[aux];
-    }
 
     public void atualizarConta(Conta conta) throws ContaNaoExisteException{
         int aux = this.buscarIndexConta(conta.getIdConta());
@@ -167,6 +139,47 @@ public class ContasRepositorio implements RepositorioContasInterface{
         contas[aux] = conta;
         this.escreverArquivo();
     }
+
+
+
+    public int getMaiorId(){
+        int auxInt = 0;
+        for(int i = 0; i < this.contasIndex; i++){
+            if(contas[i].getIdConta() > auxInt){
+                auxInt = contas[i].getIdConta();
+            }
+        }
+
+        return auxInt;
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de obtenção de elementos da lista
+
+    public Conta buscarPeloCpf(String cpf) throws ContaNaoExisteException{
+        for(int i = 0; i < this.contasIndex; i++){
+            if(this.contas[i].getCpf().equals(cpf)){
+                return contas[i];
+            }
+        }
+        throw new ContaNaoExisteException();
+    }
+
+
+
+    public Conta buscarConta(int idConta) throws ContaNaoExisteException{
+        int aux = this.buscarIndexConta(idConta);
+
+        return contas[aux];
+    }
+
 
 
     public Conta[] getListaContas(){
@@ -179,6 +192,16 @@ public class ContasRepositorio implements RepositorioContasInterface{
         return auxContas;
     }
 
+
+
+
+
+
+
+
+
+    //Métodos utilizados para teste, irrelevantes.
+
     public String toString(){
         String aux = "\n\nLista de Contas:\n\n";
 
@@ -187,5 +210,45 @@ public class ContasRepositorio implements RepositorioContasInterface{
         }
 
         return aux;
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos auxiliares privados
+
+    private void buscarCpfCliente(String cpf) throws ContaJaExisteException{
+        for(int i = 0; i < this.contasIndex; i++){
+            if(!this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
+                throw new ContaJaExisteException();
+            }
+        }
+    }
+
+
+
+    private void buscarCpfAdministrador(String cpf) throws ContaJaExisteException{
+        for(int i = 0; i < this.contasIndex; i++){
+            if(this.contas[i].getAdministrador() && this.contas[i].getCpf().equals(cpf)){
+                throw new ContaJaExisteException();
+            }
+        }
+    }
+
+
+
+    private int buscarIndexConta(int id) throws ContaNaoExisteException{
+        for (int i = 0; i < this.tamanho; i++){
+            if(contas[i].getIdConta() == id){
+                return i;
+            }
+        }
+
+        throw new ContaNaoExisteException();
     }
 }

@@ -36,19 +36,16 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return instance;
     }
 
-    public int getMaiorId(){
-        int auxId = 0;
 
-        for(int i = 0; i < reservasIndex; i++){
-            if(reservas[i].getNumero() > auxId){
-                auxId = reservas[i].getNumero();
-            }
-        }
 
-        return auxId;
-    }
 
-    public void lerArquivo(){
+
+
+
+
+    //Métodos de leitura e escrita de arquivos.
+
+    private void lerArquivo(){
         Reserva[] auxReservas = new Reserva[tamanho];
         int auxIndex = 0;
         Object o = null;
@@ -73,7 +70,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         reservasIndex = auxIndex;
     }
 
-    public void escreverArquivo(){
+    private void escreverArquivo(){
         try{
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo));
 
@@ -87,6 +84,16 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         }
     }
 
+
+
+
+
+
+
+
+
+    //Métodos de modificação de itens da lista
+
     public void adicionarReserva(Reserva reserva) {
         if (reservasIndex < this.tamanho) {
             this.reservas[reservasIndex] = reserva;
@@ -96,14 +103,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         this.escreverArquivo();
     }
 
-    private int buscarIndex(int numero) {
-        for (int i = 0; i < this.reservasIndex; i++) {
-            if (this.reservas[i].getNumero() == numero) {
-                return i;
-            }
-        }
-        return -1;
-    }
+
 
     public void removerReserva(int idReserva) {
         int aux = this.buscarIndex(idReserva);
@@ -122,14 +122,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         this.escreverArquivo();
     }
 
-    public Reserva buscarReserva(int numero) {
-        int aux = this.buscarIndex(numero);
 
-        if (aux != -1) {
-            return this.reservas[aux];
-        }
-        return null;
-    }
 
     public void atualizarReserva(Reserva reservaAtualizada) {
         int aux = this.buscarIndex(reservaAtualizada.getNumero());
@@ -141,6 +134,85 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
     }
 
 
+
+
+
+
+
+
+
+    //Métodos de obtenção informações da lista
+
+    public int getMaiorId(){
+        int auxId = 0;
+
+        for(int i = 0; i < reservasIndex; i++){
+            if(reservas[i].getNumero() > auxId){
+                auxId = reservas[i].getNumero();
+            }
+        }
+
+        return auxId;
+    }
+
+
+
+    public float gerarFaturamentoPorPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException, DataInvalidaException {
+        if (datafinal.isAfter(datainicio)) {
+            Reserva[] reservasNoPeriodo = buscarReservasPorPeriodo(datainicio, datafinal);
+
+
+            return getFaturamento(reservasNoPeriodo);
+        } else {
+            throw new DataInvalidaException();
+
+        }
+    }
+
+
+
+    public float[] getFaturamentoNoPeriodo(LocalDate dataInicio, LocalDate dataFim){
+        Reserva[] reservas = this.getListaInicialReservas();
+        Reserva[] lista = new Reserva[reservas.length];
+        int auxIndex = 0;
+
+        for(int i = 0; i < reservas.length; i++){
+            if(reservas[i] != null && reservas[i].getDataInicio().isBefore(dataFim)
+                    && reservas[i].getDataInicio().isAfter(dataInicio)){
+                lista[auxIndex] = reservas[i];
+                auxIndex++;
+            }
+        }
+
+        float[] resultado = new float[2];
+        resultado[0] = 0;
+        resultado[1] = auxIndex;
+
+        for(int i = 0; i < auxIndex; i++){
+            resultado[0] += lista[i].getValorTotal();
+        }
+
+        return resultado;
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de obtenção de itens da lista.
+
+    public Reserva buscarReserva(int numero) {
+        int aux = this.buscarIndex(numero);
+
+        if (aux != -1) {
+            return this.reservas[aux];
+        }
+        return null;
+    }
 
 
 
@@ -157,8 +229,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
         return lista;
     }
-
-
 
 
 
@@ -198,32 +268,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
 
 
-    public float[] getFaturamentoNoPeriodo(LocalDate dataInicio, LocalDate dataFim){
-        Reserva[] reservas = this.getListaInicialReservas();
-        Reserva[] lista = new Reserva[reservas.length];
-        int auxIndex = 0;
-
-        for(int i = 0; i < reservas.length; i++){
-            if(reservas[i] != null && reservas[i].getDataInicio().isBefore(dataFim)
-                    && reservas[i].getDataInicio().isAfter(dataInicio)){
-                lista[auxIndex] = reservas[i];
-                auxIndex++;
-            }
-        }
-
-        float[] resultado = new float[2];
-        resultado[0] = 0;
-        resultado[1] = auxIndex;
-
-        for(int i = 0; i < auxIndex; i++){
-            resultado[0] += lista[i].getValorTotal();
-        }
-
-        return resultado;
-    }
-
-
-
     public Reserva[] getListaReservasPorCategoria(String categoria){
         Reserva[] reservasEncontradas = new Reserva[this.reservasIndex];
         int j = 0;
@@ -236,9 +280,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
         return reservasEncontradas;
     }
-
-
-
 
 
 
@@ -276,9 +317,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
 
 
-
-
-
     public Reserva[] buscarReservasPorCliente(int idCliente) {
         Reserva[] auxReservas = new Reserva[this.tamanho];
         int auxContador = 0;
@@ -301,10 +339,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
 
 
-
-
-
-
     public Reserva[] buscarReservasPorCarro(int IdCarro) {
         Reserva[] resultado = new Reserva[this.tamanho];
         int auxj = 0;
@@ -324,10 +358,6 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
         return resultado2;
     }
-
-
-
-
 
 
 
@@ -377,7 +407,7 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
 
 
 
-
+    //Métodos de teste, irrelevantes.
 
     public String toString() {
         String resultado = "\n\nLista de reservas: \n\n";
@@ -408,7 +438,20 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return Relatorio(reservasDoCliente);
     }
 
-    public float Faturamento(Reserva[] reservasEncontradas) {
+
+
+
+
+
+
+
+
+
+
+
+    //Métodos privados auxiliares.
+
+    private float getFaturamento(Reserva[] reservasEncontradas) {
         float faturamento = 0;
 
         for (int i = 0; i < reservasEncontradas.length; i++) {
@@ -417,16 +460,15 @@ public class ReservaRepositorio implements RepositorioReservasInterface {
         return faturamento;
     }
 
-    public float gerarFaturamentoPorPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException, DataInvalidaException {
-        if (datafinal.isAfter(datainicio)) {
-            Reserva[] reservasNoPeriodo = buscarReservasPorPeriodo(datainicio, datafinal);
 
 
-            return Faturamento(reservasNoPeriodo);
-        } else {
-            throw new DataInvalidaException();
-
+    private int buscarIndex(int numero) {
+        for (int i = 0; i < this.reservasIndex; i++) {
+            if (this.reservas[i].getNumero() == numero) {
+                return i;
+            }
         }
+        return -1;
     }
 
 }

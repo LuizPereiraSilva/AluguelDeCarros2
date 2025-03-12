@@ -37,6 +37,16 @@ public class CadastroReserva {
         return instance;
     }
 
+
+
+
+
+
+
+
+
+    //Métodos de modificação de itens no repositorio.
+
     public Reserva cadastrarReserva(Carro carro, Conta cliente, LocalDate datainicio, LocalDate datafinal,
                                  String formaDePagamento)
             throws DataInvalidaException, CarroNaoExisteException, OperacaoInvalidaException {
@@ -61,29 +71,19 @@ public class CadastroReserva {
         }
     }
 
-    private boolean verificarValidadeDasDatas(Reserva[] listaReservas, Reserva reserva){
-        for(int i = 0; i < listaReservas.length; i++){
-            if(listaReservas[i] != null){
-                if(listaReservas[i].getDataInicio().isBefore(reserva.getDataFinal()) &&
-                        listaReservas[i].getDataInicio().isAfter(reserva.getDataInicio())){
-                    if(listaReservas[i].getDataFinal().isBefore(reserva.getDataFinal()) &&
-                            listaReservas[i].getDataFinal().isAfter(reserva.getDataInicio())){
-                        return false;
-                    }
-                }
-            }
-        }
 
-        return true;
-    }
 
     public void removerReserva(int idReserva){
         this.reservaRepositorio.removerReserva(idReserva);
     }
 
+
+
     public Reserva buscarReserva(int idReserva){
         return this.reservaRepositorio.buscarReserva(idReserva);
     }
+
+
 
     public void atualizarReserva(int idReserva, Carro carro, Conta cliente, LocalDate dataInicio,
                                  LocalDate dataFinal, String formaDePagamento) throws CarroNaoExisteException{
@@ -99,6 +99,14 @@ public class CadastroReserva {
     }
 
 
+
+
+
+
+
+
+
+    //Métodos de obteção de listas do repositorio.
 
     public Reserva[] getListaInicialReservas(){
         return reservaRepositorio.getListaInicialReservas();
@@ -139,6 +147,7 @@ public class CadastroReserva {
     }
 
 
+
     public Reserva[] getListaReservasAPartirDaData(
             LocalDate dataInicial, String categoria, String faixaDePreco) {
 
@@ -171,19 +180,31 @@ public class CadastroReserva {
 
 
 
+    public Reserva[] getListaReservasAntesDaData(LocalDate dataFinal,
+                                                 String categoria, String faixaDePreco) {
 
-    private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Reserva reserva)
-            throws OperacaoBemSucedidaException{
+        Reserva[] reservasAux = null;
+        Reserva[] resultado = null;
 
-        boolean sucesso = true;
-
-        if(reserva != null && !reserva.getDataFinal().isAfter(dataInicial)){
-            sucesso = false;
+        try {
+            reservasAux = this.getListaReservas(categoria, faixaDePreco);
+        } catch (OperacaoInvalidaException ex) {
+            reservasAux = this.getListaInicialReservas();
+            resultado = new Reserva[reservasAux.length];
         }
 
-        if(sucesso){
-            throw new OperacaoBemSucedidaException();
+        int auxIndex = 0;
+
+        for(int i = 0; i < reservasAux.length; i++){
+            try {
+                this.verificarDisponibilidadeAntesDaData(dataFinal, reservasAux[i]);
+            } catch(OperacaoBemSucedidaException e){
+                resultado[auxIndex] = reservasAux[i];
+                auxIndex++;
+            }
         }
+
+        return resultado;
     }
 
 
@@ -216,6 +237,123 @@ public class CadastroReserva {
         return resultado;
     }
 
+
+
+    public Reserva[] buscarReservasCliente(int idCliente) {
+        return this.reservaRepositorio.buscarReservasPorCliente(idCliente);
+    }
+
+
+
+    public Reserva[] buscarReservasPorCarro(int IdCarro) {
+        return this.reservaRepositorio.buscarReservasPorCarro(IdCarro);
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de obtenção de informações da lista
+
+    public float[] getFaturamentoNoPeriodo(LocalDate inicio, LocalDate fim){
+        return reservaRepositorio.getFaturamentoNoPeriodo(inicio, fim);
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos de usados para teste, irrelevantes.
+
+    public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {
+        Reserva[] resultado = this.reservaRepositorio.buscarReservasPorPeriodo(dataInicio, dataFinal);
+
+        return "\n Reservas encontradas para esse periodo: " + Arrays.toString(resultado);
+    }
+
+    public String toString(){
+        return reservaRepositorio.toString();
+    }
+
+    public String gerarRelatorioCompleto(int IdCliente) {
+
+        return reservaRepositorio.gerarRelatorioPorCliente(IdCliente);
+    }
+
+    public String gerarFaturamentoPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException, DataInvalidaException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+       return "Faturamento com reservas no período de " + datainicio.format(formatter) + " a " + datafinal.format(formatter) + " foi: R$ " + reservaRepositorio.gerarFaturamentoPorPeriodo(datainicio,datafinal);
+
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos auxiliares privados.
+
+    private boolean verificarValidadeDasDatas(Reserva[] listaReservas, Reserva reserva){
+        for(int i = 0; i < listaReservas.length; i++){
+            if(listaReservas[i] != null){
+                if(listaReservas[i].getDataInicio().isBefore(reserva.getDataFinal()) &&
+                        listaReservas[i].getDataInicio().isAfter(reserva.getDataInicio())){
+                    if(listaReservas[i].getDataFinal().isBefore(reserva.getDataFinal()) &&
+                            listaReservas[i].getDataFinal().isAfter(reserva.getDataInicio())){
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+
+    private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Reserva reserva)
+            throws OperacaoBemSucedidaException{
+
+        boolean sucesso = true;
+
+        if(reserva != null && !reserva.getDataInicio().isBefore(dataFinal)){
+            sucesso = false;
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
+    private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Reserva reserva)
+            throws OperacaoBemSucedidaException{
+
+        boolean sucesso = true;
+
+        if(reserva != null && !reserva.getDataFinal().isAfter(dataInicial)){
+            sucesso = false;
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
     private void verificarAmbasDisponibilidades(LocalDate dataInicial, LocalDate dataFinal,
                                                 Reserva reserva)
             throws OperacaoBemSucedidaException{
@@ -239,92 +377,4 @@ public class CadastroReserva {
             throw new OperacaoBemSucedidaException();
         }
     }
-
-
-
-
-
-
-    public Reserva[] getListaReservasAntesDaData(LocalDate dataFinal,
-                                             String categoria, String faixaDePreco) {
-
-        Reserva[] reservasAux = null;
-        Reserva[] resultado = null;
-
-        try {
-            reservasAux = this.getListaReservas(categoria, faixaDePreco);
-        } catch (OperacaoInvalidaException ex) {
-            reservasAux = this.getListaInicialReservas();
-            resultado = new Reserva[reservasAux.length];
-        }
-
-        int auxIndex = 0;
-
-        for(int i = 0; i < reservasAux.length; i++){
-            try {
-                this.verificarDisponibilidadeAntesDaData(dataFinal, reservasAux[i]);
-            } catch(OperacaoBemSucedidaException e){
-                resultado[auxIndex] = reservasAux[i];
-                auxIndex++;
-            }
-        }
-
-        return resultado;
-    }
-
-    private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Reserva reserva)
-            throws OperacaoBemSucedidaException{
-
-        boolean sucesso = true;
-
-        if(reserva != null && !reserva.getDataInicio().isBefore(dataFinal)){
-            sucesso = false;
-        }
-
-        if(sucesso){
-            throw new OperacaoBemSucedidaException();
-        }
-    }
-
-
-
-
-
-
-
-    public Reserva[] buscarReservasCliente(int idCliente) {
-        return this.reservaRepositorio.buscarReservasPorCliente(idCliente);
-    }
-
-    public Reserva[] buscarReservasPorCarro(int IdCarro) {
-        return this.reservaRepositorio.buscarReservasPorCarro(IdCarro);
-    }
-
-
-    public float[] getFaturamentoNoPeriodo(LocalDate inicio, LocalDate fim){
-        return reservaRepositorio.getFaturamentoNoPeriodo(inicio, fim);
-    }
-
-
-    public String buscarReservasPeriodo(LocalDate dataInicio, LocalDate dataFinal) throws NenhumaReservaException {
-        Reserva[] resultado = this.reservaRepositorio.buscarReservasPorPeriodo(dataInicio, dataFinal);
-
-        return "\n Reservas encontradas para esse periodo: " + Arrays.toString(resultado);
-    }
-
-    public String toString(){
-        return reservaRepositorio.toString();
-    }
-
-    public String gerarRelatorioCompleto(int IdCliente) throws NenhumaReservaException {
-
-        return reservaRepositorio.gerarRelatorioPorCliente(IdCliente);
-    }
-
-    public String gerarFaturamentoPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException, DataInvalidaException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-       return "Faturamento com reservas no período de " + datainicio.format(formatter) + " a " + datafinal.format(formatter) + " foi: R$ " + reservaRepositorio.gerarFaturamentoPorPeriodo(datainicio,datafinal);
-
-    }
-
 }

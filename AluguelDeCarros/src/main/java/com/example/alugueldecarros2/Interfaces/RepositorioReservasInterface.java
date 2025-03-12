@@ -8,23 +8,44 @@ import java.time.LocalDate;
 
 public interface RepositorioReservasInterface {
 
-    public void adicionarReserva(Reserva reserva);
 
-    public void removerReserva(int idReserva);
+    //Métodos de modificação de itens da lista.
 
-    public Reserva buscarReserva(int numero);
+    void adicionarReserva(Reserva reserva);
 
-    public void atualizarReserva(Reserva reservaAtualizada);
+    void removerReserva(int idReserva);
 
-    public Reserva[] buscarReservasPorCliente(int idCliente);
+    void atualizarReserva(Reserva reservaAtualizada);
 
-    public Reserva[] buscarReservasPorCarro(int idCarro);
 
-    public Reserva[] buscarReservasPorPeriodo(LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException;
 
-    public String gerarRelatorioPorCliente (int idCliente) throws NenhumaReservaException;
+    //Métodos de obtenção de informações da lista.
 
-    public float gerarFaturamentoPorPeriodo (LocalDate datainicio, LocalDate datafinal) throws NenhumaReservaException, DataInvalidaException;
+    int getMaiorId();
 
+    float gerarFaturamentoPorPeriodo (LocalDate datainicio, LocalDate datafinal)
+            throws NenhumaReservaException, DataInvalidaException;
+
+    float[] getFaturamentoNoPeriodo(LocalDate dataInicio, LocalDate dataFim);
+
+
+    //Métodos de obtenção de itens da lista.
+
+    Reserva buscarReserva(int numero);
+
+    Reserva[] getListaReservas(String categoriaCarro, String categoriaPreco);
+
+    Reserva[] getListaReservasPorCategoria(String categoria);
+
+    Reserva[] getListaReservasPorPreco(String categoriaPreco);
+
+    Reserva[] buscarReservasPorCliente(int idCliente);
+
+    Reserva[] buscarReservasPorCarro(int idCarro);
+
+    Reserva[] buscarReservasPorPeriodo(LocalDate datainicio, LocalDate datafinal)
+            throws NenhumaReservaException;
+
+    Reserva[] getListaInicialReservas();
 }
 

@@ -28,6 +28,15 @@ public class CadastroConta {
     }
 
 
+
+
+
+
+
+
+
+    //Métodos de modificação de itens da lista.
+
     public void cadastrarCliente(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException{
 
@@ -36,6 +45,8 @@ public class CadastroConta {
         this.ultimoId++;
         this.repositorio.adicionarConta(cliente);
     }
+
+
 
     public void cadastrarAdministrador(String nome, String cpf, String telefone, String email, String senha) throws
             ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException{
@@ -48,17 +59,13 @@ public class CadastroConta {
         throw new OperacaoBemSucedidaException();
     }
 
+
+
     public void removerConta(int contaId) throws ContaNaoExisteException{
         repositorio.removerConta(contaId);
     }
 
-    public Conta buscarConta(int contaId) throws ContaNaoExisteException{
-        return repositorio.buscarConta(contaId);
-    }
 
-    public Conta buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
-        return repositorio.buscarPeloCpf(cpf);
-    }
 
     public void atualizarConta(String nome, String cpf, String telefone,
                                String email, String senha)
@@ -80,15 +87,54 @@ public class CadastroConta {
     }
 
 
+
+
+
+
+
+
+
+    //Métodos de obtenção de listas do repositorio.
+
+    public Conta buscarConta(int contaId) throws ContaNaoExisteException{
+        return repositorio.buscarConta(contaId);
+    }
+
+
+
+    public Conta buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
+        return repositorio.buscarPeloCpf(cpf);
+    }
+
+
+
     public Conta[] getListaContas(){
         return repositorio.getListaContas();
     }
 
 
 
+
+
+
+
+
+
+    //Métodos de obtenção de informações do repositorio.
+
     public int getUltimoId(){
         return this.ultimoId;
     }
+
+
+
+
+
+
+
+
+
+    //Métodos usados para teste, irrelevantes.
 
     public String listarContas(){
         return repositorio.toString();

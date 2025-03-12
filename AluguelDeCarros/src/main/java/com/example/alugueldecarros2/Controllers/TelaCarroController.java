@@ -105,9 +105,17 @@ public class TelaCarroController {
         String formaDePagamento = FormaDePagamentoChoiceBox.getSelectionModel().getSelectedItem();
 
         if(dataInicio !=  null && dataFinal != null && formaDePagamento != null) {
-            long aux = ChronoUnit.DAYS.between(dataInicio, dataFinal);
-            TotalDeDiarias.setText( aux +" diárias");
-            ValorTotal.setText( "R$ "+ (aux * this.carro.getPreco()));
+            if(dataInicio.isBefore(dataFinal)) {
+                long aux = ChronoUnit.DAYS.between(dataInicio, dataFinal);
+                TotalDeDiarias.setText(aux + " diárias");
+                ValorTotal.setText("R$ " + (aux * this.carro.getPreco()));
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("");
+                alert.setContentText("A data inicial deve ser anterior a data final");
+                alert.show();
+            }
         } else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -119,6 +127,10 @@ public class TelaCarroController {
 
     @FXML
     void handleVoltarButtonAction(ActionEvent event) {
+        DataInicio.setValue(null);
+        DataFinal.setValue(null);
+        FormaDePagamentoChoiceBox.setValue(null);
+
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("TelaPesquisa.fxml", "Tela de pesquisa");
     }

@@ -22,10 +22,6 @@ public class CadastroCarro {
         this.ultimoId = repositorio.getMaiorIdCarro();
     }
 
-
-
-
-
     protected static CadastroCarro getInstance(){
         if (instance == null) {
             instance = new CadastroCarro();
@@ -37,6 +33,12 @@ public class CadastroCarro {
 
 
 
+
+
+
+
+
+    //Métodos de modificação de itens do repositorio.
 
     public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
             throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
@@ -56,20 +58,9 @@ public class CadastroCarro {
 
 
 
-
     public void removerCarro(String placa) throws CarroNaoExisteException {
         this.repositorio.removerCarro(placa);
     }
-
-    public Carro buscarCarro(int id) throws CarroNaoExisteException{
-        return this.repositorio.buscarCarroPorId(id);
-    }
-
-    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException{
-        return this.repositorio.buscarCarroPorPlaca(placa);
-    }
-
-
 
 
 
@@ -85,6 +76,7 @@ public class CadastroCarro {
     }
 
 
+
     public void atualizarDisponibilidadeCarro(String placa, boolean disponibilidade)
             throws CarroNaoExisteException{
         repositorio.atualizarDisponibilidadeCarro(placa, disponibilidade);
@@ -92,10 +84,25 @@ public class CadastroCarro {
 
 
 
+
+
+
+
+    //Métodos de obtenção de listas do repositorio.
+
+    public Carro buscarCarro(int id) throws CarroNaoExisteException{
+        return this.repositorio.buscarCarroPorId(id);
+    }
+
+    public Carro buscarCarroPorPlaca(String placa) throws CarroNaoExisteException{
+        return this.repositorio.buscarCarroPorPlaca(placa);
+    }
+
+
+
     public Carro[] getListaInicialCarros(){
         return repositorio.getListaInicialCarros();
     }
-
 
 
 
@@ -133,9 +140,6 @@ public class CadastroCarro {
 
 
 
-
-
-
     public Carro[] getListaCarrosAPartirDaData(
             LocalDate dataInicial, String categoria, String faixaDePreco) {
 
@@ -163,29 +167,6 @@ public class CadastroCarro {
 
         return resultado;
     }
-
-    private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Carro carro)
-            throws OperacaoBemSucedidaException{
-
-        CadastroReserva reservas = CadastroReserva.getInstance();
-        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
-
-        boolean sucesso = true;
-
-        for(int i = 0; i < reservasAux.length; i++){
-            if(reservasAux[i] != null && reservasAux[i].getDataFinal().isAfter(dataInicial)){
-                sucesso = false;
-                break;
-            }
-        }
-
-        if(sucesso){
-            throw new OperacaoBemSucedidaException();
-        }
-    }
-
-
-
 
 
 
@@ -217,29 +198,6 @@ public class CadastroCarro {
         return resultado;
     }
 
-    private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Carro carro)
-            throws OperacaoBemSucedidaException{
-
-        CadastroReserva reservas = CadastroReserva.getInstance();
-        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
-        boolean sucesso = true;
-
-        for(int i = 0; i < reservasAux.length; i++){
-            if(reservasAux[i] != null && reservasAux[i].getDataInicio().isBefore(dataFinal)
-                    && reservasAux[i].getDataFinal().isAfter(LocalDate.now())){
-                sucesso = false;
-                break;
-            }
-        }
-
-        if(sucesso){
-            throw new OperacaoBemSucedidaException();
-        }
-    }
-
-
-
-
 
 
     public Carro[] getListaCarrosNoPeriodo(LocalDate dataInicial, LocalDate dataFinal,
@@ -269,6 +227,74 @@ public class CadastroCarro {
         return resultado;
     }
 
+
+
+
+
+
+
+
+
+    //Métodos usados para teste, irrelevantes.
+
+    public String listarCarros(){
+        return this.repositorio.toString();
+    }
+
+
+
+
+
+
+
+
+
+    //Métodos privados auxiliares.
+
+    private void verificarDisponibilidadeAPartirDaData(LocalDate dataInicial, Carro carro)
+            throws OperacaoBemSucedidaException{
+
+        CadastroReserva reservas = CadastroReserva.getInstance();
+        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
+
+        boolean sucesso = true;
+
+        for(int i = 0; i < reservasAux.length; i++){
+            if(reservasAux[i] != null && reservasAux[i].getDataFinal().isAfter(dataInicial)){
+                sucesso = false;
+                break;
+            }
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
+    private void verificarDisponibilidadeAntesDaData(LocalDate dataFinal, Carro carro)
+            throws OperacaoBemSucedidaException{
+
+        CadastroReserva reservas = CadastroReserva.getInstance();
+        Reserva[] reservasAux = reservas.buscarReservasPorCarro(carro.getIdCarro());
+        boolean sucesso = true;
+
+        for(int i = 0; i < reservasAux.length; i++){
+            if(reservasAux[i] != null && reservasAux[i].getDataInicio().isBefore(dataFinal)
+                    && reservasAux[i].getDataFinal().isAfter(LocalDate.now())){
+                sucesso = false;
+                break;
+            }
+        }
+
+        if(sucesso){
+            throw new OperacaoBemSucedidaException();
+        }
+    }
+
+
+
     private void verificarAmbasDisponibilidades(LocalDate dataInicial, LocalDate dataFinal,
                                                 Carro carro)
             throws OperacaoBemSucedidaException{
@@ -291,11 +317,5 @@ public class CadastroCarro {
         if(!(e1 == null || e2 == null)){
             throw new OperacaoBemSucedidaException();
         }
-    }
-
-
-
-    public String listarCarros(){
-        return this.repositorio.toString();
     }
 }
