@@ -111,7 +111,7 @@ public class PesquisarCarroAdmController implements Initializable {
 
         for (int i = 0; i < lista.length; i++) {
             if(lista[i] != null) {
-                ListResultados.getItems().add(lista[i].adicionarNaLista());
+                ListResultados.getItems().add(lista[i].adicionarNaListaAdm());
             }
         }
     }

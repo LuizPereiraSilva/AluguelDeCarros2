@@ -67,7 +67,6 @@ public class SceneManager {
             instance = new SceneManager();
         }
 
-        System.out.println("Erro 1");
         return instance;
     }
 

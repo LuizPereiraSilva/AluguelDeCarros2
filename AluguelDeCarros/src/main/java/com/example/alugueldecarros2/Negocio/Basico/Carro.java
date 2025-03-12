@@ -22,6 +22,8 @@ public class Carro implements Serializable{
         this.marca = marca;
     }
 
+    public Carro(){}
+
     // Métodos get set
 
     public int getIdCarro() {
@@ -84,6 +86,18 @@ public class Carro implements Serializable{
     public String adicionarNaLista(){
         String resultado = "";
         resultado += "Marca: " + this.marca;
+        resultado += " / Modelo: " + this.modelo;
+        resultado += " / Categoria de Carro: " + this.categoria;
+        resultado += " / Placa do Carro: " + this.placa;
+        resultado += "\nPreco: R$" + this.preco;
+
+        return resultado;
+    }
+
+    public String adicionarNaListaAdm(){
+        String resultado = "";
+        resultado += "ID: " + this.idCarro;
+        resultado += " / Marca: " + this.marca;
         resultado += " / Modelo: " + this.modelo;
         resultado += " / Categoria de Carro: " + this.categoria;
         resultado += " / Placa do Carro: " + this.placa;

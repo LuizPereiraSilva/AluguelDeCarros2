@@ -9,6 +9,7 @@ import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
@@ -144,6 +145,10 @@ public class TelaCarroController {
         ModeloCarro.setText(this.carro.getModelo());
         ValorTotal.setText(null);
         TotalDeDiarias.setText(null);
+
+        Image imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/" + this.carro.getIdCarro() + ".jpg"));
+
+        this.FotoCarro.setImage(imagemCarro);
 
         FormaDePagamentoChoiceBox.getItems().clear();
         String[] formasDePagamento = {"Débito", "Crédito", "Pix"};
