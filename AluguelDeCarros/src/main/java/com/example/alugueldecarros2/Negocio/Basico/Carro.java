@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Carro implements Serializable{
 
     private String categoria;
-    private int idCategoria;
     private int idCarro; // A placa do carro
     private float preco;
     private String modelo;
@@ -13,7 +12,7 @@ public class Carro implements Serializable{
     private String placa;
     private String localizacao;
     private boolean disponivel;
-    
+
     public Carro(String categoria, int idCarro, float preco, String placa, String modelo, String marca, String localizacao) {
         this.categoria = categoria;
         this.idCarro = idCarro;
@@ -24,7 +23,7 @@ public class Carro implements Serializable{
         this.localizacao = localizacao;
     }
 
-    public Carro(){}
+
 
     // Métodos get set
 
@@ -65,6 +64,10 @@ public class Carro implements Serializable{
     public void setMarca(String Marca){ this.marca = marca; }
 
     public String getCategoria(){ return this.categoria; }
+
+    public void setLocalizacao(String localizacao){ this.localizacao = localizacao; }
+
+    public String getLocalizacao(){ return this.localizacao; }
 
     public void setDisponivel(boolean disponivel){
         this.disponivel = disponivel;

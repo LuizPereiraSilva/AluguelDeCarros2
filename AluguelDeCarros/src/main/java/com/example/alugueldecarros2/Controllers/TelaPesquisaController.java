@@ -32,6 +32,9 @@ public class TelaPesquisaController implements Initializable {
     @FXML
     private ListView<String> ListResultados;
 
+    @FXML
+    private ChoiceBox<String> LocalizacaoChoiceBox;
+
     private Carro[] carros;
 
     @FXML
@@ -129,6 +132,10 @@ public class TelaPesquisaController implements Initializable {
         CategoriaPrecoChoiceBox.getItems().add("Médio");
         CategoriaPrecoChoiceBox.getItems().add("Luxo");
         CategoriaPrecoChoiceBox.getItems().add("Qualquer preço");
+
+        LocalizacaoChoiceBox.getItems().clear();
+        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+        LocalizacaoChoiceBox.getItems().addAll(lista);
 
         ListResultados.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
             @Override

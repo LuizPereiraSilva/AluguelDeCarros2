@@ -234,6 +234,25 @@ public class CadastroCarro {
 
 
 
+//    public Carro[] selecionarCarrosPelaLocalização(String localizacao, Carro[] carros) throws OperacaoInvalidaException{
+//        if(localizacao != null){
+//            throw new OperacaoInvalidaException();
+//        }
+//
+//        Carro[] auxCarros = new Carro[carros.length];
+//
+//        for(int i = 0; i < carros.length; i++){
+//            if(carros[i].get)
+//        }
+//    }
+
+
+
+
+
+
+
+
 
     //Métodos usados para teste, irrelevantes.
 

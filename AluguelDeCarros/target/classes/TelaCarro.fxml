@@ -72,7 +72,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" prefHeight="73.0" prefWidth="329.0" text="Carro">
+                        <Label fx:id="NomeCarro" layoutX="40.0" prefHeight="73.0" prefWidth="329.0" text="Carro">
                             <font>
                                 <Font name="Arial Bold" size="50.0" />
                             </font>
