@@ -21,6 +21,10 @@ public class TelaCarroController {
     private Label CategoriaCarro;
 
     @FXML
+    private Label Localizacao;
+
+
+    @FXML
     private Button ConfirmarReservaButton;
 
     @FXML
@@ -146,8 +150,11 @@ public class TelaCarroController {
         ValorDiaria.setText("R$ " + this.carro.getPreco());
         ValorTotal.setText("");
         ModeloCarro.setText(this.carro.getModelo());
+        Localizacao.setText(this.carro.getLocalizacao());
         ValorTotal.setText(null);
         TotalDeDiarias.setText(null);
+
+        this.setAllFieldsNull();
 
         Image imagemCarro;
 
@@ -171,6 +178,12 @@ public class TelaCarroController {
             CategoriaCarro.setText("Luxo");
         }
 
+    }
+
+    private void setAllFieldsNull(){
+        DataInicio.setValue(null);
+        DataFinal.setValue(null);
+        FormaDePagamentoChoiceBox.setValue(null);
     }
 
 }

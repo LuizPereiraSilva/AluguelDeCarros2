@@ -40,7 +40,7 @@ public class LoginTelaController{
 
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.changeScreen("TelaCadastro.fxml", "TelaCadastro");
-
+        sceneManager.getTelaCadastroController().setAllFIeldsNull();
 
     }
 

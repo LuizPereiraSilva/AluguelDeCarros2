@@ -77,4 +77,14 @@ public class TelaCadastroController {
         }
     }
 
+    public void setAllFIeldsNull(){
+        TextCpf.setText(null);
+        TextTelefone.setText(null);
+        TextEmail.setText(null);
+        TextName.setText(null);
+        TextSobrenome.setText(null);
+        TextSenha.setText(null);
+
+    }
+
 }

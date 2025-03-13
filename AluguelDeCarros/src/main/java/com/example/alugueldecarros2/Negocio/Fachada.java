@@ -187,6 +187,13 @@ public class Fachada {
 
 
 
+    public Carro[] selecionarCarrosDaListaPelaLocalizacao(String localizacao, Carro[] carros) {
+        return this.carros.selecionarCarrosDaListaPelaLocalizacao(localizacao, carros);
+    }
+
+
+
+
     public String listarCarros(){
         return carros.listarCarros();
     }

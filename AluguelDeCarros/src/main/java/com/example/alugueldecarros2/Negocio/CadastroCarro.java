@@ -234,17 +234,24 @@ public class CadastroCarro {
 
 
 
-//    public Carro[] selecionarCarrosPelaLocalização(String localizacao, Carro[] carros) throws OperacaoInvalidaException{
-//        if(localizacao != null){
-//            throw new OperacaoInvalidaException();
-//        }
-//
-//        Carro[] auxCarros = new Carro[carros.length];
-//
-//        for(int i = 0; i < carros.length; i++){
-//            if(carros[i].get)
-//        }
-//    }
+    public Carro[] selecionarCarrosDaListaPelaLocalizacao(String localizacao, Carro[] carros) {
+        if(localizacao != null && !localizacao.contentEquals("Qualquer localidade")){
+            Carro[] auxCarros = new Carro[carros.length];
+            int auxIndex = 0;
+
+            for(int i = 0; i < carros.length; i++){
+                if(carros[i] != null && carros[i].getLocalizacao().equals(localizacao)){
+                    auxCarros[auxIndex] = carros[i];
+                    auxIndex++;
+                }
+            }
+
+            return auxCarros;
+        } else{
+            Carro[] auxCarros = carros;
+            return auxCarros;
+        }
+    }
 
 
 

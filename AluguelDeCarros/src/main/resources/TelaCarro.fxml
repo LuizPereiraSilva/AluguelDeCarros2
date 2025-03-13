@@ -52,7 +52,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <Label layoutX="393.0" layoutY="213.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
+                        <Label layoutX="393.0" layoutY="216.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -106,7 +106,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <Label fx:id="CategoriaCarro" layoutX="540.0" layoutY="208.0" prefHeight="40.0" prefWidth="411.0" text="Popular">
+                        <Label fx:id="CategoriaCarro" layoutX="540.0" layoutY="212.0" prefHeight="40.0" prefWidth="411.0" text="Popular">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -139,6 +139,16 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="FormaDePagamentoChoiceBox" layoutX="269.0" layoutY="343.0" prefWidth="150.0" />
+                  <Label layoutX="393.0" layoutY="243.0" prefHeight="30.0" prefWidth="131.0" text="Localização: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Localizacao" layoutX="540.0" layoutY="237.0" prefHeight="40.0" prefWidth="411.0" text="Recife">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </items>

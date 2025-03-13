@@ -80,6 +80,8 @@ public class EditarCarroController {
         MarcaCarro.setText(carro.getMarca());
         TipoCarro.setText(carro.getCategoria());
         ValorDiaria.setText("R$ " + carro.getPreco());
+        Localizacao.setText(carro.getLocalizacao());
+
         if(carro.getDisponivel()) {
             DisponibilidadeCarro.setText("Disponivel");
         } else{

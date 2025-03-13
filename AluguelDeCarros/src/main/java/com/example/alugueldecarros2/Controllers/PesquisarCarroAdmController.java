@@ -90,7 +90,7 @@ public class PesquisarCarroAdmController implements Initializable {
         CategoriaPrecoChoiceBox.getItems().add("Qualquer preço");
 
         LocalizacaoChoiceBox.getItems().clear();
-        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina", "Qualquer localidade"};
         LocalizacaoChoiceBox.getItems().addAll(lista);
     }
 
@@ -109,13 +109,16 @@ public class PesquisarCarroAdmController implements Initializable {
             lista = fachada.getListaInicialCarros();
         }
 
-        carros = lista;
+        Carro[] auxLista = fachada.selecionarCarrosDaListaPelaLocalizacao(
+                LocalizacaoChoiceBox.getSelectionModel().getSelectedItem(), lista);
+
+        carros = auxLista;
 
         ListResultados.getItems().clear();
 
-        for (int i = 0; i < lista.length; i++) {
-            if(lista[i] != null) {
-                ListResultados.getItems().add(lista[i].adicionarNaListaAdm());
+        for(int i = 0; i < auxLista.length; i++){
+            if(auxLista[i] != null){
+                ListResultados.getItems().add(auxLista[i].adicionarNaListaAdm());
             }
         }
     }

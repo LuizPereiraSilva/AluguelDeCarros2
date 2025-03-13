@@ -96,13 +96,18 @@ public class TelaPesquisaController implements Initializable {
             lista = fachada.getListaInicialCarros();
         }
 
-        carros = lista;
+        Carro[] auxLista = fachada.selecionarCarrosDaListaPelaLocalizacao(
+                LocalizacaoChoiceBox.getSelectionModel().getSelectedItem(), lista);
+
+        carros = auxLista;
 
         ListResultados.getItems().clear();
 
         for (int i = 0; i < lista.length; i++) {
-            if(lista[i] != null && lista[i].getDisponivel()) {
-                ListResultados.getItems().add(lista[i].adicionarNaLista());
+            if(auxLista[i] != null) {
+                if (auxLista[i].getDisponivel()) {
+                    ListResultados.getItems().add(auxLista[i].adicionarNaLista());
+                }
             }
         }
     }
@@ -134,7 +139,7 @@ public class TelaPesquisaController implements Initializable {
         CategoriaPrecoChoiceBox.getItems().add("Qualquer preço");
 
         LocalizacaoChoiceBox.getItems().clear();
-        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina", "Qualquer localidade"};
         LocalizacaoChoiceBox.getItems().addAll(lista);
 
         ListResultados.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
