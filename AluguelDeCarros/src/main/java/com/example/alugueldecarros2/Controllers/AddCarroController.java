@@ -31,6 +31,10 @@ public class AddCarroController {
 
 
     @FXML
+    private ChoiceBox<String> LocalizacaoChoiceBox;
+
+
+    @FXML
     private ChoiceBox<String> CategoriaChoiceBox;
 
     @FXML
@@ -44,6 +48,10 @@ public class AddCarroController {
         CategoriaChoiceBox.getItems().add("Pickup");
         CategoriaChoiceBox.getItems().add("SUV");
 
+        LocalizacaoChoiceBox.getItems().clear();
+        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+        LocalizacaoChoiceBox.getItems().addAll(lista);
+
         DiariaTxt.clear();
         ModeloTxt.clear();
         PlacaTxt.clear();
@@ -55,7 +63,8 @@ public class AddCarroController {
         Fachada fachada =  Fachada.getInstance();
         try{
             fachada.cadastrarCarro(CategoriaChoiceBox.getSelectionModel().getSelectedItem(),
-                    Integer.parseInt(DiariaTxt.getText()),  PlacaTxt.getText(), ModeloTxt.getText(), MarcaTxt.getText());
+                    Integer.parseInt(DiariaTxt.getText()),  PlacaTxt.getText(), ModeloTxt.getText(), MarcaTxt.getText(),
+                    LocalizacaoChoiceBox.getSelectionModel().getSelectedItem());
         } catch(NumberFormatException e){
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Erro ao cadastrar");

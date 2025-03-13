@@ -133,11 +133,13 @@ public class TelaPesquisaController implements Initializable {
         ListResultados.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                for(int i = 0; i < carros.length; i++) {
-                    if(carros[i] != null && newValue.equals(carros[i].adicionarNaLista())) {
-                        SceneManager sceneManager = SceneManager.getInstance();
-                        sceneManager.changeScreen("TelaCarro.fxml", "Tela do Carro Selecionado");
-                        sceneManager.getTelaCarroController().initialize(carros[i]);
+                if(newValue != null) {
+                    for (int i = 0; i < carros.length; i++) {
+                        if (carros[i] != null && newValue.equals(carros[i].adicionarNaLista())) {
+                            SceneManager sceneManager = SceneManager.getInstance();
+                            sceneManager.changeScreen("TelaCarro.fxml", "Tela do Carro Selecionado");
+                            sceneManager.getTelaCarroController().initialize(carros[i]);
+                        }
                     }
                 }
             }

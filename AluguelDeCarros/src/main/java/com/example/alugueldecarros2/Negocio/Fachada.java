@@ -104,10 +104,10 @@ public class Fachada {
 
     //Métodos de Carro
 
-    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
+    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca, String localizacao)
             throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
             OperacaoBemSucedidaException {
-        carros.cadastrarCarro(categoria, preco, placa, modelo, marca);
+        carros.cadastrarCarro(categoria, preco, placa, modelo, marca, localizacao);
     }
 
 
@@ -119,9 +119,9 @@ public class Fachada {
 
 
     public void atualizarCarro(String categoria, float preco, String placa,
-                               String modelo, String marca) throws
+                               String modelo, String marca, String localizacao) throws
             CarroNaoExisteException, OperacaoInvalidaException, OperacaoBemSucedidaException{
-        carros.atualizarCarro(categoria, preco, placa, modelo, marca);
+        carros.atualizarCarro(categoria, preco, placa, modelo, marca, localizacao);
         throw new OperacaoBemSucedidaException();
     }
 

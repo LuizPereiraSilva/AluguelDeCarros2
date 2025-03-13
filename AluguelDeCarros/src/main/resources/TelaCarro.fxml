@@ -29,21 +29,21 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="798.0">
                     <children>
-                        <ImageView fx:id="FotoCarro" fitHeight="255.0" fitWidth="255.0" layoutX="24.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text layoutX="330.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="348.3154296875">
+                        <ImageView fx:id="FotoCarro" fitHeight="255.0" fitWidth="348.0" layoutX="24.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text layoutX="390.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="348.3154296875">
                             <font>
                                 <Font size="30.0" />
                             </font>
                         </Text>
-                        <Label fx:id="ModeloCarro" layoutX="466.0" layoutY="123.0" prefHeight="40.0" prefWidth="452.0" text="Gol">
+                        <Label fx:id="ModeloCarro" layoutX="539.0" layoutY="123.0" prefHeight="40.0" prefWidth="452.0" text="Gol">
                             <font>
                                 <Font size="18.0" />
                             </font></Label>
-                        <Label fx:id="MarcaCarro" layoutX="467.0" layoutY="153.0" prefHeight="40.0" prefWidth="380.0" text="VolksWagen">
+                        <Label fx:id="MarcaCarro" layoutX="540.0" layoutY="153.0" prefHeight="40.0" prefWidth="380.0" text="VolksWagen">
                             <font>
                                 <Font size="18.0" />
                             </font></Label>
-                        <Label fx:id="TipoCarro" layoutX="467.0" layoutY="183.0" prefHeight="40.0" prefWidth="361.0" text="Hatch">
+                        <Label fx:id="TipoCarro" layoutX="540.0" layoutY="183.0" prefHeight="40.0" prefWidth="361.0" text="Hatch">
                             <font>
                                 <Font size="18.0" />
                             </font></Label>
@@ -52,27 +52,27 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <Label layoutX="330.0" layoutY="213.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
+                        <Label layoutX="393.0" layoutY="213.0" prefHeight="30.0" prefWidth="100.0" text="Categoria:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="330.0" layoutY="188.0" text="Tipo:">
+                        <Label layoutX="394.0" layoutY="188.0" text="Tipo:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="330.0" layoutY="158.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
+                        <Label layoutX="393.0" layoutY="158.0" prefHeight="30.0" prefWidth="69.0" text="Marca:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="330.0" layoutY="128.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
+                        <Label layoutX="392.0" layoutY="128.0" prefHeight="30.0" prefWidth="88.0" text="Modelo:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" prefHeight="73.0" prefWidth="329.0" text="Carro">
+                        <Label fx:id="NomeCarro" layoutX="40.0" prefHeight="73.0" prefWidth="329.0" text="Carro">
                             <font>
                                 <Font name="Arial Bold" size="50.0" />
                             </font>
@@ -106,7 +106,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <Label fx:id="CategoriaCarro" layoutX="467.0" layoutY="208.0" prefHeight="40.0" prefWidth="411.0" text="Popular">
+                        <Label fx:id="CategoriaCarro" layoutX="540.0" layoutY="208.0" prefHeight="40.0" prefWidth="411.0" text="Popular">
                             <font>
                                 <Font size="18.0" />
                             </font>

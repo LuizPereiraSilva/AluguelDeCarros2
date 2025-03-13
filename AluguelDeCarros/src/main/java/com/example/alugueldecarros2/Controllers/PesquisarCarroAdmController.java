@@ -35,6 +35,9 @@ public class PesquisarCarroAdmController implements Initializable {
     private ChoiceBox<String> CategoriaPrecoChoiceBox;
 
     @FXML
+    private ChoiceBox<String> LocalizacaoChoiceBox;
+
+    @FXML
     private TextField TextPlaca;
 
     @FXML
@@ -53,17 +56,19 @@ public class PesquisarCarroAdmController implements Initializable {
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 SceneManager sceneManager = SceneManager.getInstance();
 
-                Carro carro = null;
-                int i = 0;
-                while(carros[i] != null){
-                    if(t1.contains(carros[i].getPlaca())){
-                        carro = carros[i];
-                        break;
+                if (t1 != null) {
+                    Carro carro = null;
+                    int i = 0;
+                    while (carros[i] != null) {
+                        if (t1.contains(carros[i].getPlaca())) {
+                            carro = carros[i];
+                            break;
+                        }
+                        i++;
                     }
-                    i++;
+                    sceneManager.getEditarCarroController().initialize(carro);
+                    sceneManager.changeScreen("EditarCarro.fxml", "Editar Carro");
                 }
-                sceneManager.getEditarCarroController().initialize(carro);
-                sceneManager.changeScreen("EditarCarro.fxml", "Editar Carro");
             }
         });
     }
@@ -83,13 +88,12 @@ public class PesquisarCarroAdmController implements Initializable {
         CategoriaPrecoChoiceBox.getItems().add("Médio");
         CategoriaPrecoChoiceBox.getItems().add("Luxo");
         CategoriaPrecoChoiceBox.getItems().add("Qualquer preço");
+
+        LocalizacaoChoiceBox.getItems().clear();
+        String[] lista = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+        LocalizacaoChoiceBox.getItems().addAll(lista);
     }
 
-//    private void adicionarCarroTeste(){
-//        Fachada fachada = Fachada.getInstance();
-//        carros = fachada.getListaCarros();
-//        ListResultados.getItems().add(carros[0].adicionarNaLista());
-//    }
 
     @FXML
     public void listarCarros(){

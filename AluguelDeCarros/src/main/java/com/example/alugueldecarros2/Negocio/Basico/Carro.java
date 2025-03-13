@@ -11,15 +11,17 @@ public class Carro implements Serializable{
     private String modelo;
     private String marca;
     private String placa;
+    private String localizacao;
     private boolean disponivel;
     
-    public Carro(String categoria, int idCarro, float preco, String placa, String modelo, String marca) {
+    public Carro(String categoria, int idCarro, float preco, String placa, String modelo, String marca, String localizacao) {
         this.categoria = categoria;
         this.idCarro = idCarro;
         this.preco = preco;
         this.placa  = placa;
         this.modelo = modelo;
         this.marca = marca;
+        this.localizacao = localizacao;
     }
 
     public Carro(){}

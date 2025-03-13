@@ -54,6 +54,9 @@ public class TelaCarroController {
     private Label TotalDeDiarias;
 
     @FXML
+    private Label NomeCarro;
+
+    @FXML
     private Button VoltarButton;
 
     @FXML
@@ -146,7 +149,13 @@ public class TelaCarroController {
         ValorTotal.setText(null);
         TotalDeDiarias.setText(null);
 
-        Image imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/" + this.carro.getIdCarro() + ".jpg"));
+        Image imagemCarro;
+
+        try {
+            imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/" + this.carro.getIdCarro() + ".jpg"));
+        } catch (Exception ex) {
+            imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/NenhumaImagem.jpg"));
+        }
 
         this.FotoCarro.setImage(imagemCarro);
 

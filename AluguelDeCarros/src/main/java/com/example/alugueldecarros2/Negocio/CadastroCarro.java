@@ -40,13 +40,13 @@ public class CadastroCarro {
 
     //Métodos de modificação de itens do repositorio.
 
-    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca)
+    public void cadastrarCarro(String categoria, float preco, String placa, String modelo, String marca, String localizacao)
             throws RepositorioCheioException, CarroJaExisteException, OperacaoInvalidaException,
             OperacaoBemSucedidaException {
         repositorio.verificarPlaca(placa);
         if (preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
                 !modelo.isEmpty() && !marca.isEmpty()) {
-            Carro carro = new Carro(categoria, this.ultimoId + 1, preco, placa, modelo, marca);
+            Carro carro = new Carro(categoria, this.ultimoId + 1, preco, placa, modelo, marca, localizacao);
             this.repositorio.adicionarCarro(carro);
             ultimoId++;
         } else{
@@ -64,11 +64,11 @@ public class CadastroCarro {
 
 
 
-    public void atualizarCarro(String categoria, float preco, String placa, String modelo, String marca)
+    public void atualizarCarro(String categoria, float preco, String placa, String modelo, String marca, String localizacao)
             throws CarroNaoExisteException, OperacaoInvalidaException{
         if(preco > 0 && !categoria.isEmpty() && !placa.isEmpty() &&
-                !modelo.isEmpty() && !marca.isEmpty()) {
-            Carro carro = new Carro(categoria, 0, preco, placa, modelo, marca);
+                !modelo.isEmpty() && !marca.isEmpty() && !localizacao.isEmpty()) {
+            Carro carro = new Carro(categoria, 0, preco, placa, modelo, marca, localizacao);
             repositorio.atualizarCarro(carro);
         } else{
             throw new OperacaoInvalidaException();

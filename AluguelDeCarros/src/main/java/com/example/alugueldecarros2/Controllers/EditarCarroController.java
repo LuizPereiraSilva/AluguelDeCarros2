@@ -8,6 +8,9 @@ import com.example.alugueldecarros2.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+
+import javafx.scene.image.ImageView;
 
 public class EditarCarroController {
 
@@ -40,6 +43,9 @@ public class EditarCarroController {
     @FXML
     private ChoiceBox<String> DisponibilidadeChoiceBox;
 
+    @FXML
+    private ChoiceBox<String> LocalizacaoChoiceBoxEditar;
+
 
     @FXML
     private Label DisponibilidadeCarro;
@@ -58,6 +64,12 @@ public class EditarCarroController {
 
     @FXML
     private Label ValorDiaria;
+
+    @FXML
+    private Label Localizacao;
+
+    @FXML
+    private ImageView FotoCarro;
 
     private Carro carro;
 
@@ -83,6 +95,21 @@ public class EditarCarroController {
 
         DisponibilidadeChoiceBox.getItems().clear();
         DisponibilidadeChoiceBox.getItems().addAll(lista2);
+
+        String[] lista3 = {"Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"};
+
+        LocalizacaoChoiceBoxEditar.getItems().clear();
+        LocalizacaoChoiceBoxEditar.getItems().addAll(lista3);
+
+        Image imagemCarro = null;
+
+        try {
+            imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/"+ carro.getIdCarro() + ".jpg"));
+        } catch(Exception e){
+            imagemCarro = new Image(getClass().getResourceAsStream("/CarrosImagens/NenhumaImagem.jpg"));
+        }
+
+        this.FotoCarro.setImage(imagemCarro);
 
         if(carro.getPreco() < 150){
             FaixaDePrecoCarro.setText("Popular");
@@ -132,7 +159,8 @@ public class EditarCarroController {
         try{
             fachada.atualizarCarro(CategoriaChoiceBoxEditar.getSelectionModel().getSelectedItem(),
                     Integer.parseInt(DiariaTxtEditar.getText()), carro.getPlaca(),
-                    ModeloTxtEditar.getText(), MarcaTxtEditar.getText());
+                    ModeloTxtEditar.getText(), MarcaTxtEditar.getText(),
+                    LocalizacaoChoiceBoxEditar.getSelectionModel().getSelectedItem());
         } catch(NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao atualizar");
@@ -149,7 +177,6 @@ public class EditarCarroController {
             SceneManager sceneManager = SceneManager.getInstance();
             sceneManager.getPesquisarCarroAdmController().listarCarros();
             this.setFieldsNull();
-//            sceneManager.changeScreen("PesquisarCarroAdm.fxml", "Pesquisar Carro Administrador");
         }
     }
 

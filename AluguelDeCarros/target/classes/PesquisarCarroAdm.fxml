@@ -44,12 +44,13 @@
                                           <Font name="Arial" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="238.0" layoutY="17.0" prefHeight="21.0" prefWidth="145.0" text="Adicionar novo carro:">
+                                    <Button fx:id="BuscarButton" layoutX="277.0" layoutY="21.0" mnemonicParsing="false" onAction="#listarCarros" prefHeight="38.0" prefWidth="81.0" text="Buscar" />
+                                    <ChoiceBox fx:id="LocalizacaoChoiceBox" layoutX="140.0" layoutY="27.0" prefHeight="25.0" prefWidth="105.0" />
+                                    <Label layoutX="140.0" layoutY="4.0" prefHeight="21.0" prefWidth="93.0" text="Localização:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="NovoCarroButton" layoutX="272.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleNovoCarroButton" text="Novo Carro" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -62,8 +63,13 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="BuscarButton" layoutX="387.0" layoutY="121.0" mnemonicParsing="false" onAction="#listarCarros" prefHeight="38.0" prefWidth="81.0" text="Buscar" />
                         <Button fx:id="BuscarPlacaButton" layoutX="261.0" layoutY="140.0" mnemonicParsing="false" onAction="#buscarPlaca" text="Buscar Placa" />
+                        <Button fx:id="NovoCarroButton" layoutX="397.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleNovoCarroButton" text="Novo Carro" />
+                        <Label layoutX="366.0" layoutY="103.0" prefHeight="21.0" prefWidth="145.0" text="Adicionar novo carro:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>

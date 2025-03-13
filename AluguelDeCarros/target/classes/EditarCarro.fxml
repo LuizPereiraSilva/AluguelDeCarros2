@@ -29,7 +29,7 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="798.0">
                     <children>
-                        <ImageView fx:id="FotoCarro" fitHeight="255.0" fitWidth="255.0" layoutX="38.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="FotoCarro" fitHeight="214.0" fitWidth="204.0" layoutX="539.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
                         <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do veiculo:" wrappingWidth="329.0">
                             <font>
                                 <Font size="24.0" />
@@ -67,12 +67,12 @@
                                 <Font name="Arial Bold" size="50.0" />
                             </font>
                         </Label>
-                        <Label layoutX="288.0" layoutY="336.0" prefHeight="30.0" prefWidth="173.0" text="Confirmar edição:">
+                        <Label layoutX="288.0" layoutY="382.0" prefHeight="30.0" prefWidth="173.0" text="Confirmar edição:">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                  <Button fx:id="EditarButton" layoutX="477.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnEditarClicked" prefHeight="33.0" prefWidth="113.0" text="CONFIRMAR!">
+                  <Button fx:id="EditarButton" layoutX="477.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnEditarClicked" prefHeight="33.0" prefWidth="113.0" text="CONFIRMAR!">
                      <font>
                         <Font size="15.0" />
                      </font></Button>
@@ -86,14 +86,14 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Text layoutX="368.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar informações:" wrappingWidth="329.0">
+                  <Text layoutX="312.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar informações:" wrappingWidth="329.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="ModeloTxtEditar" layoutX="401.0" layoutY="151.0" />
-                  <TextField fx:id="MarcaTxtEditar" layoutX="401.0" layoutY="186.0" />
-                  <TextField fx:id="DiariaTxtEditar" layoutX="401.0" layoutY="285.0" />
+                  <TextField fx:id="ModeloTxtEditar" layoutX="316.0" layoutY="151.0" />
+                  <TextField fx:id="MarcaTxtEditar" layoutX="316.0" layoutY="186.0" />
+                  <TextField fx:id="DiariaTxtEditar" layoutX="317.0" layoutY="285.0" />
                   <Button fx:id="RemoverCarroButton" layoutX="318.0" layoutY="496.0" mnemonicParsing="false" onAction="#btnRemoverClicked" prefHeight="33.0" prefWidth="113.0" text="REMOVER!">
                      <font>
                         <Font size="15.0" />
@@ -104,7 +104,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="CategoriaChoiceBoxEditar" layoutX="401.0" layoutY="218.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="CategoriaChoiceBoxEditar" layoutX="316.0" layoutY="218.0" prefWidth="150.0" />
                   <Label layoutX="26.0" layoutY="248.0" text="Faixa de Preco:">
                      <font>
                         <Font size="20.0" />
@@ -115,22 +115,33 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="TituloLivro112" layoutX="26.0" layoutY="397.0" prefHeight="35.0" prefWidth="161.0" text="Disponibilidade:  ">
+                  <Label fx:id="TituloLivro112" layoutX="26.0" layoutY="436.0" prefHeight="35.0" prefWidth="161.0" text="Disponibilidade:  ">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="DisponibilidadeCarro" layoutX="188.0" layoutY="394.0" prefHeight="40.0" prefWidth="131.0" text="Disponivel">
+                  <Label fx:id="DisponibilidadeCarro" layoutX="188.0" layoutY="433.0" prefHeight="40.0" prefWidth="131.0" text="Disponivel">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="DisponibilidadeChoiceBox" layoutX="368.0" layoutY="402.0" prefWidth="150.0" />
-                  <Button fx:id="TrocarDisponibilidadeButton" layoutX="551.0" layoutY="398.0" mnemonicParsing="false" onAction="#trocarDisponibilidade" prefHeight="35.0" prefWidth="204.0" text="TROCAR DISPONIBILIDADE">
+                  <ChoiceBox fx:id="DisponibilidadeChoiceBox" layoutX="368.0" layoutY="442.0" prefWidth="150.0" />
+                  <Button fx:id="TrocarDisponibilidadeButton" layoutX="551.0" layoutY="435.0" mnemonicParsing="false" onAction="#trocarDisponibilidade" prefHeight="35.0" prefWidth="204.0" text="TROCAR DISPONIBILIDADE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
+                  <Label fx:id="TituloLivro113" layoutX="28.0" layoutY="319.0" prefHeight="35.0" prefWidth="132.0" text="Localização:  ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Localizacao" layoutX="192.0" layoutY="314.0" prefHeight="45.0" prefWidth="180.0" text="Recife">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="LocalizacaoChoiceBoxEditar" layoutX="319.0" layoutY="324.0" prefWidth="150.0" />
                     </children>
                 </AnchorPane>
             </items>
